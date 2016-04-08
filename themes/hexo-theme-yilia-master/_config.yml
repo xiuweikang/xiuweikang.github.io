@@ -1,0 +1,60 @@
+# Header
+menu:
+  主页: /
+  所有文章: /archives
+  # 随笔: /tags/随笔
+
+# SubNav
+subnav:
+  github: "http://github.com/xiuweikang"
+  rss: "/atom.xml"
+  zhihu: "http://www.zhihu.com/people/chi-luo-feng-qing"
+  #douban: "#"
+  #mail: "#"
+  #facebook: "#"
+  #google: "#"
+  #twitter: "#"
+  #linkedin: "#"
+
+rss: /atom.xml
+
+# Content
+excerpt_link: more
+fancybox: true
+mathjax: true
+
+# 是否开启动画效果
+animate: false
+
+# 是否在新窗口打开链接
+open_in_new: false
+
+# Miscellaneous
+google_analytics: ''
+favicon: /favicon.png
+
+#你的头像url
+avatar: http://ww1.sinaimg.cn/large/b00f9334jw1euqfjo94aqj205v05wdg4.jpg
+#是否开启分享
+share: true
+#是否开启多说评论，填写你在多说申请的项目名称 duoshuo: duoshuo-key
+#若使用disqus，请在博客config文件中填写disqus_shortname，并关闭多说评论
+duoshuo: true
+#是否开启云标签
+tagcloud: true
+
+#是否开启友情链接
+#不开启——
+#friends: false
+#开启——
+friends:
+  亮亮的博客: http://my.csdn.net/jiaomingliang
+  二哥的博客: http://cheduzi.wang
+  郭神的博客: http://blog.csdn.net/guolin_blog
+  任玉刚的博客: http://http://blog.csdn.net/singwhatiwanna
+ 
+#是否开启“关于我”。
+#不开启——
+#aboutme: false
+#开启——
+aboutme: 山东科技大学，软件工程12级，美团网Android实习生。

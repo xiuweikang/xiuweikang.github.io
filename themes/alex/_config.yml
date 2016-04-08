@@ -1,0 +1,36 @@
+# Header
+menu:
+  首页: /
+  归档: /archives
+  关于: /about/index.html
+  RSS: /atom.xml
+github: https://github.com/xiuweikang
+
+# Content
+excerpt_link: Read More
+fancybox: true
+
+# Sidebar
+sidebar: left
+widgets:
+- category
+- recent_posts
+- tagcloud
+- links
+
+# Links
+links:
+  亮亮的博客: http://my.csdn.net/jiaomingliang
+  二哥的博客: http://cheduzi.wang
+  郭神的博客: http://blog.csdn.net/guolin_blog
+  任玉刚的博客: http://http://blog.csdn.net/singwhatiwanna
+ 
+duoshuo: true
+
+# Miscellaneous
+google_analytics:
+favicon: /favicon.png
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:

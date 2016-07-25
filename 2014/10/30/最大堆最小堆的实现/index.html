@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>最大堆最小堆的实现 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最大堆最小堆的实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最大堆最小堆的实现">
+<meta property="og:url" content="/2014/10/30/最大堆最小堆的实现/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="最大堆最小堆的实现">
+<meta property="og:updated_time" content="2016-07-19T03:55:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最大堆最小堆的实现">
+<meta name="twitter:description" content="最大堆最小堆的实现">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-最大堆最小堆的实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/30/最大堆最小堆的实现/" class="article-date">
+  <time datetime="2014-10-30T07:45:24.000Z" itemprop="datePublished">10月 30 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      最大堆最小堆的实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最大堆最小堆的实现<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 文件名：BinaryHeap.java</div><div class="line"> * 时间：2014年11月3日下午7:15:34</div><div class="line"> * 作者：修维康</div><div class="line"> */</div><div class="line"><span class="keyword">package</span> chapter6;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：BinaryHeap 说明：建立一个最小堆</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinHeap</span>&lt;<span class="title">AnyType</span> <span class="keyword">extends</span> <span class="title">Comparable</span>&lt;? <span class="title">super</span> <span class="title">AnyType</span>&gt;&gt; </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> currentSize;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</div><div class="line">	<span class="keyword">private</span> AnyType[] array;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MinHeap</span><span class="params">(AnyType[] items)</span> </span>&#123;</div><div class="line">		currentSize = items.length;</div><div class="line">		array = (AnyType[]) <span class="keyword">new</span> Comparable[currentSize + <span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> i = <span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span> (AnyType item : items)</div><div class="line">			array[i++] = item;</div><div class="line">		buildHeap();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：percolateDown</div><div class="line">	 * 说明：</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">percolateDown</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">		AnyType temp = array[position];</div><div class="line">		<span class="keyword">int</span> child;</div><div class="line">		<span class="keyword">for</span> (; position * <span class="number">2</span> &lt;= currentSize; position = child) &#123;</div><div class="line">			child = <span class="number">2</span> * position;</div><div class="line">			<span class="keyword">if</span> (child != currentSize</div><div class="line">					&amp;&amp; array[child + <span class="number">1</span>].compareTo(array[child]) &lt; <span class="number">0</span>)</div><div class="line">				child++;</div><div class="line">			<span class="keyword">if</span> (array[child].compareTo(temp) &lt; <span class="number">0</span>)</div><div class="line">				array[position] = array[child];</div><div class="line"></div><div class="line">			<span class="keyword">else</span></div><div class="line">				<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		array[position] = temp;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：buildHeap</div><div class="line">	 * 说明：下滤的顺序很关键 从中间开始不断向上依次下滤</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildHeap</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = currentSize / <span class="number">2</span>; i &gt; <span class="number">0</span>; i--)</div><div class="line">			percolateDown(i);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(AnyType x)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (currentSize &gt;= array.length - <span class="number">1</span>)</div><div class="line">			enlargeArray(array.length * <span class="number">2</span> + <span class="number">1</span>);</div><div class="line">		<span class="keyword">int</span> hole = ++currentSize;</div><div class="line">		<span class="keyword">while</span> (hole &gt; <span class="number">1</span> &amp;&amp; x.compareTo(array[hole / <span class="number">2</span>]) &lt; <span class="number">0</span>) &#123;</div><div class="line">			array[hole] = array[hole / <span class="number">2</span>];</div><div class="line">			hole /= <span class="number">2</span>;</div><div class="line">		&#125;</div><div class="line">		array[hole] = x;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">enlargeArray</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">		AnyType[] oldArr = array;</div><div class="line">		AnyType[] newArr = (AnyType[]) <span class="keyword">new</span> Comparable[capacity];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; array.length; i++)</div><div class="line">			newArr[i] = oldArr[i];</div><div class="line">		array = newArr;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> currentSize == <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> AnyType <span class="title">deleMin</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (!isEmpty()) &#123;</div><div class="line">			AnyType min = array[<span class="number">1</span>];</div><div class="line">			array[<span class="number">1</span>] = array[currentSize--];</div><div class="line">			percolateDown(<span class="number">1</span>);</div><div class="line">			<span class="keyword">return</span> min;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= currentSize; i++)</div><div class="line">			sb.append(array[i] + <span class="string">" "</span>);</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> String(sb);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：MaxHeap 说明：最大堆操作与建堆</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxHeap</span>&lt;<span class="title">AnyType</span> <span class="keyword">extends</span> <span class="title">Comparable</span>&lt;? <span class="title">super</span> <span class="title">AnyType</span>&gt;&gt; </span>&#123;</div><div class="line">	<span class="keyword">private</span> AnyType[] array;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> currentSize;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MaxHeap</span><span class="params">(AnyType[] arr)</span> </span>&#123;</div><div class="line">		currentSize = arr.length;</div><div class="line">		array = (AnyType[]) <span class="keyword">new</span> Comparable[currentSize + <span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> i = <span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; arr.length; j++)</div><div class="line">			array[i++] = arr[j];</div><div class="line">		buildHeap();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：buildHeap</div><div class="line">	 * 说明：从中间开始到结束 不断上滤</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildHeap</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = currentSize /<span class="number">2</span>; i &lt;= currentSize; i++)</div><div class="line">			percolateUp(i);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">percolateUp</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">		AnyType temp = array[position];</div><div class="line">		<span class="keyword">while</span> (position &gt; <span class="number">1</span>) &#123;</div><div class="line">			<span class="keyword">if</span> (array[position / <span class="number">2</span>].compareTo(temp) &lt; <span class="number">0</span>) &#123;</div><div class="line">				array[position] = array[position / <span class="number">2</span>];</div><div class="line">				position /= <span class="number">2</span>;</div><div class="line">			&#125; <span class="keyword">else</span></div><div class="line">				<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		array[position] = temp;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> currentSize == <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> AnyType <span class="title">deleMax</span><span class="params">()</span></span>&#123;</div><div class="line">		AnyType max = array[<span class="number">1</span>];</div><div class="line">		AnyType temp = array[currentSize--];</div><div class="line">		<span class="keyword">int</span> position = <span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> child;</div><div class="line">		<span class="keyword">while</span>(position *<span class="number">2</span> &lt;= currentSize)&#123;</div><div class="line">			child = <span class="number">2</span> * position;</div><div class="line">			<span class="keyword">if</span>(child!=currentSize&amp;&amp;array[child].compareTo(array[child + <span class="number">1</span>]) &lt; <span class="number">0</span>)</div><div class="line">				child++;</div><div class="line">			<span class="keyword">if</span>(array[child].compareTo(temp) &gt; <span class="number">0</span>)</div><div class="line">				array[position] = array[child];</div><div class="line">			<span class="keyword">else</span> </div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			position = child;</div><div class="line">		&#125;</div><div class="line">		array[position] = temp;</div><div class="line">		<span class="keyword">return</span> max;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(AnyType x)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(currentSize == array.length -<span class="number">1</span>)</div><div class="line">			enlargeArray( <span class="number">2</span>* currentSize +<span class="number">1</span>);</div><div class="line">		array[++currentSize] = x;</div><div class="line">		percolateUp(currentSize);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">enlargeArray</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">		AnyType[] oldArr = array;</div><div class="line">		AnyType[] newArr = (AnyType[]) <span class="keyword">new</span> Comparable[capacity];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; array.length; i++)</div><div class="line">			newArr[i] = oldArr[i];</div><div class="line">		array = newArr;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= currentSize; i++)</div><div class="line">			sb.append(array[i] + <span class="string">" "</span>);</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> String(sb);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeapTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		Integer[] arr = <span class="keyword">new</span> Integer[] &#123; <span class="number">9</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>&#125;;</div><div class="line">		MinHeap min = <span class="keyword">new</span> MinHeap(arr);</div><div class="line">		min.insert(<span class="number">10</span>);</div><div class="line">		min.deleMin();</div><div class="line">		System.out.println(min);</div><div class="line">		Integer[] arr2 = <span class="keyword">new</span> Integer[] &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</div><div class="line">		MaxHeap max = <span class="keyword">new</span> MaxHeap(arr2);</div><div class="line">		max.deleMax();</div><div class="line">		max.insert(<span class="number">10</span>);</div><div class="line">		System.out.println(max);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2014/10/30/最大堆最小堆的实现/" data-title="最大堆最小堆的实现" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="最大堆最小堆的实现" data-url="//2014/10/30/最大堆最小堆的实现/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2014/10/30/最大堆最小堆的实现/" data-title="最大堆最小堆的实现" data-url="//2014/10/30/最大堆最小堆的实现/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

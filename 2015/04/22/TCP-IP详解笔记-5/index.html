@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>TCP/IP详解笔记(5) | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ICMP协议、Ping程序、Traceroute程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP/IP详解笔记(5)">
+<meta property="og:url" content="/2015/04/22/TCP-IP详解笔记-5/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="ICMP协议、Ping程序、Traceroute程序">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105915754?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105923211?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105858002?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105901964?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105935207?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105939996?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105943647?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105925442?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320105929779?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320110003131?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320110007281?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320110011430?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320110018419?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150320110023723?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2016-07-19T03:55:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCP/IP详解笔记(5)">
+<meta name="twitter:description" content="ICMP协议、Ping程序、Traceroute程序">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150320105915754?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-TCP-IP详解笔记-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/22/TCP-IP详解笔记-5/" class="article-date">
+  <time datetime="2015-04-22T07:48:05.000Z" itemprop="datePublished">4月 22 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TCP/IP详解笔记(5)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ICMP协议、Ping程序、Traceroute程序<br><a id="more"></a></p>
+<h2 id="ICMP协议、Ping程序、Traceroute程序"><a href="#ICMP协议、Ping程序、Traceroute程序" class="headerlink" title="ICMP协议、Ping程序、Traceroute程序"></a>ICMP协议、Ping程序、Traceroute程序</h2><p>ping程序和Traceroute程序都是基于ICMP协议的，放在一起看。<br>ICMP是网络层的协议，尽管它是封装在IP数据报内部。</p>
+<p><img src="http://img.blog.csdn.net/20150320105915754?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h3 id="ICMP报文格式："><a href="#ICMP报文格式：" class="headerlink" title="ICMP报文格式："></a>ICMP报文格式：</h3><p>8位类型字段区分类型，代码区分类型（如下图），16位检验和覆盖ICMP的头部和数据部分。</p>
+<p><img src="http://img.blog.csdn.net/20150320105923211?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150320105858002?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>根据上图可以看到 ICMP分为查询和差错两种，注意：ICMP差错报文出错时不会再产生ICMP差错报文，不然会一直循环下去。<br>同时目的地址是广播地址或多播地址的IP数据报也不会产生，如果产生的话 会产生很多ICMP差错报文，会产生广播风暴。</p>
+<h3 id="ICMP地址掩码请求与应答："><a href="#ICMP地址掩码请求与应答：" class="headerlink" title="ICMP地址掩码请求与应答："></a>ICMP地址掩码请求与应答：</h3><p><img src="http://img.blog.csdn.net/20150320105901964?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>无盘系统通过广播此数据报根据ICMP应答获得子网掩码。</p>
+<p>标识符和序列号由发送端任意设定，在应答中会返回，发送端就可以根据这个进行匹配</p>
+<h3 id="ICMP时间戳请求与应答"><a href="#ICMP时间戳请求与应答" class="headerlink" title="ICMP时间戳请求与应答"></a>ICMP时间戳请求与应答</h3><p><img src="http://img.blog.csdn.net/20150320105935207?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>用于向另一个系统查询当前的时间，返回的值是自午夜开始算的毫秒数，无法获知当时的日期。</p>
+<h3 id="ICMP端口不可达差错"><a href="#ICMP端口不可达差错" class="headerlink" title="ICMP端口不可达差错"></a>ICMP端口不可达差错</h3><p><img src="http://img.blog.csdn.net/20150320105939996?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>当目的端口不可达时，产生一个ICMP差错报文，一般的差错报文都会包含IP首部，及数据段的前8个字节，而这前8个字节主要包含了端口信息。通过这个可以了解导致差错的原因</p>
+<h3 id="Ping程序："><a href="#Ping程序：" class="headerlink" title="Ping程序："></a>Ping程序：</h3><p>Ping程序大部分人都用过，它的原理就是发送ICMP回显请求，对方收到后发送icmp回显应答，以此判断是否可达。大多数支持TCP/IP协议的都会支持</p>
+<p><img src="http://img.blog.csdn.net/20150320105943647?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150320105925442?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>可以看到第一次时间比较久，这很可能是发送arp请求和接收应答所花费的时间</p>
+<p><img src="http://img.blog.csdn.net/20150320105929779?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150320110003131?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>从wireshark中我们可以看到请求携带的数据，应答也都回显了，报文的格式和上面的图一样。</p>
+<h3 id="IP记录路由："><a href="#IP记录路由：" class="headerlink" title="IP记录路由："></a>IP记录路由：</h3><p><img src="http://img.blog.csdn.net/20150320110007281?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>在笔记（4）中提到IP的选项字段最多只有40个字节，除去3个字节的code(指明这个选项是干什么的)len(长度)ptr(指针字段)剩下的只够9个IP地址的。因此最多存放9个IP地址。</p>
+<p>从下面的图也可看出来</p>
+<p><img src="http://img.blog.csdn.net/20150320110011430?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150320110018419?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20150320110023723?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>抓到的包里也可以看出。</p>
+<p>IP时间戳选项类似。</p>
+<h3 id="Traceroute程序："><a href="#Traceroute程序：" class="headerlink" title="Traceroute程序："></a>Traceroute程序：</h3><p>因为IP记录路由选项记录的路由地址最多为9个，</p>
+<p>无法完全呈现路由路径。</p>
+<p>Traceroute可以完全呈现路径，原理是利用ip首部的TTL字段 TTL字段每经过一个路由器就会-1，到0时，路由器会向发送端发送ICMP超时报文（包含该路由的IP）。因此可以从1开始逐步加1，当数据报到达时产生一个端口不可达错误，就知道到目的主机了。</p>
+<h3 id="IP源站选项路由："><a href="#IP源站选项路由：" class="headerlink" title="IP源站选项路由："></a>IP源站选项路由：</h3><ul>
+<li>严格的源路由选择：在IP首部的选项段中添加路由地址，发送端指明IP数据报必须采用指定的路由，当一个路由器发现下一站路由不在其相连的网站上 就返回一个源站路由失败的 ICMP差错报文</li>
+<li>宽松的源站选路:发送端指明了一个数据报经过的IP地址清单，但是数据报在清单上指明的任意两个地址之间可通过其他</li>
+</ul>
+<p>本节完</p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/04/22/TCP-IP详解笔记-5/" data-title="TCP/IP详解笔记(5)" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="TCP/IP详解笔记(5)" data-url="//2015/04/22/TCP-IP详解笔记-5/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/04/22/TCP-IP详解笔记-5/" data-title="TCP/IP详解笔记(5)" data-url="//2015/04/22/TCP-IP详解笔记-5/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

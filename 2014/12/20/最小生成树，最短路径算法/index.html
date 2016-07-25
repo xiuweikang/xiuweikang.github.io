@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>最小生成树，最短路径算法 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="经典的贪心策略 Prim算法，Kruskal算法求最小生成树，dijkstra求最短路径">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小生成树，最短路径算法">
+<meta property="og:url" content="/2014/12/20/最小生成树，最短路径算法/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="经典的贪心策略 Prim算法，Kruskal算法求最小生成树，dijkstra求最短路径">
+<meta property="og:image" content="http://img.blog.csdn.net/20141118172324350?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2016-07-19T03:55:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最小生成树，最短路径算法">
+<meta name="twitter:description" content="经典的贪心策略 Prim算法，Kruskal算法求最小生成树，dijkstra求最短路径">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20141118172324350?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-最小生成树，最短路径算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/20/最小生成树，最短路径算法/" class="article-date">
+  <time datetime="2014-12-20T07:46:44.000Z" itemprop="datePublished">12月 20 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      最小生成树，最短路径算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>经典的贪心策略 Prim算法，Kruskal算法求最小生成树，dijkstra求最短路径<br><a id="more"></a></p>
+<h3 id="最小生成树算法-用到的并查集-在之前博客写，图都是下面的，最小生成树无向就行了"><a href="#最小生成树算法-用到的并查集-在之前博客写，图都是下面的，最小生成树无向就行了" class="headerlink" title="最小生成树算法 用到的并查集 在之前博客写，图都是下面的，最小生成树无向就行了"></a>最小生成树算法 用到的并查集 在之前博客写，图都是下面的，最小生成树无向就行了</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 文件名：GraphTest2.java</div><div class="line"> * 时间：2max14年11月17日下午6:2max:1max</div><div class="line"> * 作者：修维康</div><div class="line"> */</div><div class="line"><span class="keyword">package</span> chapter9;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Comparator;</div><div class="line"><span class="keyword">import</span> java.util.PriorityQueue;</div><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="keyword">import</span> chapter8.DisjSets;<span class="comment">//并查集</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：Edeg 说明：边</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Edge</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> v1;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> v2;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> dist;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Edge</span><span class="params">(<span class="keyword">int</span> v1, <span class="keyword">int</span> v2, <span class="keyword">int</span> dist)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.v1 = v1;</div><div class="line">		<span class="keyword">this</span>.v2 = v2;</div><div class="line">		<span class="keyword">this</span>.dist = dist;<span class="comment">// 权值</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DistComparator</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Edge</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Edge o1, Edge o2)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">if</span> (o1.dist &gt; o2.dist)</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (o1.dist &lt; o2.dist)</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GraphTest2</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> max = Integer.MAX_VALUE;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：dijkstra 说明：迪杰斯克拉算法，V代表源 g存储图的信息，dist[i]代表到v到i的权,prev[i]代表 顶点i的前一个顶点</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Dijkstra</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> n, <span class="keyword">int</span>[][] g, <span class="keyword">int</span>[] dist, <span class="keyword">int</span>[] prev)</span> </span>&#123;</div><div class="line">		<span class="keyword">boolean</span>[] s = <span class="keyword">new</span> <span class="keyword">boolean</span>[n + <span class="number">1</span>];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</div><div class="line">			dist[i] = g[v][i];</div><div class="line">			s[i] = <span class="keyword">false</span>;</div><div class="line">			<span class="keyword">if</span> (dist[i] == max)</div><div class="line">				prev[i] = <span class="number">0</span>;</div><div class="line">			<span class="keyword">else</span></div><div class="line">				prev[i] = v;</div><div class="line">		&#125;</div><div class="line">		s[v] = <span class="keyword">true</span>;</div><div class="line">		dist[v] = <span class="number">0</span>;</div><div class="line">		<span class="comment">// 从V-S中找到权值最小的边</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</div><div class="line">			<span class="keyword">int</span> temp = max;</div><div class="line">			<span class="keyword">int</span> u = v;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)</div><div class="line">				<span class="keyword">if</span> (!s[j] &amp;&amp; temp &gt; dist[j]) &#123;</div><div class="line">					temp = dist[j];</div><div class="line">					u = j;</div><div class="line">				&#125;</div><div class="line">			s[u] = <span class="keyword">true</span>;</div><div class="line">			<span class="comment">// 更新</span></div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</div><div class="line">				<span class="keyword">if</span> (!s[j] &amp;&amp; g[u][j] &lt; max) &#123;</div><div class="line">					<span class="keyword">int</span> newDist = dist[u] + g[u][j];</div><div class="line">					<span class="keyword">if</span> (newDist &lt; dist[j]) &#123;</div><div class="line">						dist[j] = newDist;</div><div class="line">						prev[j] = u;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：printPath 说明：打印最短路径</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printPath</span><span class="params">(<span class="keyword">int</span>[] prev, <span class="keyword">int</span> v)</span> </span>&#123;</div><div class="line">		System.out.print(v + <span class="string">" "</span>);</div><div class="line">		<span class="keyword">while</span> (prev[v] != <span class="number">0</span>) &#123;</div><div class="line">			System.out.print(prev[v] + <span class="string">" "</span>);</div><div class="line">			v = prev[v];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：Prim 说明：最小生成树 Prim算法 lowcost[i]为顶点i到S集合中任意一点 最小的权值 closest[i]为</div><div class="line">	 * S中与i顶点相连权值最小的顶点</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Prim</span><span class="params">(<span class="keyword">int</span>[][] g, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">		<span class="keyword">boolean</span>[] s = <span class="keyword">new</span> <span class="keyword">boolean</span>[n + <span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span>[] lowcost = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span>[] closest = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</div><div class="line">		s[<span class="number">1</span>] = <span class="keyword">true</span>;</div><div class="line">		lowcost[<span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</div><div class="line">			lowcost[i] = g[<span class="number">1</span>][i];</div><div class="line">			closest[i] = <span class="number">1</span>;</div><div class="line">			s[i] = <span class="keyword">false</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// 从V-S中找到与S中的顶点相连 且权值最小的点</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</div><div class="line">			<span class="keyword">int</span> min = max;</div><div class="line">			<span class="keyword">int</span> j = <span class="number">1</span>;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">2</span>; k &lt;= n; k++) &#123;</div><div class="line">				<span class="keyword">if</span> (!s[k] &amp;&amp; lowcost[k] &lt; min) &#123;</div><div class="line">					min = lowcost[k];</div><div class="line">					j = k;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			s[j] = <span class="keyword">true</span>;</div><div class="line">			System.out.println(j + <span class="string">"  "</span> + closest[j]);</div><div class="line">			<span class="comment">// 重新更新 lowcost lowcost[i]为顶点i到S集合中任意一点 最小的权值</span></div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">2</span>; k &lt;= n; k++) &#123;</div><div class="line">				<span class="keyword">if</span> (!s[k] &amp;&amp; g[j][k] &lt; lowcost[k]) &#123;</div><div class="line">					lowcost[k] = g[j][k];</div><div class="line">					closest[k] = j;</div><div class="line"></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：Kruskal 说明：最小生成树 Kruskal算法</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Kruskal</span><span class="params">(PriorityQueue&lt;Edge&gt; p, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">		DisjSets ds = <span class="keyword">new</span> DisjSets(n + <span class="number">1</span>);<span class="comment">// 并查集</span></div><div class="line">		Edge e;</div><div class="line">		<span class="keyword">int</span> edgesAccepted = <span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span> (edgesAccepted &lt; n - <span class="number">1</span>) &#123;</div><div class="line">			e = p.poll();</div><div class="line">			<span class="keyword">int</span> uset = ds.find(e.v1);</div><div class="line">			<span class="keyword">int</span> vset = ds.find(e.v2);</div><div class="line">			<span class="keyword">if</span> (uset != vset) &#123;</div><div class="line">				edgesAccepted++;</div><div class="line">				System.out.println(e.v1 + <span class="string">" "</span> + e.v2);</div><div class="line">				ds.union1(uset, vset);</div><div class="line">			&#125;</div><div class="line"></div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：main 说明：测试</div><div class="line">	 */</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">int</span>[][] g = <span class="keyword">new</span> <span class="keyword">int</span>[][] &#123; &#123; max, max, max, max, max, max, max, max &#125;,</div><div class="line">				&#123; max, max, <span class="number">2</span>, max, <span class="number">1</span>, max, max, max &#125;,</div><div class="line">				&#123; max, max, max, max, <span class="number">3</span>, <span class="number">10</span>, max, max &#125;,</div><div class="line">				&#123; max, <span class="number">4</span>, max, max, max, max, <span class="number">5</span>, max &#125;,</div><div class="line">				&#123; max, max, max, <span class="number">2</span>, max, <span class="number">2</span>, <span class="number">18</span>, <span class="number">4</span> &#125;,</div><div class="line">				&#123; max, max, max, max, max, max, max, <span class="number">6</span> &#125;,</div><div class="line">				&#123; max, max, max, max, max, max, max, max &#125;,</div><div class="line">				&#123; max, max, max, max, max, max, <span class="number">1</span>, max &#125; &#125;;</div><div class="line">		<span class="comment">// Graph graph = new Graph(g);</span></div><div class="line">		<span class="keyword">int</span>[] dist = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>];</div><div class="line">		<span class="keyword">int</span>[] prev = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>];</div><div class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"请输入顶点号："</span>);</div><div class="line">		<span class="keyword">int</span> v = in.nextInt();</div><div class="line">		Dijkstra(v, <span class="number">7</span>, g, dist, prev);</div><div class="line">		System.out.println(<span class="string">"请输入目的顶点："</span>);</div><div class="line">		<span class="keyword">int</span> n = in.nextInt();</div><div class="line">		System.out.println(<span class="string">"顶点"</span> + v + <span class="string">"到顶点"</span> + n + <span class="string">"的权值为"</span> + dist[n]);</div><div class="line">		printPath(prev, n);</div><div class="line">		<span class="keyword">int</span>[][] g2 = <span class="keyword">new</span> <span class="keyword">int</span>[][] &#123; &#123; max, max, max, max, max, max, max, max &#125;,</div><div class="line">				&#123; max, max, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, max, max, max &#125;,</div><div class="line">				&#123; max, <span class="number">2</span>, max, max, <span class="number">3</span>, <span class="number">10</span>, max, max &#125;,</div><div class="line">				&#123; max, <span class="number">4</span>, max, max, <span class="number">2</span>, max, <span class="number">5</span>, max &#125;,</div><div class="line">				&#123; max, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, max, <span class="number">7</span>, <span class="number">8</span>, <span class="number">4</span> &#125;,</div><div class="line">				&#123; max, max, <span class="number">10</span>, max, <span class="number">7</span>, max, max, <span class="number">6</span> &#125;,</div><div class="line">				&#123; max, max, max, <span class="number">5</span>, <span class="number">8</span>, max, max, <span class="number">1</span> &#125;,</div><div class="line">				&#123; max, max, max, max, <span class="number">4</span>, <span class="number">6</span>, <span class="number">1</span>, max &#125; &#125;;</div><div class="line">		Prim(g2, <span class="number">7</span>);</div><div class="line">		PriorityQueue&lt;Edge&gt; p = <span class="keyword">new</span> PriorityQueue&lt;Edge&gt;(<span class="number">12</span>,</div><div class="line">				<span class="keyword">new</span> DistComparator());</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">4</span>, <span class="number">5</span>, <span class="number">7</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">2</span>, <span class="number">5</span>, <span class="number">10</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">6</span>, <span class="number">7</span>, <span class="number">1</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">4</span>, <span class="number">7</span>, <span class="number">4</span>));</div><div class="line">		p.add(<span class="keyword">new</span> Edge(<span class="number">5</span>, <span class="number">7</span>, <span class="number">6</span>));</div><div class="line">		System.out.println(<span class="string">"Kruskal算法："</span>);</div><div class="line">		Kruskal(p, <span class="number">7</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20141118172324350?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGl1d2Vpa2FuZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2014/12/20/最小生成树，最短路径算法/" data-title="最小生成树，最短路径算法" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="最小生成树，最短路径算法" data-url="//2014/12/20/最小生成树，最短路径算法/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2014/12/20/最小生成树，最短路径算法/" data-title="最小生成树，最短路径算法" data-url="//2014/12/20/最小生成树，最短路径算法/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

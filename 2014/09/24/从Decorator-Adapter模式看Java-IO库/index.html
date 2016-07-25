@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>从Decorator,Adapter模式看Java/IO库 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="java I/O库中的设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Decorator,Adapter模式看Java/IO库">
+<meta property="og:url" content="/2014/09/24/从Decorator-Adapter模式看Java-IO库/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="java I/O库中的设计模式">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494348/bce5d87a-58a4-3373-9f7f-cab4ec2aaa85.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494349/b210beef-7693-3ceb-bd16-34535419a6f3.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494352/0a1807fd-4d9f-349a-8c60-7277113b117a.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494354/99bfea32-c9bd-3cbf-8ed0-c22f365ed460.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494355/0a5cf748-5e49-3fcb-a133-2a6931b99ba2.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494362/1861d69a-e084-3e52-8236-e80514d4ae53.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494364/799283eb-241b-3816-bc09-94c98077f673.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494366/85abdba8-14a2-3d37-a0e1-8ddfbfb765d5.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494374/941a1040-662d-3b9d-9221-984898117797.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494370/c7efcc56-39b7-39d8-b815-7c448d25f474.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494379/d2f59584-a278-3707-93b0-bb91cd7ea082.jpg">
+<meta property="og:image" content="http://dl.iteye.com/upload/attachment/494383/102de2be-2e6d-313e-b1ca-3c6c0e3ebf17.jpg">
+<meta property="og:updated_time" content="2016-07-19T03:55:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从Decorator,Adapter模式看Java/IO库">
+<meta name="twitter:description" content="java I/O库中的设计模式">
+<meta name="twitter:image" content="http://dl.iteye.com/upload/attachment/494348/bce5d87a-58a4-3373-9f7f-cab4ec2aaa85.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-从Decorator-Adapter模式看Java-IO库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/24/从Decorator-Adapter模式看Java-IO库/" class="article-date">
+  <time datetime="2014-09-24T07:42:18.000Z" itemprop="datePublished">9月 24 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从Decorator,Adapter模式看Java/IO库
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>java I/O库中的设计模式<br><a id="more"></a></p>
+<p>讲到Decorator模式的时候,不能不提到它的实际应用－－在Java/IO库里面的应用，&lt;<java与模式>&gt;这本书也不例外，有点不一样的是，这本书在介绍的时候有个专题，是从两个模式来看Java/IO库，完这个专题后，个人感觉对Java/IO库有了全新的认识同时也加深了Decorator模式跟Adapter适配器模式的理解，现和大家分享下这个在我看来很伟大的成果，同时说明下，以下大部分文字跟图片是来自&lt;<java与模式>&gt;这本书。</java与模式></java与模式></p>
+<h3 id="一-引子（概括地介绍Java的IO）"><a href="#一-引子（概括地介绍Java的IO）" class="headerlink" title="一.引子（概括地介绍Java的ＩＯ）"></a>一.引子（概括地介绍Java的ＩＯ）</h3><p>　无论是哪种编程语言，输入跟输出都是重要的一部分，Java也不例外，而且Java将输入／输出的功能和使用范畴做了很大的扩充。它采用了流的机制来实现输入／输出，所谓流，就是数据的有序排列，而流可以是从某个源（称为流源或Source of Stream）出来，到某个目的地（称为流汇或Sink of Stream）去的。由流的方向，可以分成输入流和输出流，一个程序从输入流读取数据向输出流写数据。<br>　如，一个程序可以用FileInputStream类从一个磁盘文件读取数据，如下图所示：</p>
+<p><img src="http://dl.iteye.com/upload/attachment/494348/bce5d87a-58a4-3373-9f7f-cab4ec2aaa85.jpg" alt=""></p>
+<p>像FileInputStream这样的处理器叫做流处理器，它就像流的管道一样，从一个流源吸入某种类型的数据，并输出某种类型的数据。上面这种示意图叫做流的管道图。<br>　同样道理，也可以用FileOutputStream类向一个磁盘文件写数据，如下图所示：<br><img src="http://dl.iteye.com/upload/attachment/494349/b210beef-7693-3ceb-bd16-34535419a6f3.jpg" alt=""></p>
+<p>在实际应用这种机制并不没有太大的用处，程序需要写出地通常是非常结构化的信息，因此这些byte类型的数据实际上是一些数值，文字，源代码等。Java的I/O库提供了一个称做链接（Chaining）的机制，可以将一个流处理器跟另一个流处理器首尾相接，以其中之一的输出为输入，形成一个流管道的链接。<br>　例如，DataInputStream流处理器可以把FileInputStream流对象的输出当作输入，将Byte类型的数据转换成Java的原始类型和String类型的数据。如下图所示：<br><img src="http://dl.iteye.com/upload/attachment/494352/0a1807fd-4d9f-349a-8c60-7277113b117a.jpg" alt=""></p>
+<p>　类似地，向一个文件写入Byte类型的数据不是一个简单的过程。一个程序需要向一个文件里写入的数据往往都是结构化的，而Byte类型则是原始类型。因此在写的时候必须经过转换。DataOutputStream流处理器提供了接收了原始数据类型和String数据类型，而这个流处理器的输出数据则是Byte类型。也就是说DataOutputStream可以将源数据转换成Byte类型的数据，再输出来。<br>　这样一来，就可以将DataOutputStream与FileOutputStream链接起来，这样程序就可以将原始数据类型和String类型的源数据写入这个链接好的双重管道里面，达到将结构化数据写到磁盘文件里面的目的，如下图所示：<br><img src="http://dl.iteye.com/upload/attachment/494354/99bfea32-c9bd-3cbf-8ed0-c22f365ed460.jpg" alt=""></p>
+<p>　这又是链接的所发挥的大作用。<br>　流处理器所处理的流必定都有流源，而如果将流类所处理的流源分类的话，基本可以分成两大类：<br>　第一　数组，String，File等，这一种叫原始流源。<br>　第二　同样类型的流用做链接流类的流源，叫链接流源。</p>
+<h3 id="二-Java-I-O库的设计原则"><a href="#二-Java-I-O库的设计原则" class="headerlink" title="二　Java I/O库的设计原则"></a>二　Java I/O库的设计原则</h3><p>Java语言的I/O库是对各种常见的流源，流汇以及处理过程的抽象化。客户端的Java程序不必知道最终的流源，流汇是磁盘上的文件还是数组等；也不必关心数据是否经过缓冲的，可否按照行号读取等处理的细节。<br>　书中提到了，对于第一次见到Java/IO库的人，无不因为这个库的庞杂而感到困惑；而对于熟悉这个库的人，而又常常为这个库的设计是否得当而争论不体。书的作者提出自己的意见，要理解Java I/O这个庞大而复杂的库，关键是要掌握两个对称性跟两个设计模式模式。</p>
+<p>Java I/O库具有两个对称性，它们分别是：</p>
+<p>　1.　输入－输出对称性，比如InputStream和OutputStream各自占据Byte流的输入与输出的两个平行的等级结构的根部。而Reader和Writer各自占据Char流的输入与输出的两个平行的等级结构的根部。<br>　<br>  2.　byte-char对称，InputStream和Reader的子类分别负责Byte和Char流的输入；OutputStream和Writer的子类分别负责Byte和Char流的输出，它们分别形成平行的等级结构。</p>
+<h4 id="Java-I-O库的两个设计模式："><a href="#Java-I-O库的两个设计模式：" class="headerlink" title="Java I/O库的两个设计模式："></a>Java I/O库的两个设计模式：</h4><p>Java的I/O库总体设计是符合装饰者模式（Decorator）跟适配器模式（Adapter）的。如前所述，这个库中处理流的类叫做流类。引子里所谈到的FileInputStream，FileOutputStream，DataInputStream及DataOutputStream都是流处理器的例子。</p>
+<ol>
+<li><p>装饰者模式：在由InputStream，OutputStream,Reader和Writer代表的等级结构内部，有一些流处理器可以对另一些流处理器起到装饰作用，形成新的，具有改善了的功能的流处理器。装饰者模式是Java I/O库的整体设计模式。这样的一个原则是符合装饰者模式的，如下图所示：<br><img src="http://dl.iteye.com/upload/attachment/494355/0a5cf748-5e49-3fcb-a133-2a6931b99ba2.jpg" alt=""></p>
+</li>
+<li><p>适配器模式：在由InputStream，OutputStream,Reader和Writer代表的等级结构内部，有一些流处理器是对其它类型的流源的适配。这就是适配器模式的应用，如下图所示。</p>
+</li>
+</ol>
+<p><img src="http://dl.iteye.com/upload/attachment/494362/1861d69a-e084-3e52-8236-e80514d4ae53.jpg" alt=""></p>
+<h3 id="三-装饰模式的应用"><a href="#三-装饰模式的应用" class="headerlink" title="三.装饰模式的应用"></a>三.装饰模式的应用</h3><p>学过装饰模式后，大家会发现，它在Java语言中最著名的应用莫过于Java I/O标准为库的设计了。这一节将以处理Byte流为例，看看装饰模式是怎样得到应用的。</p>
+<p>　为什么不用继承而用装饰模式<br>　我们知道Java I/O库需要很多性能的各种组合，如果说这些性能的组合是通过继承方式来实现的话，那么每一种组合都需要一个类，这样就会出现大量重复性问题的出现，从而使类数目“爆炸”。而如果采用装饰模式，那么不仅类的数目大减少了，性能的重复也可以减至到最少。所以装饰模式是Java I/O库的基本模式。在这里我想再用&lt;<head first="" design="" pattern="">&gt;中讲到装饰模式时候的一个例子，看看装饰模式是怎么达到不仅类的数目大减少了，性能的重复也可以减至到最少。<br>　再回到Java I/O库，由于装饰模式的引用，造成了灵活性和复杂都大大增加了，我们在使用Java I/O库时，必须理解Java I/O库是由一些基本的原始流处理器和围绕它们的装饰流处理器所组成的，这样可以在学习和使用Java I/O库时达到事半功倍的效果。<br>　下面我用&lt;<java与模式>&gt;，&lt;<head first="" design="" pattern="">&gt;或者是网上看到的一些类图来分析：</head></java与模式></head></p>
+<p>　首先是InputStream类型中的装饰模式：<br>　InputStream有七个直接的具体子类，有四个属于FilterInputStream的具体子类，如下图所示：</p>
+<p><img src="http://dl.iteye.com/upload/attachment/494364/799283eb-241b-3816-bc09-94c98077f673.jpg" alt=""></p>
+<p>上图中所有的类都叫做流处理器，这个图就叫做（InputStream类型的）流处理器图。<br>　　书中提到根据输入流的源的类型，可以将这些流类分成两种，即原始流类（Original Stream）和链接流处理器（Wrapper Stream）。</p>
+<h4 id="原始流处理器"><a href="#原始流处理器" class="headerlink" title="原始流处理器"></a>原始流处理器</h4><p>　　原始流处理器接收一个Byte数组对象，String对象，FileDiscriptor对象或者不同类型的流源对象，根据上面的图，原始流处理器包括以下四种：<br>　　ByteArrayInputStream：为多线程的通信提供缓冲区操作功能，接收一个Byte数组作为流的源。<br>　　FileInputStream:建立一个与文件有关的输入流。接收一个File对象作为流的源。<br>　　PipedInputStream：可以与PipedOutputStream配合使用，用于读入一个数据管道的数据，接收一个PipedOutputStream作为源。<br>　　StringBufferInputStream：将一个字符串缓冲区转换为一个输入流。接收一个String对象作为流的源。（ＪＤＫ帮助文档上说明：已过时。此类未能正确地将字符转换为字节。从ＪＤＫ1.1开始，从字符串创建流的首选方法是通过StringReader类进行创建。只有字符串中每个字符的低八位可以由此类使用。）</p>
+<h4 id="链接流处理器"><a href="#链接流处理器" class="headerlink" title="链接流处理器"></a>链接流处理器</h4><p>　　所谓链接流处理器，就是可以接收另一个流对象作为源，并对之进行功能扩展的类。InputStream类型的链接处理器包括以下几种，它们都接收另一个InputStream对象作为流源。</p>
+<ol>
+<li>FilterInputStream称为过滤输入流，它将另一个输入流作为流源。这个类的子类包括以下几种：</li>
+</ol>
+<ul>
+<li>BufferedInputStream：用来从硬盘将数据读入到一个内存缓冲区中，并从缓冲区提供数据。</li>
+<li>DataInputStream：提供基于多字节的读取方法，可以读取原始类型的数据。</li>
+<li>LineNumberInputStream：提供带有行计数功能的过滤输入流。</li>
+<li>PushbackInputStream：提供特殊的功能，可以将已经读取的字节“推回”到输入流中。</li>
+</ul>
+<ol>
+<li>ObjectInputStream可以将使用ObjectInputStream串行化的原始数据类型和对象重新并行化。</li>
+<li>SeqcueneInputStream可以将两个已有的输入流连接起来，形成一个输入流，从而将多个输入流排列构成一个输入流序列。<br>　　抽象结构图<br>　　按照上面的这种原始流处理器和链接流处理器的划分，可以用下面的结构图来描述它们之间的关系。<br>　　<img src="http://dl.iteye.com/upload/attachment/494366/85abdba8-14a2-3d37-a0e1-8ddfbfb765d5.jpg" alt=""></li>
+</ol>
+<p>　上面的流处理器图跟装饰模式的结构图有着显而易见的相同之处。实际上InputStream类型的流处理器结构确实符合装饰模式。　<br>　装饰模式结构图</p>
+<p><img src="http://dl.iteye.com/upload/attachment/494374/941a1040-662d-3b9d-9221-984898117797.jpg" alt=""></p>
+<p>对于上图FilterInputStream查看JDK1.6源代码，部分代码如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FilterInputStream</span> <span class="keyword">extends</span> <span class="title">InputStream</span> </span>&#123;  </div><div class="line">    <span class="keyword">protected</span> <span class="keyword">volatile</span> InputStream in;   </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">FilterInputStream</span><span class="params">(InputStream in)</span> </span>&#123;  </div><div class="line">       <span class="keyword">this</span>.in = in;  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">//其它代码  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>FilterInputStream继承了InputStream,也引用了InputStream,而它有四个子类,这就是所谓的Decorator模式。<br>上面这个图向我们传达了这个信息：链接流对象接收一个原始流对象或者另外一个链接流对象作为流源；另一方面他们对流源的内部工作方法做了相应的改变，这种改变是装饰模式所要达到的目的。比如：</p>
+<ul>
+<li>BufferedInputStream“装饰”了InputStream的内部工作方式，使得流的读入操作使用了缓冲机制。在使用了缓冲机制后，不会对每一次的流读入操作都产生一个物理的读盘动作，从而提高了程序的效率，在汲及到物理流的读入时，都应当使用这个装饰流类。</li>
+<li>LineNumberInputStream和PushbackInputStream也同样“装饰”了InputStream的内部工作方式，前者使得程序能够按照行号读入数据；后者能够使程序读入的过程中，退后一个字符。</li>
+<li>DataInputStream子类读入各种不同的原始数据类型以及String类型的数据，这一点可以从它提供的各种read方法看出来，如：readByte(),readInt(),readFloat()等。<br>　 Java语言的I/O库提供了四大等级结构:InputStream,OutputStream,Reader,Writer四个系列的类。InputStream和OutputStream处理8位字节流数据, Reader和Writer处理16位的字符流数据。InputStream和Reader处理输入, OutputStream和Writer处理输出，所以OutputStream,Reader,Writer这三类的装饰模式跟前面详细介绍的InputStream装饰模式大同小异，大家可以看书中其它部分对这三类的详细描述或者从网上也能找到有关资料。为了方便比较这几种类型，顺便附上Java语言的I/O层次结构图：<br>　下面的图表示:以InputStream和OutputStream形成的层次关系</li>
+</ul>
+<p><img src="http://dl.iteye.com/upload/attachment/494370/c7efcc56-39b7-39d8-b815-7c448d25f474.jpg" alt=""></p>
+<p>下面的图表示:以Reader和Writer形成的层次关系</p>
+<p><img src="http://dl.iteye.com/upload/attachment/494379/d2f59584-a278-3707-93b0-bb91cd7ea082.jpg" alt=""></p>
+<h3 id="四-适配器模式的应用"><a href="#四-适配器模式的应用" class="headerlink" title="四　适配器模式的应用"></a>四　适配器模式的应用</h3><p>适配器模式是Java I/O库中第二个最为重要的设计模式。<br>InputStream原始流处理器中的适配器模式，InputStream类型的原始流处理器是适配器模式的应用。<br>ByteArrayInputStream是一个适配器类<br>　ByteArrayInputStream继承了InputStream的接口，而封装了一个byte数组。换言之，它将一个byte数组的接口适配成InputStream流处理器的接口。<br>　我们知道Java语言支持四种类型：Java接口，Java类，Java数组，原始类型（即int,float等）。前三种是引用类型，类和数组的实例是对象，原始类型的值不是对象。<br>也即，Java语言的数组是像所有的其他对象一样的对象，而不管数组中所存储的元素类型是什么。<br>这样一来的话，ByteArrayInputStream就符合适配器模式的描述，是一个对象形式的适配器类。</p>
+<p>FileInputStream是一个适配器类<br>在FileInputStream继承了InputStrem类型，同时持有一个对FileDiscriptor的引用。这是将一个FileDiscriptor对象适配成InputStrem类型的对象形式的适配器模式。<br>查看JDK1.6的源代码我们可以看到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">FileInputStream</span> <span class="keyword">extends</span> <span class="title">InputStream</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">private</span> FileDescriptor fd;  </div><div class="line">  </div><div class="line">    <span class="keyword">private</span> FileChannel channel = <span class="keyword">null</span>;  </div><div class="line">  </div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="title">FileInputStream</span><span class="params">(File file)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;  </div><div class="line">      String name = (file != <span class="keyword">null</span> ? file.getPath() : <span class="keyword">null</span>);  </div><div class="line">      SecurityManager security = System.getSecurityManager();  </div><div class="line">      <span class="keyword">if</span> (security != <span class="keyword">null</span>) &#123;  </div><div class="line">        security.checkRead(name);  </div><div class="line">       &#125;  </div><div class="line">        <span class="keyword">if</span> (name == <span class="keyword">null</span>) &#123;  </div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();  </div><div class="line">        &#125;  </div><div class="line">       fd = <span class="keyword">new</span> FileDescriptor();  </div><div class="line">       open(name);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">   <span class="comment">//其它代码  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>StringBufferInputStream继承了InputStream类型，同时持有一个对String对象的引用，这是一个将String对象适配成InputStream类型的对象形式的适配器模式。</li>
+<li>OutputStream原始流处理器中的适配器模式，同样地，在OutputStream类型中，所有的原始流处理器都是适配器类。</li>
+<li><p>ByteArrayOutputStream继承了OutputStream类型，同时持有一个对byte数组的引用。它一个byte数组的接口适配成OutputString类型的接口，因此也是一个对象形式的适配器模式的应用。</p>
+</li>
+<li><p>FileOutputStream是一个适配器类<br>FileOutputStream继承了OutputStream类型，同时持有一个对FileDiscriptor对象的引用。这是一个将FileDiscriptor接口适配成OutputStream接口形式的对象形适配器模式。<br>Reader原始流处理器中的适配器模式，Reader类型的原始流处理器都是适配器模式的应用。</p>
+</li>
+<li><p>StringReader是一个适配器类<br>StringReader类继承了Reader类型，持有一个对String对象的引用。它将String的接口适 配成Reader类型的接口。</p>
+</li>
+</ul>
+<p><strong>从byte流到char流的适配</strong></p>
+<p>在Java I/O库中，使用比较频繁的要数InputStreamReader,OutputStreamWriter这两种类了，<br>InputStreamReader是从byte输入流到char输入流的一个适配器。<br>当把InputStreamReader与任何InputStream的具体子类链接的时候，可以从InputStream的输出读入byte类型的数据，将之转换成为char类型的数据，如下图所示：</p>
+<p><img src="http://dl.iteye.com/upload/attachment/494383/102de2be-2e6d-313e-b1ca-3c6c0e3ebf17.jpg" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InputStreamReader</span> <span class="keyword">extends</span> <span class="title">Reader</span> </span>&#123;  </div><div class="line">  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> StreamDecoder sd;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">InputStreamReader</span><span class="params">(InputStream in)</span> </span>&#123;  </div><div class="line">       <span class="keyword">super</span>(in);  </div><div class="line">        <span class="keyword">try</span> &#123;  </div><div class="line">           sd = StreamDecoder.forInputStreamReader(in, <span class="keyword">this</span>, (String)<span class="keyword">null</span>);   </div><div class="line">          <span class="comment">// ## check lock object  </span></div><div class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;  </div><div class="line">     <span class="comment">// The default encoding should always be available  </span></div><div class="line">     <span class="keyword">throw</span> <span class="keyword">new</span> Error(e);  </div><div class="line"> &#125;  </div><div class="line">  </div><div class="line"> <span class="comment">//其它代码  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中StreamDecoder是sun.nio.cs这个包里的一个类OutputStreamWriter是适配器类。</p>
+<p>同样道理我们能得出OutputStringWriter是从OutputStream到Writer的适配器类。也就是说，与任何一个OutputStream的具体子类相链接时，OutputStringWriter可以将OutputStream类型的byte流适配成为char流。它的源代码跟上面的InputStreamReader差不多，这就不贴出来，感兴趣可以查看JDK1.4在线源码这本书后面还有个小例子，附有一些讲解，我就不列出来了，有书的可以看看。</p>
+<h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五 总结"></a>五 总结</h3><p>在这三篇文章里主要是汲及到三个知识点：知识点一: Java I/O库的四大等级结构<br>Java语言的I/O库提供了四大等级结构:InputStream,OutputStream,Reader,Writer四个系列的类。InputStream和OutputStream处理8位字节流数据, Reader和Writer处理16位的字符流数据。InputStream和Reader处理输入, OutputStream和Writer处理输出。<br>知识点二: Decorator模式在Java I/O库的应用<br>知识点三: Adapter模式在Java I/O库的应用</p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2014/09/24/从Decorator-Adapter模式看Java-IO库/" data-title="从Decorator,Adapter模式看Java/IO库" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="从Decorator,Adapter模式看Java/IO库" data-url="//2014/09/24/从Decorator-Adapter模式看Java-IO库/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2014/09/24/从Decorator-Adapter模式看Java-IO库/" data-title="从Decorator,Adapter模式看Java/IO库" data-url="//2014/09/24/从Decorator-Adapter模式看Java-IO库/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

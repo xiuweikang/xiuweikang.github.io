@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JVM内存模型 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="JVM内存模型">
+<meta property="og:url" content="/2015/07/28/JVM原理/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:image" content="http://img.blog.csdn.net/20141013141216040">
+<meta property="og:image" content="http://img.blog.csdn.net/20131226172011765">
+<meta property="og:image" content="http://img.blog.csdn.net/20131226172113234">
+<meta property="og:updated_time" content="2016-07-19T03:55:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM内存模型">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20141013141216040">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-JVM原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/28/JVM原理/" class="article-date">
+  <time datetime="2015-07-27T23:40:21.000Z" itemprop="datePublished">7月 28 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM内存模型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://img.blog.csdn.net/20141013141216040" alt=""><br><a id="more"></a></p>
+<h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h2><blockquote>
+<p>程序当前运行到的字节码行号，可通过这个来进行跳转、循环等，<br>唯一不会出现OOM的区域，为每个线程私有的。当执行的是Native方法时计数器的值为空</p>
+</blockquote>
+<h2 id="JAVA虚拟机栈"><a href="#JAVA虚拟机栈" class="headerlink" title="JAVA虚拟机栈"></a>JAVA虚拟机栈</h2><blockquote>
+<p>线程私有的，即每个线程都会存在一个虚拟机栈，栈中存放的东西为栈帧，当进入一个方法时便创建一个栈帧，方法结束栈帧出栈。</p>
+<p>栈帧中存放着局部变量表 操作数栈等信息。其中数据占用空间以slot为单位，long和double占2个，其余占一个。局部变量表需要的内存空间会在编译期间就完成分配，所需大小在编译期间就是是完全确定的。<br>当所请求的栈的深度大于所允许的最大深度时会出现stackoverflow异常，当扩展无法申请足够的内存时，会抛出OOM.</p>
+</blockquote>
+<h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h2><blockquote>
+<p>和虚拟机栈十分相似，只不过里面是以本地方法服务的。所以也会发生stackoverflow和OOM。</p>
+</blockquote>
+<h2 id="堆区"><a href="#堆区" class="headerlink" title="堆区"></a>堆区</h2><blockquote>
+<p>为线程共享的。所有的对象实例和数组都在堆上分配，但是随着JIT编译器的发展，并不是那么绝对了.</p>
+<p>堆是垃圾收集的主要区域，大部分虚拟机采用分代收集，即将堆分为新生代和老生代，对新生代采用复制清理，对老生代采用标记清理方法</p>
+</blockquote>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><blockquote>
+<p>也是线程共享的，里面存放虚拟机加载的类信息，常量和静态变量等信息，也会抛出OOM异常</p>
+</blockquote>
+<h2 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h2><blockquote>
+<p>是方法区的一部分。Class文件中一项信息是常量池，用于存放编译期间生成的各种字面量和符号引用。这部分内容在类加载后进入方法区的运行时常量池中存放。</p>
+</blockquote>
+<h2 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h2><blockquote>
+<p>并不是虚拟机运行时数据区的一部分，也不是JAVA虚拟机规范中定义的内存区域，但是这部分区域被频繁使用，同时也会出现OOM。</p>
+<p>NIO中，引入了一种基于通道和缓冲区的IO方式，使用Native库直接分配堆外内存，然后通过一个存储在JAVA堆中的DirectByteBuffer对象作为这块内存的引用进行操作，这样能用显著提升性能，避免了在Java堆和Native堆中来回复制数据。</p>
+<p>直接内存不会受到JAVA堆大小的限制，会受到本机中内存的限制。</p>
+<h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2></blockquote>
+<p>举个例子，当我们new Person()时，虚拟机遇到new这个指令，会去运行时常量池中查找是否存在Person这个类的符号引用，如果没有，则抛NoClassFound异常，并且检查此类是否已经加载，解析和初始化过，如果没有先进行加载过程。之后再进行分配内存，一种是利用指针碰撞，即通过移动指针来分配相应的内存，另一种是维护一个空闲列表用来分配，内存分配后会将分配到的内存空间都初始化为零值，因此就算类的成员变量没有初始化也可以直接使用。</p>
+<p>接下来，虚拟机要对对象进行必要的设置，例如该对象是哪个类的实例，如何找到类的元数据信息，对象的哈希码，分代信息等。这些信息放在<code>对象头中</code> ，这些工作都完成后再进行init方法（构造函数）进行初始化</p>
+<h2 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h2><p>一个空对象在内存占用空间大小：</p>
+<blockquote>
+<p>在32位虚拟机上 一个指针占4个字节，同时在堆中分配的对象会存在64bit的对象头 其中32位是对象标志位，另32bit是指向类元数据的指针 所有在32位中一个空对象一共占12个字节</p>
+</blockquote>
+<p>一个对象在堆中的存储包含三部分：<code>对象头</code> 、<code>实例数据</code>、<code>对其填充</code></p>
+<ul>
+<li>对象头包括：Mark Word部分，这部分主要是存储对象自身运行时数据，如哈希码 GC分代年龄，线程持有的锁，锁状态标记等。另一部分是类型指针，即对象指向它的类元数据的指针，虚拟机通过这个指针来判断这个对象是哪个类的实例。如果是数组对象还需要数组长度的数据，因为从数组的元数据中无法确定数组的大小。</li>
+<li>实例数据部分按照一定的分配策略来分配，相同宽度的字段总是分配在一起，在满足这个前提下，父亲定义的变量在子类前面。</li>
+<li>对其填充。并不是必然存在的。</li>
+</ul>
+<h2 id="对象的访问定位"><a href="#对象的访问定位" class="headerlink" title="对象的访问定位"></a>对象的访问定位</h2><p>存在两种方式：<br>1.通过句柄的方式，会在堆中单独划出一块内存当做句柄池<br><img src="http://img.blog.csdn.net/20131226172011765" alt=""><br><img src="http://img.blog.csdn.net/20131226172113234" alt=""></p>
+<p>大部分虚拟机采用第二种。节省了一次指针定位的时间开销。</p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/07/28/JVM原理/" data-title="JVM内存模型" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="JVM内存模型" data-url="//2015/07/28/JVM原理/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/07/28/JVM原理/" data-title="JVM内存模型" data-url="//2015/07/28/JVM原理/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

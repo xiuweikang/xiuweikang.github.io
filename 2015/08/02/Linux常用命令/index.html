@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux常用命令 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="重要的快捷键
+连续两个Tab键，在第一个命令后可提示 第二个后是文件补齐
+ctrl + c终止ctrl + d退出终端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="/2015/08/02/Linux常用命令/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="重要的快捷键
+连续两个Tab键，在第一个命令后可提示 第二个后是文件补齐
+ctrl + c终止ctrl + d退出终端">
+<meta property="og:updated_time" content="2016-07-19T03:55:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用命令">
+<meta name="twitter:description" content="重要的快捷键
+连续两个Tab键，在第一个命令后可提示 第二个后是文件补齐
+ctrl + c终止ctrl + d退出终端">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-Linux常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/02/Linux常用命令/" class="article-date">
+  <time datetime="2015-08-02T13:05:44.000Z" itemprop="datePublished">8月 2 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux常用命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="重要的快捷键"><a href="#重要的快捷键" class="headerlink" title="重要的快捷键"></a>重要的快捷键</h2><blockquote>
+<p>连续两个Tab键，在第一个命令后可提示 第二个后是文件补齐</p>
+<p>ctrl + c终止<br>ctrl + d退出终端<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	切换终端	alt + ctrl + F1~F7 其中F7是图形界面</div><div class="line"></div><div class="line">	退出当前用户	exit</div><div class="line"></div><div class="line">	Linux系统中大小写敏感</div><div class="line"></div><div class="line">	ls -ltr 根据时间列出文件</div><div class="line"></div><div class="line">	ls -a列出全部的 包括隐藏的</div><div class="line">	</div><div class="line">	ls -l 列出详细的</div><div class="line">	</div><div class="line">	pwd显示当前目录路径</div><div class="line"></div><div class="line">	mkdir建立一个目录</div><div class="line"></div><div class="line">	rmdir 删除一个空目录</div><div class="line">	</div><div class="line">	rm 删除文件 无法删除目录</div><div class="line">	</div><div class="line">	rm -rf dir1 dir2 删除一个叫做dir1和dir2的目录并同时删除其内容</div><div class="line">	</div><div class="line">	cp dir1<span class="comment">/* .：复制dir1目录下的所有文件到当前工作目录</span></div><div class="line">	cp -a /tmp/dir1 .：复制/tmp/dir1目录到当前工作目录</div><div class="line">	</div><div class="line">	</div><div class="line">	date显示日期和时间</div><div class="line"></div><div class="line">	echo $LANG显示当前语言</div><div class="line">	LANG=en_US切换成英文</div><div class="line"></div><div class="line">	cal 显示日历</div><div class="line">	cal 2009显示2009年的日历</div><div class="line">	cal 10 2009显示相应月份的</div><div class="line">	</div><div class="line">	bc 进入计算器 quit退出 默认是输出整数，可加scale=3 控制输出小数位数为3</div><div class="line"></div><div class="line">	man + 命令 查询命令的用法	和info类似，但是info需要以info的格式来写才可以</div><div class="line">	</div><div class="line">	who来查看当前谁在线</div><div class="line"></div><div class="line">	netstat查看网络状态</div><div class="line"></div><div class="line">	sync将数据从内存写入磁盘，防止意外关机丢失数据</div><div class="line"></div><div class="line">	shutdown -t 3600 3600秒后关机</div><div class="line">			 -r 在系统服务停掉后重启</div><div class="line">			 -h 在系统服务停掉后关机	</div><div class="line">	init + 0-6切换执行等级 其中runlevel 3是命令行 5是图形界面</div><div class="line">	</div><div class="line">	passwd更改密码</div><div class="line"></div><div class="line"> 	mv filename1 filename2 //将filename1 改名为filename2</div><div class="line">	</div><div class="line">	mv qib.tgz ../qib.tgz //移到上一级目录</div><div class="line">	cd进入当前用户的目录下</div><div class="line"></div><div class="line">	cat 1.c 或more 1.c //都可以查看里面的内容。</div><div class="line"></div><div class="line">	chmod 命令 权限修改 用法：chmod 一位8进制数 filename。</div><div class="line">	eg: chmod u+x filenmame //只想给自己运行，别人只能读</div><div class="line">	//u表示文件主人， g 表示文件文件所在组。 o 表示其他人 a代表all;r 表可读，w 表可写，x 表可以运行</div><div class="line">	其中 rwx分别为4 2 1</div><div class="line"></div><div class="line">	可以chmod 741 filename 来设置自己组其他人的权限 </div><div class="line">	chmod u=rwx,go=rx filename//</div><div class="line">	chmod g+x filename //同组的人来执行</div><div class="line">	chmod oug+wrx filename //全部的人都有读写执行权限</div><div class="line"></div><div class="line">	改变所有者（chown）和用户组（chgrp）命令 </div><div class="line">	chown xiaoming abc：改变abc的所有者为xiaoming </div><div class="line">	chgrp root abc：改变abc所属的组为root </div><div class="line">	chown root ./abc：改变abc这个目录的所有者是root </div><div class="line">	chown ‐R root ./abc：改变abc这个目录及其下面所有的文件和目录的所有者是root </div><div class="line"></div><div class="line">	su + name切换用户 缺省参数为root</div><div class="line">	clear 清屏</div><div class="line"></div><div class="line">	//whoami:确认自己身份</div><div class="line"></div><div class="line">	//whereis:查询命令所在目录以及帮助文档所在目录</div><div class="line"> </div><div class="line">	//which:查询该命令所在目录(类似whereis)</div><div class="line">	grep:文本内容搜索;find:文件或者目录名以及权限属主等匹配搜索</div><div class="line"></div><div class="line">	eg: grep success * 　　 /*查找当前目录下面所有文件里面含有success字符的文件</div><div class="line">	</div><div class="line">	ps查询进程</div><div class="line">	kill 可以杀死某个正在进行或者已经是dest状态的进程</div><div class="line">	</div><div class="line">	最常用ps aux</div><div class="line">	</div><div class="line">	history查看命令历史记录</div><div class="line">		</div><div class="line">	tar -zcvf filename 压缩</div><div class="line">	tar -jxvf filename 解压缩</div><div class="line"></div><div class="line">	# find /usr -size +10M 在/usr目录下找出大小超过10MB的文件	</div><div class="line"></div><div class="line">	find /home -mtime +120 在/home目录下找出120天之前被修改过的文件</div><div class="line">	</div><div class="line">	env，查看环境变量</div><div class="line"></div><div class="line">	LINUX创建用户的命令</div><div class="line">	useradd -g test -d /home/test1 -s /etc/bash -m test1</div><div class="line">	注解：-g 所属组  -d 家目录  -s 所用的SHELL </div><div class="line">	删除用户命令</div><div class="line">	userdel -r test1</div><div class="line">	创建密码命令</div><div class="line">	passwd</div><div class="line"></div><div class="line">	grep -[acinv] '要查找的字符串' filename 字符串查找</div><div class="line"></div><div class="line">	</div><div class="line"></div><div class="line">echo $PATH这个是查看当前登入用户的path环境变量。如果是临时设置（即下次登入还是和以前一样）你可以在命令行中输入export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin ,如果是想永久保存，进入到/etc/profile，最后添加输入export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin ，保存修改。</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="其他常用"><a href="#其他常用" class="headerlink" title="其他常用"></a>其他常用</h2><ol>
+<li>cat：可以显示文件的内容（经常和more搭配使用），或将多个文件合并成一个文件。</li>
+<li>chgrp：用来改变文件或目录所属的用户组，命令的参数以空格分开的要改变属组的文件列表，文件名支持通配符，如果用户不是该文件的所有者，则不能改变该文件的所属组。</li>
+<li>chmod：用于改变文件或目录的访问权限，该命令有两种用法：一种是使用图形化的方法，另一种是数字设置法。</li>
+<li>chown：用来将指定用户或组为特定的所有者。用户可以设置为用户名或用户ID，组可以是组名或组ID。特定的文件是以空格分开的可以改变权限的文件列表，文件名支持通配符。</li>
+<li>clear：用来清除终端屏幕。</li>
+<li>cmp：用来比较两个文件的大小。</li>
+<li>cp：（copy）可以将文件或目录复制到其他目录中，就如同Dos下的copy命令一样，功能非常强大。在使用cp命令时，只需要指定源文件名或目标目录即可。</li>
+<li>cut：用来移除文件的部分内容。</li>
+<li>diff：用来找出两个文件的不同之处。</li>
+<li>du： 用来显示磁盘的剩余空间的大小。</li>
+<li>file：用来显示文件的类型。</li>
+<li>find：用来在目录中搜索文件，并执行指定的操作。</li>
+<li>head：只查看文件的头几行内容，而不必浏览整个文件。</li>
+<li>ln：可以在文件之间创建链接，实际上是给某个文件指定一个访问它的别名。</li>
+<li>less：用法与more类似，可以查看超过一屏的文件内容，不同的是less除了可以按空格键向下显示文件外，还可以利用方向键来滚动显示文件，要结束浏览，只要在less的提示符“：”后按Q即可。</li>
+<li>locate：可用于查找文件，且比find命令的搜索速度快。</li>
+<li>ls（list）：用来显示当前目录中的文件和子目录列表。</li>
+<li>mkdir(make directory)：建立子目录。</li>
+<li>more：用于显示内容超过一屏的文件，为了避免文件内容显示瞬间就消失，可以使用more命令让文件显示满一屏时暂停，在按下任意键的时候继续显示下一屏的内容。</li>
+<li>rmkdir(remove directory)：用来删除“空”的子目录或无用的目录文件。</li>
+<li>mv(move)：可以将文件以及目录移到其他位置，或更改文件以及目录的名称。</li>
+<li>pico：可指定文本的编辑方式。</li>
+<li>pwd(print working directory)：可显示用户当前所在的目录。</li>
+<li>rm：用来删除系统中过时或无用的文件，可以删除目录中的文件或目录本身，对于链接文件，原有文件保持不变。</li>
+<li>sort：将文本文件自动分类。</li>
+<li>stat：用于显示文件或文件系统的状态。</li>
+<li>Strings：显示文件中要打印的字符串。</li>
+<li>tail：输出文件的结尾。</li>
+<li>touch：改变文件的时间戳。</li>
+<li>umask：用于启动bash shell。</li>
+<li>uniq：移除已分类文件中的重复文本行。</li>
+<li>vi：启动vi文本编辑器。</li>
+<li>wc：显示文件中字节、词组合文本行的数目。</li>
+<li>whereis：查找特定目录下的原始程序，二进制程序或用户手册等文件的位置。</li>
+<li>man：如果用户对某个命令想了解更详细的话，可使用此命令。</li>
+<li>dd：复制一个文件。</li>
+<li>df：查看一个文件系统的磁盘空间使用情况。</li>
+<li>edquoat：设置用户与用户组的磁盘空间限制，即Windows系统中的配额。</li>
+<li>fdformat：格式化软盘。</li>
+<li>fdisk：执行Linux下的磁盘分区。</li>
+<li>mkfs：建立一个Linux文件系统。</li>
+<li>mkswap：创建一个Linux交换分区。</li>
+<li>mount：挂载一个文件系统。</li>
+<li>quota：限制和显示用户可用的磁盘空间。</li>
+<li>swapon，swapoff：启用或取消设备和文件的交换页。</li>
+<li>quotaon，quotaoff：启用或取消quota限制。</li>
+<li>umount：取消文件系统的装备。 </li>
+</ol>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/08/02/Linux常用命令/" data-title="Linux常用命令" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="Linux常用命令" data-url="//2015/08/02/Linux常用命令/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/08/02/Linux常用命令/" data-title="Linux常用命令" data-url="//2015/08/02/Linux常用命令/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

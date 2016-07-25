@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>分治算法 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="分治算法详解及例题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分治算法">
+<meta property="og:url" content="/2015/02/11/分治算法/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="分治算法详解及例题">
+<meta property="og:image" content="http://pic002.cnblogs.com/images/2011/282432/2011061020330145.jpg">
+<meta property="og:image" content="http://pic002.cnblogs.com/images/2011/282432/2011061020361776.jpg">
+<meta property="og:image" content="http://pic002.cnblogs.com/images/2011/282432/2011061219141350.jpg">
+<meta property="og:image" content="http://pic002.cnblogs.com/images/2011/282432/2011061219144923.jpg">
+<meta property="og:updated_time" content="2016-07-21T08:40:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分治算法">
+<meta name="twitter:description" content="分治算法详解及例题">
+<meta name="twitter:image" content="http://pic002.cnblogs.com/images/2011/282432/2011061020330145.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-分治算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/11/分治算法/" class="article-date">
+  <time datetime="2015-02-11T07:47:13.000Z" itemprop="datePublished">2月 11 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分治算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>分治算法详解及例题<br><a id="more"></a></p>
+<p>在这之前写过的 全排列  最大子序列和 棋盘覆盖  归并排序 都属于经典的分治策略。这篇博客主要是重新复习一下分治算法，写上另外几道经典的分治算法题</p>
+<p>分治算法主要有两部分组成的：</p>
+<ul>
+<li>分：递归解决较小的问题</li>
+<li>治：从子问题的解构建原问题的解</li>
+</ul>
+<p>一般在正文中至少含有两个递归调用的例程叫分治算法，而正文中只有一个递归调用的例程不是分治算法。一般坚持子问题是不相交的。<br>分析时间复杂度：</p>
+<p>一个规模为n的实例可以划分为b个规模为n/b的实例，其中a个实例是需要求解的，为了简化分析，我们假设n是b的幂（每次都可以整的划分），对算法的运行时间，下面的递推关系式是显然的：</p>
+<p><img src="http://pic002.cnblogs.com/images/2011/282432/2011061020330145.jpg" alt=""></p>
+<p>其中，a，b的含义已经说过了，f（n）表示将求解得到的a个子问题的解合并起来所需要的时间复杂度。</p>
+<p>如何根据a，b以及f的阶来确定这个算法的时间复杂度呢？有下列主定理：（证明参见算法导论）<br><img src="http://pic002.cnblogs.com/images/2011/282432/2011061020361776.jpg" alt=""></p>
+<p>看起来复杂 其实大部分我们用不到，现在我们来分析一下：<br>当a &lt; b时，这代表问题分成b个规模，但是却只需要处理a个问题就好，这属于减治策略，经典的算法是二分查找，此时前半部分的时间复杂度大多为log(N) 此时算法的时间复杂度决定在f(n)<br>当a = b时，这代表问题分成b个规模，而这b个规模都需要处理 当f(n)为O(1)时，算法大部分为O(N)，而当f(n)为O(N)时  则是NlogN的算法 如归并排序<br>以上只是经常见到的分治问题的时间复杂度，具体的看公式。</p>
+<h3 id="接下来介绍几个经典的分治算法："><a href="#接下来介绍几个经典的分治算法：" class="headerlink" title="接下来介绍几个经典的分治算法："></a>接下来介绍几个经典的分治算法：</h3><p>分治最经典的算法 当属归并排序了，重新敲了一个，理解下思想</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 文件名：mulply.java</div><div class="line"> * 时间：2014年11月19日下午10:03:59</div><div class="line"> * 作者：修维康</div><div class="line"> */</div><div class="line"><span class="keyword">package</span> divideconquer;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MergeSort</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (low &lt; high) &#123;</div><div class="line">			<span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</div><div class="line">			MergeSort(a, low, mid);</div><div class="line">			MergeSort(a, mid + <span class="number">1</span>, high);</div><div class="line">			Merge(a, low, mid, high);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Merge</span><span class="params">(Comparable[] a, <span class="keyword">int</span> low, <span class="keyword">int</span> mid, <span class="keyword">int</span> high)</span> </span>&#123;</div><div class="line">		Comparable[] temp = <span class="keyword">new</span> Comparable[high - low + <span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> begin1 = low;</div><div class="line">		<span class="keyword">int</span> begin2 = mid + <span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span> (begin1 &lt;= mid &amp;&amp; begin2 &lt;= high) &#123;</div><div class="line">			<span class="keyword">if</span> (a[begin1].compareTo(a[begin2]) &lt; <span class="number">0</span>)</div><div class="line">				temp[index++] = a[begin1++];</div><div class="line">			<span class="keyword">else</span></div><div class="line">				temp[index++] = a[begin2++];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">while</span> (begin1 &lt;= mid)</div><div class="line">			temp[index++] = a[begin1++];</div><div class="line">		<span class="keyword">while</span> (begin2 &lt;= high)</div><div class="line">			temp[index++] = a[begin2++];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = low, j = <span class="number">0</span>; i &lt;= high; i++, j++)</div><div class="line">			a[i] = temp[j];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Integer[] a = <span class="keyword">new</span> Integer[] &#123; <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">7</span> &#125;;</div><div class="line">		MergeSort(a, <span class="number">0</span>, a.length - <span class="number">1</span>);</div><div class="line">		System.out.println(Arrays.toString(a));</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接下来是整数的乘法运算<br>思想就是将 整数中从中间一分为二 例如X = 61438521 Y = 94736407 分开XL = 6143 XR = 8521 YL=9473 YR = 6407<br>X = XL<em>10^4 + XR    Y = YL</em>10^4 +YR</p>
+<p>XY = XL<em>YL</em>10^8 + (XLYR + XRYL)10^4 +XRYR<br>在这里T(N) = 4T(N/2) +O(N) 时间复杂度还是为N^2 我们并没有改进算法<br>但是经观察可以得到<br>XLYR +XRYL = (XL - XR)(YR-YL) + XLYL + XRYR<br>而XLYL和XRYR在上面求过了 因此此时算法是T(N) = 3T(N/2) +O(N)，运用公式 时间复杂度是O(N^log 3)<br>下面的算法没有用到这个，因为输入的位数可能不相等，想要实现上面的算法 只需要略微一改就好，懒得写了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 文件名：Mutiply.java</div><div class="line"> * 时间：2014年11月21日上午8:39:48</div><div class="line"> * 作者：修维康</div><div class="line"> */</div><div class="line"><span class="keyword">package</span> divideconquer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：Mutiply 说明：分治求大整数的乘法 </div><div class="line"> * 如果位数相同 则分治时可减少一次乘法。</div><div class="line"> * </div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mutiply</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">mutiply</span><span class="params">(<span class="keyword">long</span> x, <span class="keyword">long</span> y)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (getBit(x) &gt; <span class="number">2</span> &amp;&amp; getBit(y) &gt; <span class="number">2</span>) &#123;</div><div class="line">			<span class="keyword">long</span> xBit = getBit(x) - getBit(x) / <span class="number">2</span>;</div><div class="line">			<span class="keyword">long</span> yBit = getBit(y) - getBit(y) / <span class="number">2</span>;</div><div class="line">			<span class="keyword">long</span> xL = (<span class="keyword">long</span>)(x / Math.pow(<span class="number">10</span>, xBit));</div><div class="line">			<span class="keyword">long</span> xR = (<span class="keyword">long</span>)(x % Math.pow(<span class="number">10</span>, xBit));</div><div class="line">			<span class="keyword">long</span> yL = (<span class="keyword">long</span>)(y / Math.pow(<span class="number">10</span>, yBit));</div><div class="line">			<span class="keyword">long</span> yR = (<span class="keyword">long</span>)(y % Math.pow(<span class="number">10</span>, yBit));</div><div class="line">			<span class="comment">//System.out.println(xBit +" "+ yBit+" "+xL+" "+xR +" " + yL +" "+yR);</span></div><div class="line">			<span class="keyword">return</span> (<span class="keyword">long</span>) ((mutiply(xL,yL) * (Math.pow(<span class="number">10</span>, xBit + yBit))) + mutiply(xL,yR)</div><div class="line">					* (Math.pow(<span class="number">10</span>, xBit)) + mutiply(xR,yL) * (Math.pow(<span class="number">10</span>, yBit)) + mutiply(xR,yR));</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> x * y;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getBit</span><span class="params">(<span class="keyword">long</span> a)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> cout = <span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span> (a &gt; <span class="number">0</span>) &#123;</div><div class="line">			cout++;</div><div class="line">			a /= <span class="number">10</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> cout;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：main 说明：测试</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		System.out.println(mutiply(<span class="number">61438521</span>,<span class="number">94736407</span>));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接下来是<strong>Strassen矩阵的乘法</strong>（这里是拷贝别人的）<br>理论上的分析就不多写了，涉及很多数学上的东西，计算麻烦，直接上书上的图：</p>
+<p>分治策略将2个二阶矩阵采用下列方式来计算：</p>
+<p><img src="http://pic002.cnblogs.com/images/2011/282432/2011061219141350.jpg" alt=""></p>
+<p><img src="http://pic002.cnblogs.com/images/2011/282432/2011061219144923.jpg" alt=""></p>
+<p>数一下，这样来计算2个二阶矩阵的乘法用了7次乘法，18次加法。而蛮力法用了8次乘法和4次加法。当然，这还不能体现出它的优越性，它的优越性表现在当矩阵的阶趋于无穷大时的渐进效率。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> divideconquer;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Strassen</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">// 该程序可以对两个同阶的2^n阶的矩阵采用Strassen算法做矩阵乘法</span></div><div class="line">	<span class="comment">/**</span></div><div class="line">     * </div><div class="line">     */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">int</span>[][] a = &#123; &#123; <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span> &#125;, &#123; <span class="number">4</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span> &#125;, &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">0</span> &#125;,</div><div class="line">				&#123; <span class="number">5</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span> &#125; &#125;;</div><div class="line"></div><div class="line">		<span class="keyword">int</span>[][] b = &#123; &#123; <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span> &#125;, &#123; <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span> &#125;, &#123; <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span> &#125;,</div><div class="line">				&#123; <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">0</span> &#125; &#125;;</div><div class="line"></div><div class="line">		<span class="keyword">int</span>[][] result = StrassenMul(a, b);</div><div class="line">		System.out.println(<span class="string">"输出矩阵："</span>);</div><div class="line"></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; result.length; j++)</div><div class="line">				System.out.print(result[i][j] + <span class="string">"  "</span>);</div><div class="line">			System.out.println();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] StrassenMul(<span class="keyword">int</span>[][] a, <span class="keyword">int</span>[][] b) &#123; <span class="comment">// a，b均是2的乘方的方阵</span></div><div class="line">		<span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[a.length][a.length];</div><div class="line">		<span class="keyword">if</span> (a.length == <span class="number">2</span>) <span class="comment">// 如果a,b均是2阶的，递归结束条件</span></div><div class="line">			result = StrassMul(a, b);</div><div class="line">		<span class="keyword">else</span> <span class="comment">// 否则（即a，b都是4,8,16...阶的）</span></div><div class="line">		&#123;</div><div class="line">			<span class="comment">// a的四个子矩阵</span></div><div class="line">			<span class="keyword">int</span>[][] A00 = copyArrays(a, <span class="number">1</span>);</div><div class="line">			<span class="keyword">int</span>[][] A01 = copyArrays(a, <span class="number">2</span>);</div><div class="line">			<span class="keyword">int</span>[][] A10 = copyArrays(a, <span class="number">3</span>);</div><div class="line">			<span class="keyword">int</span>[][] A11 = copyArrays(a, <span class="number">4</span>);</div><div class="line">			<span class="comment">// b的四个子矩阵</span></div><div class="line">			<span class="keyword">int</span>[][] B00 = copyArrays(b, <span class="number">1</span>);</div><div class="line">			<span class="keyword">int</span>[][] B01 = copyArrays(b, <span class="number">2</span>);</div><div class="line">			<span class="keyword">int</span>[][] B10 = copyArrays(b, <span class="number">3</span>);</div><div class="line">			<span class="keyword">int</span>[][] B11 = copyArrays(b, <span class="number">4</span>);</div><div class="line"></div><div class="line">			<span class="comment">// 递归调用</span></div><div class="line">			<span class="keyword">int</span>[][] m1 = StrassenMul(addArrays(A00, A11), addArrays(B00, B11));</div><div class="line">			<span class="keyword">int</span>[][] m2 = StrassenMul(addArrays(A10, A11), B00);</div><div class="line">			<span class="keyword">int</span>[][] m3 = StrassenMul(A00, subArrays(B01, B11));</div><div class="line">			<span class="keyword">int</span>[][] m4 = StrassenMul(A11, subArrays(B10, B00));</div><div class="line">			<span class="keyword">int</span>[][] m5 = StrassenMul(addArrays(A00, A01), B11);</div><div class="line">			<span class="keyword">int</span>[][] m6 = StrassenMul(subArrays(A10, A00), addArrays(B00, B01));</div><div class="line">			<span class="keyword">int</span>[][] m7 = StrassenMul(subArrays(A01, A11), addArrays(B10, B11));</div><div class="line"></div><div class="line">			<span class="comment">// 得到result的四个子矩阵</span></div><div class="line">			<span class="keyword">int</span>[][] C00 = addArrays(m7, subArrays(addArrays(m1, m4), m5));<span class="comment">// m1+m4-m5+m7</span></div><div class="line">			<span class="keyword">int</span>[][] C01 = addArrays(m3, m5); <span class="comment">// m3+m5</span></div><div class="line">			<span class="keyword">int</span>[][] C10 = addArrays(m2, m4); <span class="comment">// m2+m4</span></div><div class="line">			<span class="keyword">int</span>[][] C11 = addArrays(m6, subArrays(addArrays(m1, m3), m2));<span class="comment">// m1+m3-m2+m6</span></div><div class="line"></div><div class="line">			<span class="comment">// 也可以按照下列方法来求C</span></div><div class="line">			<span class="comment">// C00 = addArrays(StrassenMul(A00,B00),StrassenMul(A01,B10));</span></div><div class="line">			<span class="comment">// C01 = addArrays(StrassenMul(A00,B01),StrassenMul(A01,B11));</span></div><div class="line">			<span class="comment">// C10 = addArrays(StrassenMul(A10,B00),StrassenMul(A11,B10));</span></div><div class="line">			<span class="comment">// C11 = addArrays(StrassenMul(A10,B01),StrassenMul(A11,B11));</span></div><div class="line"></div><div class="line">			<span class="comment">// 将四个子矩阵合并成result</span></div><div class="line">			Merge(result, C00, <span class="number">1</span>);</div><div class="line">			Merge(result, C01, <span class="number">2</span>);</div><div class="line">			Merge(result, C10, <span class="number">3</span>);</div><div class="line">			Merge(result, C11, <span class="number">4</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span>[][] result, <span class="keyword">int</span>[][] C, <span class="keyword">int</span> flag)</span> </span>&#123;</div><div class="line">		<span class="comment">// 将C复制到result的相应位置</span></div><div class="line">		<span class="keyword">switch</span> (flag) &#123;</div><div class="line">		<span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length / <span class="number">2</span>; i++)</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; result.length / <span class="number">2</span>; j++)</div><div class="line">					result[i][j] = C[i][j];</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length / <span class="number">2</span>; i++)</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = result.length / <span class="number">2</span>; j &lt; result.length; j++)</div><div class="line">					result[i][j] = C[i][j - result.length / <span class="number">2</span>];</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = result.length / <span class="number">2</span>; i &lt; result.length; i++)</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; result.length / <span class="number">2</span>; j++)</div><div class="line">					result[i][j] = C[i - result.length / <span class="number">2</span>][j];</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">4</span>:</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = result.length / <span class="number">2</span>; i &lt; result.length; i++)</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = result.length / <span class="number">2</span>; j &lt; result.length; j++)</div><div class="line">					result[i][j] = C[i - result.length / <span class="number">2</span>][j - result.length</div><div class="line">							/ <span class="number">2</span>];</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] copyArrays(<span class="keyword">int</span>[][] a, <span class="keyword">int</span> flag) &#123;</div><div class="line">		<span class="comment">// 得到分割矩阵的子矩阵</span></div><div class="line">		<span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[a.length / <span class="number">2</span>][a.length / <span class="number">2</span>];</div><div class="line">		<span class="keyword">switch</span> (flag) &#123;</div><div class="line">		<span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length / <span class="number">2</span>; i++)</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; a.length / <span class="number">2</span>; j++)</div><div class="line">					result[i][j] = a[i][j];</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length / <span class="number">2</span>; i++)</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = a.length / <span class="number">2</span>; j &lt; a.length; j++)</div><div class="line">					result[i][j - a.length / <span class="number">2</span>] = a[i][j];</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = a.length / <span class="number">2</span>; i &lt; a.length; i++)</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; a.length / <span class="number">2</span>; j++)</div><div class="line">					result[i - a.length / <span class="number">2</span>][j] = a[i][j];</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> <span class="number">4</span>:</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = a.length / <span class="number">2</span>; i &lt; a.length; i++)</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = a.length / <span class="number">2</span>; j &lt; a.length; j++)</div><div class="line">					result[i - a.length / <span class="number">2</span>][j - a.length / <span class="number">2</span>] = a[i][j];</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] StrassMul(<span class="keyword">int</span>[][] a, <span class="keyword">int</span>[][] b) &#123;</div><div class="line">		<span class="comment">// 计算2个二阶的矩阵乘法</span></div><div class="line">		<span class="comment">// Strassen方法使用了7次乘法，18次加法（传统方法是8次乘法4次加法）</span></div><div class="line">		<span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">2</span>];</div><div class="line"></div><div class="line">		<span class="keyword">int</span> m1 = (a[<span class="number">0</span>][<span class="number">0</span>] + a[<span class="number">1</span>][<span class="number">1</span>]) * (b[<span class="number">0</span>][<span class="number">0</span>] + b[<span class="number">1</span>][<span class="number">1</span>]);</div><div class="line">		<span class="keyword">int</span> m2 = (a[<span class="number">1</span>][<span class="number">0</span>] + a[<span class="number">1</span>][<span class="number">1</span>]) * b[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">		<span class="keyword">int</span> m3 = a[<span class="number">0</span>][<span class="number">0</span>] * (b[<span class="number">0</span>][<span class="number">1</span>] - b[<span class="number">1</span>][<span class="number">1</span>]);</div><div class="line">		<span class="keyword">int</span> m4 = a[<span class="number">1</span>][<span class="number">1</span>] * (b[<span class="number">1</span>][<span class="number">0</span>] - b[<span class="number">0</span>][<span class="number">0</span>]);</div><div class="line">		<span class="keyword">int</span> m5 = (a[<span class="number">0</span>][<span class="number">0</span>] + a[<span class="number">0</span>][<span class="number">1</span>]) * b[<span class="number">1</span>][<span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> m6 = (a[<span class="number">1</span>][<span class="number">0</span>] - a[<span class="number">0</span>][<span class="number">0</span>]) * (b[<span class="number">0</span>][<span class="number">0</span>] + b[<span class="number">0</span>][<span class="number">1</span>]);</div><div class="line">		<span class="keyword">int</span> m7 = (a[<span class="number">0</span>][<span class="number">1</span>] - a[<span class="number">1</span>][<span class="number">1</span>]) * (b[<span class="number">1</span>][<span class="number">0</span>] + b[<span class="number">1</span>][<span class="number">1</span>]);</div><div class="line"></div><div class="line">		result[<span class="number">0</span>][<span class="number">0</span>] = m1 + m4 - m5 + m7;</div><div class="line">		result[<span class="number">0</span>][<span class="number">1</span>] = m3 + m5;</div><div class="line">		result[<span class="number">1</span>][<span class="number">0</span>] = m2 + m4;</div><div class="line">		result[<span class="number">1</span>][<span class="number">1</span>] = m1 + m3 - m2 + m6;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] addArrays(<span class="keyword">int</span>[][] a, <span class="keyword">int</span>[][] b) &#123;</div><div class="line">		<span class="comment">// 求2个同阶矩阵的和</span></div><div class="line">		<span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[a.length][a.length];</div><div class="line">		<span class="comment">// System.out.println(result.length);</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++)</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; result.length; j++)</div><div class="line">				<span class="comment">// for(int j = 0;i &lt; result.length;j++)</span></div><div class="line">				result[i][j] = a[i][j] + b[i][j];</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] subArrays(<span class="keyword">int</span>[][] a, <span class="keyword">int</span>[][] b) &#123;</div><div class="line">		<span class="comment">// 矩阵减法</span></div><div class="line">		<span class="keyword">int</span>[][] result = <span class="keyword">new</span> <span class="keyword">int</span>[a.length][a.length];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++)</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; result.length; j++)</div><div class="line">				<span class="comment">// for(int j = 0;i &lt; result.length;j++)</span></div><div class="line">				result[i][j] = a[i][j] - b[i][j];</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="最接近点对点问题"><a href="#最接近点对点问题" class="headerlink" title="最接近点对点问题"></a>最接近点对点问题</h3><p>和最大子序列和的递归算法很相似。将点按照x坐标非降序排序，找到中间的值 将其分成两部分，s1 s2 点要么在s1中 要么在s2中 在要么一个在s1一个在s2中，递归算，注意基准情况，当只有2个点或者3个点的时候就可以不用再分了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> divideconquer;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Point</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">int</span> x;</div><div class="line">	<span class="keyword">int</span> y;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.x = x;</div><div class="line">		<span class="keyword">this</span>.y = y;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Point o)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.x &gt; o.x)</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.x &lt; o.x)</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClosedPoint</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getDistance</span><span class="params">(Point a, Point b)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> Math.pow(Math.pow(b.x - a.x, <span class="number">2</span>) + Math.pow(b.y - a.y, <span class="number">2</span>), <span class="number">0.5</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Point[] getPoints(Point[] points) &#123;</div><div class="line">		Arrays.sort(points);</div><div class="line">		<span class="keyword">if</span> (points.length == <span class="number">2</span> || points.length == <span class="number">3</span>)</div><div class="line">			<span class="keyword">return</span> getPoint(points);</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			<span class="comment">// 分成两部分 s1 s2；</span></div><div class="line">			Point[] result = <span class="keyword">new</span> Point[<span class="number">2</span>];</div><div class="line">			<span class="keyword">int</span> mid = points.length / <span class="number">2</span>;</div><div class="line"></div><div class="line">			<span class="comment">// copyOfRange为左闭右开</span></div><div class="line">			Point[] s1 = Arrays.copyOfRange(points, <span class="number">0</span>, mid);</div><div class="line">			Point[] s2 = Arrays.copyOfRange(points, mid, points.length);</div><div class="line"></div><div class="line">			<span class="comment">// 得到s1 中最短距离d1 s2中最短距离d2</span></div><div class="line">			Point[] result1 = getPoints(s1);</div><div class="line">			Point[] result2 = getPoints(s2);</div><div class="line">			<span class="comment">// System.out.println(result1.length);</span></div><div class="line">			<span class="comment">// System.out.println(result2.length);</span></div><div class="line">			<span class="keyword">double</span> d1 = getDistance(result1[<span class="number">0</span>], result1[<span class="number">1</span>]);</div><div class="line">			<span class="keyword">double</span> d2 = getDistance(result2[<span class="number">0</span>], result2[<span class="number">1</span>]);</div><div class="line">			<span class="comment">// 得到 横跨s2 s1的最短距离d3</span></div><div class="line">			<span class="keyword">double</span> minDistance = d1 &lt; d2 ? d1 : d2;</div><div class="line">			result = minDistance == d1 ? result1 : result2;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s2.length; i++) &#123;</div><div class="line">				<span class="comment">//优化，如果s2到中间的距离大于minDistance则也不需要继续往后走了</span></div><div class="line">				<span class="keyword">if</span> (s2[i].x - s1[s1.length - <span class="number">1</span>].x &gt; minDistance)</div><div class="line">					<span class="keyword">break</span>;</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = s1.length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--)</div><div class="line">					<span class="keyword">if</span> (s2[i].x - s1[j].x &gt; minDistance)</div><div class="line">						<span class="keyword">break</span>;</div><div class="line">					<span class="keyword">else</span> &#123;</div><div class="line">						<span class="keyword">double</span> d3 = getDistance(s2[i], s1[j]);</div><div class="line">						<span class="keyword">if</span> (d3 &lt; minDistance) &#123;</div><div class="line">							minDistance = d3;</div><div class="line">							result[<span class="number">0</span>] = s2[i];</div><div class="line">							result[<span class="number">1</span>] = s1[j];</div><div class="line">						&#125;</div><div class="line"></div><div class="line">					&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> result;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Point[] getPoint(Point[] points) &#123;</div><div class="line">		Point[] result = <span class="keyword">new</span> Point[<span class="number">2</span>];</div><div class="line">		<span class="keyword">if</span> (points.length == <span class="number">2</span>) &#123;</div><div class="line">			result[<span class="number">0</span>] = points[<span class="number">0</span>];</div><div class="line">			result[<span class="number">1</span>] = points[<span class="number">1</span>];</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">double</span> d1 = getDistance(points[<span class="number">0</span>], points[<span class="number">1</span>]);</div><div class="line">			<span class="keyword">double</span> d2 = getDistance(points[<span class="number">0</span>], points[<span class="number">2</span>]);</div><div class="line">			<span class="keyword">double</span> d3 = getDistance(points[<span class="number">1</span>], points[<span class="number">2</span>]);</div><div class="line">			<span class="keyword">if</span> (d1 &lt; d2 &amp;&amp; d1 &lt; d3) &#123;</div><div class="line">				result[<span class="number">0</span>] = points[<span class="number">0</span>];</div><div class="line">				result[<span class="number">1</span>] = points[<span class="number">1</span>];</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (d2 &lt; d1 &amp;&amp; d2 &lt; d3) &#123;</div><div class="line">				result[<span class="number">0</span>] = points[<span class="number">0</span>];</div><div class="line">				result[<span class="number">1</span>] = points[<span class="number">2</span>];</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span> (d3 &lt; d1 &amp;&amp; d3 &lt; d2) &#123;</div><div class="line">				result[<span class="number">0</span>] = points[<span class="number">1</span>];</div><div class="line">				result[<span class="number">1</span>] = points[<span class="number">2</span>];</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Point[] points = <span class="keyword">new</span> Point[] &#123; <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">1</span>), <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">6</span>),</div><div class="line">				<span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">4</span>), <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">7</span>), <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">12</span>),</div><div class="line">				<span class="keyword">new</span> Point(<span class="number">2</span>, <span class="number">18</span>), <span class="keyword">new</span> Point(<span class="number">3</span>, <span class="number">20</span>), <span class="keyword">new</span> Point(<span class="number">5</span>, <span class="number">30</span>) &#125;;</div><div class="line">		Point[] result = getPoints(points);</div><div class="line"></div><div class="line">		System.out.print(<span class="string">"("</span> + result[<span class="number">0</span>].x + <span class="string">","</span> + result[<span class="number">0</span>].y + <span class="string">"),"</span> + <span class="string">"("</span></div><div class="line">				+ result[<span class="number">1</span>].x + <span class="string">","</span> + result[<span class="number">1</span>].y + <span class="string">")"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>之前写的棋盘铺盖，快排，和找第K大的值，最大子序列和问题 都属于分治策略，至此分治算法完。</p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/02/11/分治算法/" data-title="分治算法" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="分治算法" data-url="//2015/02/11/分治算法/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/02/11/分治算法/" data-title="分治算法" data-url="//2015/02/11/分治算法/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

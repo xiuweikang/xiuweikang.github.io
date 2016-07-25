@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java基础知识 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java与C/C++不同点：
+ &amp;gt;
+
+Java为解释型语言  程序经java编译器编译成字节码，然后在JVM上解释执行，C/C++则是经过编译和链接后生成可执行的二进制文件。所以C/C++一般比JAVA快，但不具备平台无关性。
+Java不支持多继承，无指针，无goto但保留goto关键字
+
+public static void main(String[] args)为程序的入口地址，参数ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java基础知识">
+<meta property="og:url" content="/2015/07/12/java基础知识/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="Java与C/C++不同点：
+ &amp;gt;
+
+Java为解释型语言  程序经java编译器编译成字节码，然后在JVM上解释执行，C/C++则是经过编译和链接后生成可执行的二进制文件。所以C/C++一般比JAVA快，但不具备平台无关性。
+Java不支持多继承，无指针，无goto但保留goto关键字
+
+public static void main(String[] args)为程序的入口地址，参数ar">
+<meta property="og:image" content="http://img.blog.csdn.net/20140116224712140?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmdqZ19ibG9n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2016-07-19T03:55:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java基础知识">
+<meta name="twitter:description" content="Java与C/C++不同点：
+ &amp;gt;
+
+Java为解释型语言  程序经java编译器编译成字节码，然后在JVM上解释执行，C/C++则是经过编译和链接后生成可执行的二进制文件。所以C/C++一般比JAVA快，但不具备平台无关性。
+Java不支持多继承，无指针，无goto但保留goto关键字
+
+public static void main(String[] args)为程序的入口地址，参数ar">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20140116224712140?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmdqZ19ibG9n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-java基础知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/12/java基础知识/" class="article-date">
+  <time datetime="2015-07-12T07:47:00.000Z" itemprop="datePublished">7月 12 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java基础知识
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java与C/C++不同点：</p>
+<p> &gt;</p>
+<ol>
+<li>Java为解释型语言  程序经java编译器编译成字节码，然后在JVM上解释执行，C/C++则是经过编译和链接后生成可执行的二进制文件。所以C/C++一般比JAVA快，但不具备平台无关性。</li>
+<li>Java不支持多继承，无指针，无goto但保留goto关键字</li>
+</ol>
+<p>public static void main(String[] args)为程序的入口地址，参数args为开发人员在命令行状态下与程序交互提供了一种手段</p>
+<p>Java程序初始化过程：</p>
+<p>（父类静态变量 |父类静态代码块） （子类静态变量 |子类静态代码块） 父类非静态变量 父类非静态代码块 父类构造函数 子类非静态变量  子类非静态代码块 子类构造函数<br><a id="more"></a></p>
+<p>###clone()方法</p>
+<p><img src="http://img.blog.csdn.net/20140116224712140?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvemhhbmdqZ19ibG9n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>java的clone是浅复制，完成深复制需要对对象中的引用对象调用clone()方法</p>
+<h2 id="深复制和浅复制返回的都是不同于之前对象的引用，但是浅复制中-复制的对象内的引用对象还是指向之前的，深复制是独立出来的。"><a href="#深复制和浅复制返回的都是不同于之前对象的引用，但是浅复制中-复制的对象内的引用对象还是指向之前的，深复制是独立出来的。" class="headerlink" title="深复制和浅复制返回的都是不同于之前对象的引用，但是浅复制中 复制的对象内的引用对象还是指向之前的，深复制是独立出来的。"></a>深复制和浅复制返回的都是不同于之前对象的引用，但是浅复制中 复制的对象内的引用对象还是指向之前的，深复制是独立出来的。</h2><p>###三种方法获得class对象</p>
+<ol>
+<li>class.forName()</li>
+<li>类名.class(不引起类加载)</li>
+<li>实例.getclass()</li>
+</ol>
+<p>子类可以对父类中的方法进行访问权限的扩展 而不能缩小。<br>例如，基类方法是protected的 子类只能是Public protected 不能是private</p>
+<p>###volatile关键字</p>
+<p>系统每次用他的时候每次都去内存找，不用缓存，保证一致性。保证所有的线程看到的变量值是一样的。</p>
+<p>###strictft</p>
+<p>strictft是<code>strict float point</code>的缩写，指的是精确浮点，用来保证浮点运算的精确，可用阿里声明一个类、接口、方法</p>
+<p>String s = new String(“abc”);创建了几个对象</p>
+<blockquote>
+<p>如果常量池中存在”abc”则只有一个对象 new String() 对象里的value指向常量池中的abc，如果不存在则先在常量池中构造一个对象，然后指向它，所以答案是一个或两个。</p>
+</blockquote>
+<p>数组可以看成一个对象,int[] a  a instanceOf int[] 返回true</p>
+<p>###java异常</p>
+<p>java分为两种异常 Error 和Exception 拥有共同的父类 Throwable </p>
+<p>Error  </p>
+<blockquote>
+<p>java.lang.Error 用来处理系统错误，例如java.lang.StackOverFlowError 或者 Java.lang.OutOfMemoryError 之类的。然后 Exception用来处理程序错误，请求的资源不可用等等</p>
+</blockquote>
+<p>Exception分为 检查异常 和运行时异常</p>
+<blockquote>
+<p>检查型异常和非检查型异常的主要区别在于其处理方式。检查型异常需要使用try, catch和finally关键字在编译期进行处理，否则编译器会报错。对于非检查型异常则不需要这样做。Java中所有继承自java.lang.Exception类的异常都是检查型异常，所有继承自RuntimeException的异常都被称为非检查型异常。你也可以查看下一篇文章来了解 更多关于检查型异常和非检查型异常之间的区别.</p>
+</blockquote>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/07/12/java基础知识/" data-title="java基础知识" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="java基础知识" data-url="//2015/07/12/java基础知识/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/07/12/java基础知识/" data-title="java基础知识" data-url="//2015/07/12/java基础知识/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java动态绑定内幕 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="java动态绑定内幕">
+<meta property="og:url" content="/2015/07/29/java动态绑定内幕/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201005/9/0_1273390910MR3c.gif">
+<meta property="og:image" content="http://hxraid.iteye.com/upload/picture/pic/65417/ab4e5838-83f6-34a4-9dfc-a1b93e1ff02c.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/b00f9334jw1eujpjiqr5rj20kl0bcta4.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/b00f9334jw1eujpjx65b1j20kb0cg3zo.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/b00f9334jw1eujpud3s63j20ci0a8wfn.jpg">
+<meta property="og:updated_time" content="2016-07-19T03:55:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java动态绑定内幕">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201005/9/0_1273390910MR3c.gif">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-java动态绑定内幕" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/29/java动态绑定内幕/" class="article-date">
+  <time datetime="2015-07-29T07:18:45.000Z" itemprop="datePublished">7月 29 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java动态绑定内幕
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://hi.csdn.net/attachment/201005/9/0_1273390910MR3c.gif" alt="java对象内存模型"><br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//被调用的类 </span></div><div class="line"><span class="keyword">package</span> hr.test;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span></span>&#123;</div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>&#123;</div><div class="line">              System.out.println(<span class="string">"Father— f1()"</span>);</div><div class="line">      &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//调用静态方法</span></div><div class="line"><span class="keyword">import</span> hr.test.Father;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticCall</span></span>&#123;</div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">            Father.f1(); <span class="comment">//调用静态方法</span></div><div class="line">       &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的源代码中执行方法调用的语句(Father.f1())被编译器编译成了一条指令：invokestatic #13。我们看看JVM是如何处理这条指令的</p>
+<p>(1) 指令中的#13指的是StaticCall类的常量池中第13个常量表的索引项(关于常量池详见《Class文件内容及常量池 》)。这个常量表(CONSTATN_Methodref_info ) 记录的是方法f1信息的符号引用(包括f1所在的类名，方法名和返回类型)。JVM会首先根据这个符号引用找到方法f1所在的类的全限定名: hr.test.Father。</p>
+<p>(2) 紧接着JVM会加载、链接和初始化Father类。</p>
+<p>(3) 然后在Father类所在的方法区中找到f1()方法的直接地址，并将这个直接地址记录到StaticCall类的常量池索引为13的常量表中。这个过程叫常量池解析 ，以后再次调用Father.f1()时，将直接找到f1方法的字节码。</p>
+<p>(4) 完成了StaticCall类常量池索引项13的常量表的解析之后，JVM就可以调用f1()方法，并开始解释执行f1()方法中的指令了。</p>
+<p> 通过上面的过程，我们发现经过常量池解析之后，JVM就能够确定要调用的f1()方法具体在内存的什么位置上了。实际上，这个信息在编译阶段就已经在StaticCall类的常量池中记录了下来。这种在编译阶段就能够确定调用哪个方法的方式，我们叫做 静态绑定机制 。</p>
+<p> 除了被static 修饰的静态方法，所有被private 修饰的私有方法、被final 修饰的禁止子类覆盖的方法都会被编译成invokestatic指令。另外所有类的初始化方法<init>和<clinit>会被编译成invokespecial指令。JVM会采用静态绑定机制来顺利的调用这些方法。</clinit></init></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//被调用的父类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span></span>&#123;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">		System.out.println(<span class="string">"father-f1()"</span>);</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">      </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f1</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</div><div class="line">    </div><div class="line">            System.out.println(<span class="string">"father-f1()  para-int "</span>+i);</div><div class="line">        </div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//被调用的子类</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>&#123; </div><div class="line">	<span class="comment">//覆盖父类的方法</span></div><div class="line">		</div><div class="line">	System.out.println(<span class="string">"Son-f1()"</span>);</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">        </div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AutoCall</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">	</div><div class="line">		Father father=<span class="keyword">new</span> Son(); <span class="comment">//多态</span></div><div class="line">		</div><div class="line">		father.f1(); <span class="comment">//打印结果： Son-f1()</span></div><div class="line">	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="动态绑定"><a href="#动态绑定" class="headerlink" title="动态绑定"></a>动态绑定</h2><p>上面的源代码中有三个重要的概念：多态(polymorphism) 、方法覆盖 、方法重载 。打印的结果大家也都比较清楚，但是JVM是如何知道f.f1()调用的是子类Sun中方法而不是Father中的方法呢？在解释这个问题之前，我们首先简单的讲下JVM管理的一个非常重要的数据结构——方法表 。</p>
+<blockquote>
+<p>在JVM加载类的同时，会在方法区中为这个类存放很多信息(详见《Java 虚拟机体系结构 》)。其中就有一个数据结构叫方法表。它以数组的形式记录了当前类及其所有超类的可见方法字节码在内存中的直接地址 。下图是上面源代码中Father和Sun类在方法区中的方法表：</p>
+</blockquote>
+<p><img src="http://hxraid.iteye.com/upload/picture/pic/65417/ab4e5838-83f6-34a4-9dfc-a1b93e1ff02c.jpg" alt=""></p>
+<p>上图中的方法表有两个特点：</p>
+<p>(1) 子类方法表中继承了父类的方法，比如Father extends Object。</p>
+<p>(2) 相同的方法(相同的方法签名：方法名和参数列表)在所有类的方法表中的索引相同。比如Father方法表中的f1()和Son方法表中的f1()都位于各自方法表的第11项中。</p>
+<p>通过javap得到：</p>
+<p><img src="http://ww4.sinaimg.cn/large/b00f9334jw1eujpjiqr5rj20kl0bcta4.jpg" alt=""><br><img src="http://ww1.sinaimg.cn/large/b00f9334jw1eujpjx65b1j20kb0cg3zo.jpg" alt=""></p>
+<p>其中invokevirtual指令的详细调用过程是这样的：<br> (1) invokevirtual指令中的#15指的是AutoCall类的常量池中第15个常量表的索引项。这个常量表(CONSTATN_Methodref_info ) 记录的是方法f1信息的符号引用(包括f1所在的类名，方法名和返回类型)。JVM会首先根据这个符号引用找到调用方法f1的类的全限定名: hr.test.Father。这是因为调用方法f1的类的对象father声明为Father类型。</p>
+<p>(2) 在Father类型的方法表中查找方法f1，如果找到，则将方法f1在方法表中的索引项11(如上图)记录到AutoCall类的常量池中第15个常量表中(常量池解析 )。这里有一点要注意：如果Father类型方法表中没有方法f1，那么即使Son类型中方法表有，编译的时候也通过不了。因为调用方法f1的类的对象father的声明为Father类型。</p>
+<p>(3) 在调用invokevirtual指令前有一个aload_1指令，它会将开始创建在堆中的Son对象的引用压入操作数栈。然后invokevirtual指令会根据这个Son对象的引用首先找到堆中的Son对象，然后进一步找到Son对象所属类型的方法表。</p>
+<p>过程如下图所示：</p>
+<p><img src="http://ww4.sinaimg.cn/large/b00f9334jw1eujpud3s63j20ci0a8wfn.jpg" alt=""></p>
+<p>(4) 这是通过第(2)步中解析完成的#15常量表中的方法表的索引项11，可以定位到Son类型方法表中的方法f1()，然后通过直接地址找到该方法字节码所在的内存空间。</p>
+<blockquote>
+<p>很明显，根据对象(father)的声明类型(Father)还不能够确定调用方法f1的位置，必须根据father在堆中实际创建的对象类型Son来确定f1方法所在的位置。这种在程序运行过程中，通过动态创建的对象的方法表来定位方法的方式，我们叫做 <code>动态绑定机制</code> 。</p>
+</blockquote>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/07/29/java动态绑定内幕/" data-title="java动态绑定内幕" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="java动态绑定内幕" data-url="//2015/07/29/java动态绑定内幕/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/07/29/java动态绑定内幕/" data-title="java动态绑定内幕" data-url="//2015/07/29/java动态绑定内幕/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

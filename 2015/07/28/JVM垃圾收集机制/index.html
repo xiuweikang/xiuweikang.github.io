@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JVM垃圾收集机制 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="因为通过引用计数的方法无法解决循环引用的问题，所以目前的虚拟机都是通过可达性分析算法来判断一个对象是否该回收。
+
+可达性分析算法的基本思路就是通过一系列的GC Roots对象作为起始点，通过这个节点向下搜索，如果一个对象没有一条从GC Roots到该对象的路径，则不可达，即可被回收。
+JAVA中的引用：
+强引用：永远不会被回收的引用对象 Object o = new Object()
+软引用：在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM垃圾收集机制">
+<meta property="og:url" content="/2015/07/28/JVM垃圾收集机制/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="因为通过引用计数的方法无法解决循环引用的问题，所以目前的虚拟机都是通过可达性分析算法来判断一个对象是否该回收。
+
+可达性分析算法的基本思路就是通过一系列的GC Roots对象作为起始点，通过这个节点向下搜索，如果一个对象没有一条从GC Roots到该对象的路径，则不可达，即可被回收。
+JAVA中的引用：
+强引用：永远不会被回收的引用对象 Object o = new Object()
+软引用：在">
+<meta property="og:image" content="http://img.blog.csdn.net/20140110123455468">
+<meta property="og:image" content="http://img.blog.csdn.net/20140110123528703">
+<meta property="og:image" content="http://img.blog.csdn.net/20140110123602734">
+<meta property="og:image" content="http://img.blog.csdn.net/20140110123902531">
+<meta property="og:image" content="http://img.blog.csdn.net/20140110123941765">
+<meta property="og:image" content="http://img.blog.csdn.net/20140110124032796">
+<meta property="og:image" content="http://img.blog.csdn.net/20140110124255984">
+<meta property="og:image" content="http://img.blog.csdn.net/20140110124356484">
+<meta property="og:updated_time" content="2016-07-19T03:55:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM垃圾收集机制">
+<meta name="twitter:description" content="因为通过引用计数的方法无法解决循环引用的问题，所以目前的虚拟机都是通过可达性分析算法来判断一个对象是否该回收。
+
+可达性分析算法的基本思路就是通过一系列的GC Roots对象作为起始点，通过这个节点向下搜索，如果一个对象没有一条从GC Roots到该对象的路径，则不可达，即可被回收。
+JAVA中的引用：
+强引用：永远不会被回收的引用对象 Object o = new Object()
+软引用：在">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20140110123455468">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-JVM垃圾收集机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/28/JVM垃圾收集机制/" class="article-date">
+  <time datetime="2015-07-28T01:55:34.000Z" itemprop="datePublished">7月 28 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM垃圾收集机制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>因为通过引用计数的方法无法解决循环引用的问题，所以目前的虚拟机都是通过可达性分析算法来判断一个对象是否该回收。</p>
+</blockquote>
+<p>可达性分析算法的基本思路就是通过一系列的GC Roots对象作为起始点，通过这个节点向下搜索，如果一个对象没有一条从GC Roots到该对象的路径，则不可达，即可被回收。</p>
+<h2 id="JAVA中的引用："><a href="#JAVA中的引用：" class="headerlink" title="JAVA中的引用："></a>JAVA中的引用：</h2><ul>
+<li>强引用：永远不会被回收的引用对象 Object o = new Object()</li>
+<li>软引用：在OOM之前会把这些对象作为垃圾对象进行回收，如果还没有足够的内存，则OOM，通过SoftReference类来实现</li>
+<li>弱引用： 存活到下一次垃圾收集发生之前WeakReference实现</li>
+<li>虚引用：最弱的，唯一目的是在对象被回收时收到一个系统通知。 PhantomReference实现。<a id="more"></a>
+<blockquote>
+<p>当一个对象要被回收时需要进行两次标记，经历两次标记后的对象才会被回收，第一次就是GC roots不可达的的，第二次是调用finalize()后还没被拯救的。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="方法区的回收"><a href="#方法区的回收" class="headerlink" title="方法区的回收"></a>方法区的回收</h2><p>方法区主要回收：废弃的常量和无用的类。</p>
+<ul>
+<li>废弃的常量是没有引用指向的常量。</li>
+<li>无用的类需要满足三个条件<ul>
+<li>所有类的实例都已经被回收了</li>
+<li>加载该类的ClassLoader被回收了</li>
+<li>没有该类的Class对象了</li>
+</ul>
+</li>
+</ul>
+<h2 id="垃圾收集算法："><a href="#垃圾收集算法：" class="headerlink" title="垃圾收集算法："></a>垃圾收集算法：</h2><h3 id="标记—清除算法"><a href="#标记—清除算法" class="headerlink" title="标记—清除算法"></a>标记—清除算法</h3><blockquote>
+<p>标记—清除算法是最基础的收集算法，它分为“标记”和“清除”两个阶段：首先标记出所需回收的对象，在标记完成后统一回收掉所有被标记的对象，它的标记过程其实就是前面的根搜索算法中判定垃圾对象的标记过程。标记—清除算法的执行情况如下图所示：</p>
+</blockquote>
+<p> 回收前状态：<br><img src="http://img.blog.csdn.net/20140110123455468" alt=""></p>
+<p> 回收后状态：</p>
+<p><img src="http://img.blog.csdn.net/20140110123528703" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20140110123602734" alt=""></p>
+<p>该算法有如下缺点：</p>
+<ul>
+<li>标记和清除过程的效率都不高。</li>
+<li><p>标记清除后会产生大量不连续的内存碎片，空间碎片太多可能会导致，当程序在以后的运行过程中需要分配较大对象时无法找到足够的连续内存而不得不触发另一次垃圾收集动作。</p>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><blockquote>
+<p>复制算法是针对标记—清除算法的缺点，在其基础上进行改进而得到的，它讲课用内存按容量分为大小相等的两块，每次只使用其中的一块，当这一块的内存用完了，就将还存活着的对象复制到另外一块内存上面，然后再把已使用过的内存空间一次清理掉。复制算法有如下优点：</p>
+</blockquote>
+</li>
+<li><p>每次只对一块内存进行回收，运行高效。</p>
+</li>
+<li>只需移动栈顶指针，按顺序分配内存即可，实现简单。</li>
+<li>内存回收时不用考虑内存碎片的出现。<br>它的缺点是：可一次性分配的最大内存缩小了一半。</li>
+</ul>
+<p>对新生代的回收采用此方法，一般不是采用1：1的比例，而是将其化为y一个 Eden和2个Survivor区，Eden：Survivor为8：1 ，每次只使用Eden区和1个Survivor，将活着的放到剩下的Survivor区中</p>
+<p>复制算法的执行情况如下图所示：</p>
+<p>回收前状态：</p>
+<p><img src="http://img.blog.csdn.net/20140110123902531" alt=""></p>
+<p>回收后状态：</p>
+<p><img src="http://img.blog.csdn.net/20140110123941765" alt=""><br><img src="http://img.blog.csdn.net/20140110124032796" alt=""></p>
+<h3 id="标记—整理算法"><a href="#标记—整理算法" class="headerlink" title="标记—整理算法"></a>标记—整理算法</h3><blockquote>
+<p>复制算法比较适合于新生代，在老年代中，对象存活率比较高，如果执行较多的复制操作，效率将会变低，所以老年代一般会选用其他算法，如标记—整理算法。该算法标记的过程与标记—清除算法中的标记过程一样，但对标记后出的垃圾对象的处理情况有所不同，它不是直接对可回收对象进行清理，而是让所有的对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
+</blockquote>
+<p>标记—整理算法的回收情况如下所示：</p>
+<p> 回收前状态：<br><img src="http://img.blog.csdn.net/20140110124255984" alt=""></p>
+<p>回收后状态：</p>
+<p><img src="http://img.blog.csdn.net/20140110124356484" alt=""></p>
+<h3 id="分代收集"><a href="#分代收集" class="headerlink" title="分代收集"></a>分代收集</h3><blockquote>
+<p>当前商业虚拟机的垃圾收集 都采用分代收集，它根据对象的存活周期的不同将内存划分为几块，一般是把Java堆分为新生代和老年代。在新生代中，每次垃圾收集时都会发现有大量对象死去，只有少量存活，因此可选用复制算法来完成收集，而老年代中因为对象存活率高、没有额外空间对它进行分配担保，就必须使用标记—清除算法或标记—整理算法来进行回收。</p>
+</blockquote>
+<h2 id="分代机制"><a href="#分代机制" class="headerlink" title="分代机制"></a>分代机制</h2><ul>
+<li>对象优先在Eden分配</li>
+<li>大对象直接进入老年代</li>
+<li>长期存活的对象进入老年代：虚拟机对每个对象定义一个Age计数器，如果对象在Eden出生并经历一个minor GC后仍然存在并且能被Survivoe容纳的话，将被移动到Survivor中，并且年龄加1，没经过一次Minor GC年龄就加1，年龄达到一定程度就进入老年代中。</li>
+</ul>
+<p>年轻代的GC叫young GC，有时候也叫 minor GC。年老代或者永久代的GC叫major GC。</p>
+<p>ull gc是对新生代，旧生代，以及持久代的统一回收，由于是对整个空间的回收，因此比较慢，系统中应当尽量减少full gc的次数。</p>
+<p>也就是说，所有的代都会进行GC。</p>
+<p>一般的，首先是进行年轻代的GC，（使用针对年轻代的GC），然后是年老代和永久代使用相同的GC。如果要压缩（解决内存碎片问题），每个代需要分别压缩。</p>
+<p>有时候，如果年老区本身就已经很满了，满到无法放下从survivor熬出来的对象，那么，YGC就不会再次触发，而是会使用FullGC对整个堆进行GC</p>
+<h2 id="常用JVM参数"><a href="#常用JVM参数" class="headerlink" title="常用JVM参数"></a>常用JVM参数</h2><p>分析gc日志后，经常需要调整jvm内存相关参数，常用参数如下</p>
+<ul>
+<li><p>-Xms：初始堆大小，默认为物理内存的1/64(&lt;1GB)；默认(MinHeapFreeRatio参数可以调整)空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制</p>
+</li>
+<li><p>-Xmx：最大堆大小，默认(MaxHeapFreeRatio参数可以调整)空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制</p>
+</li>
+<li><p>-Xmn：新生代的内存空间大小，注意：此处的大小是（eden+ 2 survivor space)。与jmap -heap中显示的New gen是不同的。整个堆大小=新生代大小 + 老生代大小 + 永久代大小。在保证堆大小不变的情况下，增大新生代后,将会减小老生代大小。此值对系统性能影响较大,Sun官方推荐配置为整个堆的3/8。</p>
+</li>
+<li><p>-XX:SurvivorRatio：新生代中Eden区域与Survivor区域的容量比值，默认值为8。两个Survivor区与一个Eden区的比值为2:8,一个Survivor区占整个年轻代的1/10。</p>
+</li>
+<li><p>-Xss：每个线程的堆栈大小。JDK5.0以后每个线程堆栈大小为1M,以前每个线程堆栈大小为256K。应根据应用的线程所需内存大小进行适当调整。在相同物理内存下,减小这个值能生成更多的线程。但是操作系统对一个进程内的线程数还是有限制的，不能无限生成，经验值在3000~5000左右。一般小的应用， 如果栈不是很深， 应该是128k够用的，大的应用建议使用256k。这个选项对性能影响比较大，需要严格的测试。和threadstacksize选项解释很类似,官方文档似乎没有解释,在论坛中有这样一句话:”-Xss is translated in a VM flag named ThreadStackSize”一般设置这个值就可以了。</p>
+</li>
+<li><p>-XX:PermSize：设置永久代(perm gen)初始值。默认值为物理内存的1/64。</p>
+</li>
+<li><p>-XX:MaxPermSize：设置持久代最大值。物理内存的1/4。</p>
+</li>
+</ul>
+<h2 id="按分区对待的方式分"><a href="#按分区对待的方式分" class="headerlink" title="按分区对待的方式分"></a>按分区对待的方式分</h2><p>增量收集（Incremental Collecting）:实时垃圾回收算法，即：在应用进行的同时进行垃圾回收。不知道什么原因JDK5.0中的收集器没有使用这种算法的。</p>
+<p>分代收集（Generational Collecting）:基于对对象生命周期分析后得出的垃圾回收算法。把对象分为年青代、年老代、持久代，对不同生命周期的对象使用不同的算法（上述方式中的一个）进行回收。现在的垃圾回收器（从J2SE1.2开始）都是使用此算法的。</p>
+<h2 id="按系统线程分"><a href="#按系统线程分" class="headerlink" title="按系统线程分"></a>按系统线程分</h2><p><strong>串行收集</strong>:串行收集使用单线程处理所有垃圾回收工作，因为无需多线程交互，实现容易，而且效率比较高。但是，其局限性也比较明显，即无法使用多处理器的优势，所以此收集适合单处理器机器。当然，此收集器也可以用在小数据量（100M左右）情况下的多处理器机器上。</p>
+<p><strong>并行收集</strong>:并行收集使用多线程处理垃圾回收工作，因而速度快，效率高。而且理论上CPU数目越多，越能体现出并行收集器的优势。</p>
+<p><strong>并发收集</strong>:相对于串行收集和并行收集而言，前面两个在进行垃圾回收工作时，需要暂停整个运行环境，而只有垃圾回收程序在运行，因此，系统在垃圾回收时会有明显的暂停，而且暂停时间会因为堆越大而越长。</p>
+<h3 id="串行处理器："><a href="#串行处理器：" class="headerlink" title="串行处理器："></a>串行处理器：</h3><p>在垃圾收集时需要暂停用户线程，导致卡顿。</p>
+<p>–适用情况：数据量比较小（100M左右）；单处理器下并且对响应时间无要求的应用。</p>
+<p>–缺点：只能用于小型应用</p>
+<h3 id="并行处理器："><a href="#并行处理器：" class="headerlink" title="并行处理器："></a>并行处理器：</h3><p>同样在垃圾收集时需要暂停用户线程，之后在收集的时候采用并行，同样会造成卡顿，但充分发挥多核CPU的好处。</p>
+<p>–适用情况：“对吞吐量有高要求”，多CPU、对应用响应时间无要求的中、大型应用。举例：后台处理、科学计算。</p>
+<p>–缺点：垃圾收集过程中应用响应时间可能加长</p>
+<h3 id="并发处理器："><a href="#并发处理器：" class="headerlink" title="并发处理器："></a>并发处理器：</h3><p>–适用情况：“对响应时间有高要求”，多CPU、对应用响应时间有较高要求的中、大型应用。举例：Web服务器/应用服务器、电信交换、集成开发环境。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>其实JVM的垃圾收集机制会根据所选的垃圾收集器的组合而改变。可以手动改变参数选择合适的垃圾收集器。默认client情况下是series/series old即串行收集器，server下是并行，他们在新生代都是采用复制算法 在老生代采用标记整理。并发处理器（CMS）采用是的复制和标记清除，将耗时的标记的过程和工作线程并发，使其加快收集速度，但是因为采用标记清除 所以会导致内存碎片，也比较容易导致full gc ，在jdk1.7中新增了G1收集器（garbage first）它采用并行和并发同时，一方面采用并行减少stop-the-word的时间，另一方面采用并发是用户线程继续工作。 同时采用分代收集，不需要和其他垃圾收集器一起组合使用。采用标记整理算法 减少full gc。另一个好处是可建立可预测的停顿时间模型，能让用户明确指定在一个长度在M毫秒的时间片段内，消耗在垃圾收集上的时间不得超过N毫秒。G1不是采用传统的内存布局 而是将整个JAVA堆划分为多个大小相等的独立区域进行管理（还是保留了分代的概念）。 </p>
+</blockquote>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/07/28/JVM垃圾收集机制/" data-title="JVM垃圾收集机制" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="JVM垃圾收集机制" data-url="//2015/07/28/JVM垃圾收集机制/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/07/28/JVM垃圾收集机制/" data-title="JVM垃圾收集机制" data-url="//2015/07/28/JVM垃圾收集机制/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

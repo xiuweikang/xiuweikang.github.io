@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>队列的实现 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="队列的链式和数组实现 循环队列的实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="队列的实现">
+<meta property="og:url" content="/2014/10/20/队列的实现/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="队列的链式和数组实现 循环队列的实现">
+<meta property="og:updated_time" content="2016-07-19T03:55:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="队列的实现">
+<meta name="twitter:description" content="队列的链式和数组实现 循环队列的实现">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-队列的实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/20/队列的实现/" class="article-date">
+  <time datetime="2014-10-20T07:44:26.000Z" itemprop="datePublished">10月 20 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      队列的实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>队列的链式和数组实现 循环队列的实现<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 文件名：QueueText.java</div><div class="line"> * 时间：2014年10月22日下午9:05:13</div><div class="line"> * 作者：修维康</div><div class="line"> */</div><div class="line"><span class="keyword">package</span> chapter3;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：ArrayQueue</div><div class="line"> * 说明：队列的数组实现</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayQueue</span>&lt;<span class="title">AnyType</span>&gt;</span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>; </div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> front;<span class="comment">//队头</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> rear;<span class="comment">//队尾</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> theSize;</div><div class="line">	<span class="keyword">private</span> AnyType[] theItems;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ArrayQueue</span><span class="params">()</span></span>&#123;</div><div class="line">		clear();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</div><div class="line">		front = <span class="number">0</span>;</div><div class="line">		rear = <span class="number">0</span>;</div><div class="line">		theSize = <span class="number">0</span>;</div><div class="line">		ensureCapacity(DEFAULT_CAPACITY);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> theSize == <span class="number">0</span>;<span class="comment">//or front == rear;</span></div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">enqueue</span><span class="params">(AnyType x)</span></span>&#123;</div><div class="line">		theItems[rear++] = x;</div><div class="line">		theSize++;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> AnyType <span class="title">dequeue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(theSize == <span class="number">0</span>)</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">			theSize--;</div><div class="line">		<span class="keyword">return</span> theItems[front++];</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//返回队列前面的元素</span></div><div class="line">	<span class="function"><span class="keyword">public</span> AnyType <span class="title">element</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(isEmpty())</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">return</span> theItems[front];</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：ensureCapacity</div><div class="line">	 * 说明：确保容量</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> newCapacity)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(newCapacity &lt; theSize)</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		AnyType[] old = theItems;</div><div class="line">		theItems = (AnyType[]) <span class="keyword">new</span> Object[newCapacity];</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; theSize;i++)</div><div class="line">			theItems[i] = old[i];</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：CirArrQueue</div><div class="line"> * 说明：循环队列 (因为用数组实现的队列在删除的时候指针会后移 这样导致了前面的浪费，</div><div class="line"> * 循环数组可以解决这个问题，但是循环队列可能使得运行时间加倍）</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CirArrQueue</span>&lt;<span class="title">AnyType</span>&gt;</span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">3</span>; </div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> front;<span class="comment">//队头</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> rear;<span class="comment">//队尾</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> theSize;</div><div class="line">	<span class="keyword">private</span> AnyType[] theItems;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">CirArrQueue</span><span class="params">()</span></span>&#123;</div><div class="line">		clear();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</div><div class="line">		theItems = (AnyType[]) <span class="keyword">new</span> Object[DEFAULT_CAPACITY];</div><div class="line">		front = <span class="number">0</span>;</div><div class="line">		rear = <span class="number">0</span>;</div><div class="line">		theSize = <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> theSize == <span class="number">0</span>;<span class="comment">//or front == rear;</span></div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span>  <span class="title">enqueue</span><span class="params">(AnyType x)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(theSize == DEFAULT_CAPACITY)</div><div class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">		theItems[rear++] = x;</div><div class="line">		theSize++;</div><div class="line">		<span class="keyword">if</span>(rear == DEFAULT_CAPACITY)<span class="comment">//如果到了尾部则回到0</span></div><div class="line">			rear = <span class="number">0</span>;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> AnyType <span class="title">dequeue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(theSize == <span class="number">0</span>)</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">			theSize--;</div><div class="line">			AnyType temp = theItems[front];</div><div class="line">			<span class="keyword">if</span>(++front == DEFAULT_CAPACITY)<span class="comment">//如果加1超过了数组 则返回到0;</span></div><div class="line">				front = <span class="number">0</span>;</div><div class="line">		<span class="keyword">return</span> temp;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">//返回队列前面的元素</span></div><div class="line">	<span class="function"><span class="keyword">public</span> AnyType <span class="title">element</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(isEmpty())</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">return</span> theItems[front];</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：LinkedQueue</div><div class="line"> * 说明：链表实现队列</div><div class="line"> */</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedQueue</span>&lt;<span class="title">AnyType</span>&gt;</span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">AnyType</span>&gt; </span>&#123;</div><div class="line">		Node(AnyType data, Node&lt;AnyType&gt; next) &#123;</div><div class="line">			<span class="keyword">this</span>.data = data;</div><div class="line">			<span class="keyword">this</span>.next = next;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="keyword">private</span> AnyType data;</div><div class="line">		<span class="keyword">private</span> Node&lt;AnyType&gt; next;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> Node&lt;AnyType&gt; front;</div><div class="line">	<span class="keyword">private</span> Node&lt;AnyType&gt; rear;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LinkedQueue</span><span class="params">()</span></span>&#123;</div><div class="line">		clear();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</div><div class="line">		front = <span class="keyword">null</span>;</div><div class="line">		rear = <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> front == <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(AnyType x)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(front == <span class="keyword">null</span>&amp;&amp;rear == <span class="keyword">null</span>)&#123;<span class="comment">//最开始的时候</span></div><div class="line">			rear = <span class="keyword">new</span> Node&lt;AnyType&gt;(x,<span class="keyword">null</span>);</div><div class="line">			front = rear;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			Node&lt;AnyType&gt; p = <span class="keyword">new</span> Node&lt;AnyType&gt;(x,<span class="keyword">null</span>);</div><div class="line">			rear.next = p;</div><div class="line">			rear = p;;</div><div class="line">		&#125;</div><div class="line">			</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> AnyType <span class="title">dequeue</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!isEmpty())&#123;</div><div class="line">			AnyType x = front.data;</div><div class="line">			front = front.next;</div><div class="line">			<span class="keyword">return</span> x;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> AnyType <span class="title">element</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!isEmpty())</div><div class="line">			<span class="keyword">return</span> front.data;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：QueueText</div><div class="line"> * 说明：队列的数组和链表实现及循环队列的数组实现</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QueueText</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：main</div><div class="line">	 * 说明：测试</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="comment">/****数组队列测试*****/</span></div><div class="line">		<span class="comment">/*ArrayQueue&lt;Integer&gt; q = new ArrayQueue&lt;Integer&gt;();</span></div><div class="line">		q.enqueue(1);</div><div class="line">		q.enqueue(2);</div><div class="line">		q.enqueue(3);</div><div class="line">		q.enqueue(4);</div><div class="line">		System.out.println(q.element());</div><div class="line">		while(!q.isEmpty())</div><div class="line">			System.out.println(q.dequeue());</div><div class="line">	/*********链表队列测试**********/</div><div class="line">		<span class="comment">/*LinkedQueue&lt;Integer&gt; q2 = new LinkedQueue&lt;Integer&gt;();</span></div><div class="line">		q2.enqueue(1);</div><div class="line">		q2.enqueue(2);</div><div class="line">		q2.enqueue(3);</div><div class="line">		q2.enqueue(4);</div><div class="line">		System.out.println(q2.element());</div><div class="line">		while(!q2.isEmpty())</div><div class="line">			System.out.println(q2.dequeue());</div><div class="line">	/***********循环队列测试************/	</div><div class="line">		CirArrQueue&lt;Integer&gt; q3 = <span class="keyword">new</span> CirArrQueue&lt;Integer&gt;();</div><div class="line">		q3.enqueue(<span class="number">1</span>);</div><div class="line">		q3.enqueue(<span class="number">2</span>);</div><div class="line">		q3.enqueue(<span class="number">3</span>);</div><div class="line">		q3.dequeue();</div><div class="line">		q3.enqueue(<span class="number">4</span>);<span class="comment">//设置默认容量为3，开始时3个，队列满了，后来删除第一个，队列数组里第一个空出来了，4进入了，但是还是满足先进先出的原则，加上                               //size的控制，使其不会覆盖后面的</span></div><div class="line">		q3.enqueue(<span class="number">5</span>);<span class="comment">//没有进去</span></div><div class="line">		System.out.println(q3.element());</div><div class="line">		<span class="keyword">while</span>(!q3.isEmpty())</div><div class="line">			System.out.println(q3.dequeue());</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2014/10/20/队列的实现/" data-title="队列的实现" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="队列的实现" data-url="//2014/10/20/队列的实现/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2014/10/20/队列的实现/" data-title="队列的实现" data-url="//2014/10/20/队列的实现/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

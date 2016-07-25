@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Activity详解 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="启动Activity
+显式Intent
+
+12Intent intent = new Intent(MainActivity.class,SecondActivity.class);startActivity(intent);
+
+隐式Intent:并不指定某一个特定的Activity而是通过action和category还有data来指定，通过系统分析启动哪一个Activity.如果不存在相应的A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Activity详解">
+<meta property="og:url" content="/2015/10/14/Activity详解/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="启动Activity
+显式Intent
+
+12Intent intent = new Intent(MainActivity.class,SecondActivity.class);startActivity(intent);
+
+隐式Intent:并不指定某一个特定的Activity而是通过action和category还有data来指定，通过系统分析启动哪一个Activity.如果不存在相应的A">
+<meta property="og:image" content="http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/basic-lifecycle-stopped.png">
+<meta property="og:image" content="http://developer.android.com/images/activity_lifecycle.png">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/b00f9334jw1ex0ijc5gr8j20ic03dzn7.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/b00f9334jw1ex0l8d5eb7j20k40bqwq1.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/b00f9334jw1ex1t60gu92j20fw06sn0b.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/b00f9334jw1ex1t7nucphj20ft04og  ns.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/b00f9334jw1ex2rn5fk9sj20jk0a3ajk.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/b00f9334jw1ex2sscobq5j20ja06ojxt.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/b00f9334jw1ex2st50520j20j506w0z4.jpg">
+<meta property="og:updated_time" content="2016-07-19T03:55:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Activity详解">
+<meta name="twitter:description" content="启动Activity
+显式Intent
+
+12Intent intent = new Intent(MainActivity.class,SecondActivity.class);startActivity(intent);
+
+隐式Intent:并不指定某一个特定的Activity而是通过action和category还有data来指定，通过系统分析启动哪一个Activity.如果不存在相应的A">
+<meta name="twitter:image" content="http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/basic-lifecycle-stopped.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-Activity详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/14/Activity详解/" class="article-date">
+  <time datetime="2015-10-14T10:26:55.000Z" itemprop="datePublished">10月 14 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Activity详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity"></a>启动Activity</h2><ul>
+<li><code>显式Intent</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.class,SecondActivity.class);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>隐式Intent</code>:并不指定某一个特定的Activity而是通过action和category还有data来指定，通过系统分析启动哪一个Activity.如果不存在相应的Activity则报错,存在多个则可以选择，其中多个action和多个data满足一个就行，category必须全部满足，没有android.intent.category.DEFAULT的Activity无法响应隐式Intent.</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.meituan.kevin.ACTION_START"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span>/&gt;</span> //必须加，startActivity()会默认添加这个category</div><div class="line">      <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"com.meituan.kevin.second.CATEGORY"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.meituan.kevin.ACTION_START"</span>);</div><div class="line">intent.addCategory(<span class="string">"com.meituan.kevin.second.CATEGORY"</span>);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
+<h2 id="关闭Activity"><a href="#关闭Activity" class="headerlink" title="关闭Activity"></a>关闭Activity</h2><p>Activity可以显示调用finish()进行关闭，但是一般不这样做，一般是由Android系统来管理，只有确实不希望用户返回这个实例时才显示调用。</p>
+<a id="more"></a>
+<h2 id="Activity的生命周期"><a href="#Activity的生命周期" class="headerlink" title="Activity的生命周期"></a>Activity的生命周期</h2><p><img src="http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/basic-lifecycle-stopped.png" alt=""></p>
+<h3 id="七个回调方法"><a href="#七个回调方法" class="headerlink" title="七个回调方法"></a>七个回调方法</h3><p><img src="http://developer.android.com/images/activity_lifecycle.png" alt=""></p>
+<ul>
+<li>onCreate() 在这个方法中应该初始化Activity所必须的组件，通过setContentView()来加载layout,初始化Activity所需要的数据，一般将只初始化一次的放在这里</li>
+<li>onStart()用户可见，但无法交互，Activity还在后台，当下一个Activity对其显示的数据做出改变时，应在这里进行设置。</li>
+<li>onResume() Activity完全可见，并处于前台，可与用户进行交互，重新初始化onPause中释放的资源</li>
+<li>onPause() 此时可以做一些存储数据、停止动画，释放部分系统西资源等工作，不能太耗时，负责会影响新的Activity的显示</li>
+<li>onRestart()从完全不可见变成可见时调用</li>
+<li>onStop() 可做一些稍微重量级的回收工作，例如对某些资源的释放，因为在stopped状态下，被回收的几率很大，所以有些也需要在这里回收</li>
+<li>onDestroy() 可做回收工作和最终的资源释放,因为引用会被Activity回收时销毁，而线程不会，所以需要在这里清除开启的线程</li>
+</ul>
+<p><strong>除了上面的，我们还有其他的回调方法:onContentChanged， onPostCreate， onPostResume， onConfigurationChanged</strong></p>
+<p><code>onContentChanged()</code>是Activity中的一个回调方法<br>当Activity的布局改动时，即setContentView()或者addContentView()方法执行完毕时就会调用该方法， 例如，Activity中各种View的findViewById()方法都可以放到该方法中。</p>
+<p><code>onPostCreate</code>方法是指onCreate方法彻底执行完毕的回调，<code>onPostResume</code>类似，这两个方法官方说法是一般不会重写，现在知道的做法也就只有在使用<code>ActionBarDrawerToggle</code>的使用在onPostCreate需要在屏幕旋转时候等同步下状态，Google官方提供的一些实例就是如下做法：</p>
+<pre><code>protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    // Sync the toggle state after onRestoreInstanceState has occurred.
+    mDrawerToggle.syncState();
+}
+</code></pre><ul>
+<li>在Activity第一次启动时，会先后调用 onCreate() -&gt; onStart()-&gt; onResume()</li>
+<li>当打开新的Activity或切换到桌面时，会调用onPause()-&gt; onStop()</li>
+<li>当用户再次回到原Acitivty时，onRestart() -&gt; onStart() -&gt; onResume()</li>
+<li>按back返回时 onPause() -&gt; onStop() -&gt; onDestroy()</li>
+<li>当打开的Activity采用了透明主题时，会调用onPause和onSaveInstan</li>
+</ul>
+<p>如图： 当处于paused状态和stoped状态时，可能会被回收，这时再次打开会从新开始</p>
+<p>onStart和onStop是从是否可见的角度上来回调的，而onResume和onPasuse是从Activity是否位于前台这个角度回调的，除此之外在实际使用中没有其他明显区别。</p>
+<p>一个Activity启动另一个Activity时两个的先后调用顺序：</p>
+<p><img src="http://ww3.sinaimg.cn/large/b00f9334jw1ex0ijc5gr8j20ic03dzn7.jpg" alt=""></p>
+<blockquote>
+<p>只有在调用了前一个Activity的<code>onPause</code>后才能调用新Activity的<code>onResume()</code>,因此不能在onPause()中做重量级的操作，否则会影响交互，用户可以看到界面，点击屏幕却没有反应。所以应尽量在onStop中做操作。</p>
+</blockquote>
+<p>如果Activity旋转，在Activity不做设置的情况下，调用顺序如下,启动Acticity 旋转屏幕,再转回去的过程：</p>
+<p><img src="http://ww3.sinaimg.cn/large/b00f9334jw1ex0l8d5eb7j20k40bqwq1.jpg" alt=""></p>
+<p>###很重要</p>
+<blockquote>
+<p>我们可以看到Activity会先销毁在重建，由于这是异常退出的，所以其中<code>onSaveInstanceState()</code>会被调用保存当前的状态，保存为Bundle对象，时机是onStop之前，重建后会调用<code>onRestoreInstanceState()</code>来恢复，但是一些需要用来显示的数据需要在onCreate里进行恢复,官方推荐<code>onRestoreInstanceState()</code>。系统会自动帮我们保存当前Activity的视图结构，大部分view都重写了这两个方法，但是必须设置id，才能恢复。</p>
+</blockquote>
+<p><strong>注意onSaveInstance会在Activity<code>可能被销毁且有机会重新显示</code>的情况下才会被调用，因此调用finish()方法时不会被调用，而onRestoreInstanceState()则只会在之前的Activity<code>真正的被销毁后</code>需要重建时才会被调用</strong></p>
+<p>当系统配置发生变化时，Activity会被重建，我们可以设置Activity的configChanges属性，防止重建。例如：</p>
+<pre><code>android:configChanges = &quot;orientation|screenSize&quot;//如果设置多值可以用 | 来连接起来 
+</code></pre><h3 id="六种状态"><a href="#六种状态" class="headerlink" title="六种状态"></a>六种状态</h3><ul>
+<li>Created</li>
+<li>Started</li>
+<li>Resumed</li>
+<li>Paused和Stopped状态下一样，在内存不如的情况下可能会被Killded掉</li>
+<li>Stopped</li>
+<li>Destroyed</li>
+</ul>
+<h3 id="三个生存期"><a href="#三个生存期" class="headerlink" title="三个生存期"></a>三个生存期</h3><ol>
+<li>完整的生存期：onCreate()和onDestroy()之间</li>
+<li>可见生存期：onStart()和onStop()之间，活动对用户来说是可见的，可在onStart方法中对资源进行加载，在onStop()中对资源进行释放</li>
+<li>前台生存期：onResume()和onPause()之间</li>
+</ol>
+<h3 id="四种启动模式"><a href="#四种启动模式" class="headerlink" title="四种启动模式"></a>四种启动模式</h3><ol>
+<li>standard:标准模式，也是默认模式。每次启动都会创建新的实例，压在栈顶</li>
+<li>singeTop:如果启动的Activity就是目前栈顶的Activity时，就不会在建一个新的实例来压栈了。但会调用onnNewIntent()</li>
+<li>singleTask 如果新启动的Acitivity在栈中存在了，则将其之上的Activity全部出栈，可将MainActivity设置维singleTask模式，在要退出的Activity中跳转到MainActivity，然后再MainActivity中调用finish()达到退出应用的目的。</li>
+<li>singleInstance 申明为此模式启动的Activity会单独出现在一个新的任务栈中，当其他应用也要新建一个此Activity时，则不用创建，可共享。</li>
+</ol>
+<blockquote>
+<p>Activity所在的栈的名字是由TaskAffinity决定的，这个参数标识了一个Activity所需要的任务栈的名字，默认是Application的taskAffinity，但是Application的默认taskAffinity是包名，所以默认taskAffinity的值是包名。</p>
+</blockquote>
+<p>设置Activity的启动模式有两种：</p>
+<ul>
+<li>一种在AndroiMenifest为Activity指定启动模式</li>
+<li>另一种通过在Intent里添加Flag来为Activity指定启动模式</li>
+</ul>
+<p>优先级上第二种优先于第一种</p>
+<p>连续点击三次，让其跳转到同一个Activity时我们可以看到：</p>
+<p><img src="http://ww3.sinaimg.cn/large/b00f9334jw1ex1t60gu92j20fw06sn0b.jpg" alt=""><br>不设置时，可以看到com.meituan.kevin.activitytest这个任务栈里存在4个Activity</p>
+<p><img src="http://ww1.sinaimg.cn/large/b00f9334jw1ex1t7nucphj20ft04og  ns.jpg" alt=""><br>设置时，可以看到只存在一个</p>
+<p>当将MainActivity设置成singTask时，依次压入Second、Third，后跳入Main,回调方法：<br><img src="http://ww1.sinaimg.cn/large/b00f9334jw1ex2rn5fk9sj20jk0a3ajk.jpg" alt=""></p>
+<p>当Second设置成singleInstance时，A-&gt;B-&gt;C 按Back回退时，C-&gt;A-&gt;B</p>
+<p><strong>singTask里的坑</strong>：当A已startActivityForResult启动B时,将ResultCode设置成OK,A为默认时，会收到OK，但是当A为singleTask时，会返回canle..导致结果不一样。如下图：<br><img src="http://ww3.sinaimg.cn/large/b00f9334jw1ex2sscobq5j20ja06ojxt.jpg" alt=""><br><img src="http://ww4.sinaimg.cn/large/b00f9334jw1ex2st50520j20j506w0z4.jpg" alt=""></p>
+<blockquote>
+<p>所以尽量少用singleTask和singleInstance，尽量自己控制任务栈。</p>
+</blockquote>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/10/14/Activity详解/" data-title="Activity详解" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="Activity详解" data-url="//2015/10/14/Activity详解/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/10/14/Activity详解/" data-title="Activity详解" data-url="//2015/10/14/Activity详解/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

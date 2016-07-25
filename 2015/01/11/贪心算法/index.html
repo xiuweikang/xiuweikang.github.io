@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>贪心算法 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="贪心算法详解与例题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贪心算法">
+<meta property="og:url" content="/2015/01/11/贪心算法/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="贪心算法详解与例题">
+<meta property="og:updated_time" content="2016-07-19T03:55:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="贪心算法">
+<meta name="twitter:description" content="贪心算法详解与例题">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-贪心算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/11/贪心算法/" class="article-date">
+  <time datetime="2015-01-11T07:47:00.000Z" itemprop="datePublished">1月 11 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      贪心算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>贪心算法详解与例题<br><a id="more"></a></p>
+<p>之前发过的几个经典算法 :Dijkstra Prim  Kruskal  都属于贪心算法。 </p>
+<h3 id="贪心算法的思想是：-在每一个阶段，可以认为所做的决定是最好的，而不考虑将来的后果，总是做出在当前看来是最好的选择。"><a href="#贪心算法的思想是：-在每一个阶段，可以认为所做的决定是最好的，而不考虑将来的后果，总是做出在当前看来是最好的选择。" class="headerlink" title="贪心算法的思想是： 在每一个阶段，可以认为所做的决定是最好的，而不考虑将来的后果，总是做出在当前看来是最好的选择。"></a>贪心算法的思想是： 在每一个阶段，可以认为所做的决定是最好的，而不考虑将来的后果，总是做出在当前看来是最好的选择。</h3><p>这也就是说贪心算法并不从整体最优上加以考虑，它所做出的选择 只是在某种意义上的局部最优选择。</p>
+<p>例如 贪心只可以解决背包问题，而不可以解决 0-1背包问题。</p>
+<p>我们可以把贪心总结成一句话“眼下能够拿到的就拿”。<br>下面介绍一些经典的贪心算法（在这里我们只注重算法，对于类只做简单的封装，也不会用到泛型）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">package greedy;</div><div class="line"></div><div class="line">import java.util.Arrays;</div><div class="line"></div><div class="line"></div><div class="line">class A&#123;</div><div class="line">	public int start;</div><div class="line">	public int finish;</div><div class="line">	public A(int start,int finish)&#123;</div><div class="line">		this.start = start;</div><div class="line">		this.finish = finish;	</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 类名：GreedySelector</div><div class="line"> * 说明：会场安排问题</div><div class="line"> * 有n个活动，给出开始和结束时间，场地只有一个，问最大的兼容</div><div class="line"> */</div><div class="line">public class GreedySelector &#123;</div><div class="line">	/**</div><div class="line">	 * 方法名：select</div><div class="line">	 * 说明：按照结束时间从大到小排序，不断的取结束时间最早的，贪心</div><div class="line">	 */</div><div class="line">	public static void select(A[] a,boolean[] s,int n)&#123;</div><div class="line">		s[0] = true;</div><div class="line">		int j = 0;</div><div class="line">		for(int i = 1; i &lt; n;i++)&#123;</div><div class="line">			if(a[i].start &gt;a[j].finish)&#123;</div><div class="line">				j = i;</div><div class="line">				s[i] = true;</div><div class="line">			&#125;else</div><div class="line">				s[i] = false;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	/**</div><div class="line">	 * 方法名：main</div><div class="line">	 * 说明：测试</div><div class="line">	 */</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		//给出的数据按照结束时间非降序排序</div><div class="line">		A[] a = new A[11];</div><div class="line">		a[0] = new A(1,4);</div><div class="line">		a[1] = new A(3,5);</div><div class="line">		a[2] = new A(0,6);</div><div class="line">		a[3] = new A(5,7);</div><div class="line">		a[4] = new A(3,8);</div><div class="line">		a[5] = new A(5,9);</div><div class="line">		a[6] = new A(6,10);</div><div class="line">		a[7] = new A(8,11);</div><div class="line">		a[8] = new A(8,12);</div><div class="line">		a[9] = new A(2,13);</div><div class="line">		a[10] = new A(12,14);</div><div class="line">		boolean[] s = new boolean[11];</div><div class="line">		select(a,s,11);</div><div class="line">		System.out.println(Arrays.toString(s));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="贪心算法的基本要素："><a href="#贪心算法的基本要素：" class="headerlink" title="贪心算法的基本要素："></a>贪心算法的基本要素：</h2><ol>
+<li>贪心选择性质<br>是指所求的问题的整体最优解可以通过一系列局部最优的选择，即贪心选择来达到，这是贪心可行的第一要素，也是其与动规算法的主要区别，在动规中 每步所做的选择往往依赖于相关子问题的解，只有在解出相关子问题后才能做出选择，而贪心则是仅在当前状态下做出的最好选择，即局部最优解。<br>一个问题是否具有贪心选择性质必须要证明每一步所做的贪心选择最终导致问题的整体最优解，做了贪心选择后，原问题简化为规模更小的类似子问题</li>
+<li>最优子结构性质<br>当一个问题的最优解包含其子问题的最优解时，称此问题具有最优子结构性质。，证明贪心选择后的问题简化为规模更小的类似子问题的关键在于利用该问题的最优子结构性质。<br>拿活动安排来说，按照结束时间排序，则f[1]为最早结束的，我们选择活动1，那在这之后呢，我们应该是在除去活动1之外的活动里选择结束时间最早的（即在子问题中寻找最优解）。<br>对于整个问题的最优解包含子问题的最优解，就说明它具有最优子结构性质。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 文件名：Knapsack.java</div><div class="line"> * 时间：2014年11月18日下午8:19:08</div><div class="line"> * 作者：修维康</div><div class="line"> */</div><div class="line"><span class="keyword">package</span> greedy;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">P</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">P</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">double</span> w;<span class="comment">// 物品的重量</span></div><div class="line">	<span class="keyword">double</span> p;<span class="comment">// 物品的价值</span></div><div class="line"></div><div class="line">	P(<span class="keyword">double</span> w, <span class="keyword">double</span> p) &#123;</div><div class="line">		<span class="keyword">this</span>.w = w;</div><div class="line">		<span class="keyword">this</span>.p = p;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> p / w;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(P o)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.getPrice() &gt; o.getPrice())</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.getPrice() &lt; o.getPrice())</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		<span class="keyword">else</span></div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：Knapsack 说明：背包问题。容量为c,w[i]为物品i的重量，p[i]为物品i的价值 问背包能背的最大价值，物品i可切割</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Knapsack</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">max</span><span class="params">(P[] ps, <span class="keyword">double</span> c)</span> </span>&#123;</div><div class="line">		Arrays.sort(ps);</div><div class="line">		<span class="keyword">double</span> sum = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ps.length; i++) &#123;</div><div class="line">			<span class="keyword">if</span> (c &gt;= ps[i].w) &#123;</div><div class="line">				c -= ps[i].w;</div><div class="line">				sum += ps[i].p;</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				sum += ps[i].getPrice() * c;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> sum;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：main 说明：</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="comment">// 按照单位价值排序</span></div><div class="line">		P[] ps = <span class="keyword">new</span> P[<span class="number">5</span>];</div><div class="line">		ps[<span class="number">0</span>] = <span class="keyword">new</span> P(<span class="number">10</span>,<span class="number">40</span>);</div><div class="line">		ps[<span class="number">1</span>] = <span class="keyword">new</span> P(<span class="number">10</span>,<span class="number">50</span>);</div><div class="line">		ps[<span class="number">2</span>] = <span class="keyword">new</span> P(<span class="number">10</span>,<span class="number">20</span>);</div><div class="line">		ps[<span class="number">3</span>] = <span class="keyword">new</span> P(<span class="number">5</span>,<span class="number">50</span>);</div><div class="line">		ps[<span class="number">4</span>] = <span class="keyword">new</span> P(<span class="number">10</span>,<span class="number">30</span>);</div><div class="line">		<span class="keyword">double</span> c = <span class="number">30</span>;</div><div class="line">		System.out.println(max(ps,c));</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最优装载问题和 背包问题基本一样，不赘述。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 文件名：HuffmanTree.java</div><div class="line"> * 时间：2014年11月18日下午9:39:18</div><div class="line"> * 作者：修维康</div><div class="line"> */</div><div class="line"><span class="keyword">package</span> greedy;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.PriorityQueue;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HuffmanNode</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">HuffmanNode</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> fre;<span class="comment">// 字符频率</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">char</span> key;</div><div class="line">	<span class="keyword">public</span> HuffmanNode left;</div><div class="line">	<span class="keyword">public</span> HuffmanNode right;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">HuffmanNode</span><span class="params">(<span class="keyword">int</span> fre, <span class="keyword">char</span> key, HuffmanNode left, HuffmanNode right)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.fre = fre;</div><div class="line">		<span class="keyword">this</span>.key = key;</div><div class="line">		<span class="keyword">this</span>.left = left;</div><div class="line">		<span class="keyword">this</span>.right = right;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(HuffmanNode o)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.fre &gt; o.fre)</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.fre &lt; o.fre)</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：HuffmanTree 说明：构造哈夫曼树</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HuffmanTree</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：createHuffmanTree 说明：构造哈夫曼树 返回根节点</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HuffmanNode <span class="title">createHuffmanTree</span><span class="params">(PriorityQueue&lt;HuffmanNode&gt; p,<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">		<span class="comment">//有N个叶子节点 就要进行N-1次合并</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; n;i++)&#123;</div><div class="line">			HuffmanNode n1 = p.poll();</div><div class="line">			HuffmanNode n2 = p.poll();</div><div class="line">			HuffmanNode n3 = <span class="keyword">new</span> HuffmanNode(n1.fre+n2.fre, <span class="string">' '</span>, n1, n2);</div><div class="line">			p.add(n3);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> p.poll();</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：printTree</div><div class="line">	 * 说明：先序遍历打印树</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printTree</span><span class="params">(HuffmanNode root)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(root!=<span class="keyword">null</span>)&#123;</div><div class="line">			System.out.println(root.fre);</div><div class="line">			printTree(root.left);</div><div class="line">			printTree(root.right);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：main 说明：测试</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		PriorityQueue&lt;HuffmanNode&gt; p = <span class="keyword">new</span> PriorityQueue&lt;HuffmanNode&gt;();</div><div class="line">		p.add(<span class="keyword">new</span> HuffmanNode(<span class="number">45</span>, <span class="string">'a'</span>, <span class="keyword">null</span>, <span class="keyword">null</span>));</div><div class="line">		p.add(<span class="keyword">new</span> HuffmanNode(<span class="number">13</span>, <span class="string">'b'</span>, <span class="keyword">null</span>, <span class="keyword">null</span>));</div><div class="line">		p.add(<span class="keyword">new</span> HuffmanNode(<span class="number">12</span>, <span class="string">'c'</span>, <span class="keyword">null</span>, <span class="keyword">null</span>));</div><div class="line">		p.add(<span class="keyword">new</span> HuffmanNode(<span class="number">16</span>, <span class="string">'d'</span>, <span class="keyword">null</span>, <span class="keyword">null</span>));</div><div class="line">		p.add(<span class="keyword">new</span> HuffmanNode(<span class="number">9</span>, <span class="string">'e'</span>, <span class="keyword">null</span>, <span class="keyword">null</span>));</div><div class="line">		p.add(<span class="keyword">new</span> HuffmanNode(<span class="number">5</span>, <span class="string">'f'</span>, <span class="keyword">null</span>, <span class="keyword">null</span>));</div><div class="line">		printTree(createHuffmanTree(p,<span class="number">6</span>));</div><div class="line">			</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> greedy;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"><span class="keyword">import</span> java.util.PriorityQueue;</div><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Job</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Job</span>&gt; </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> num;<span class="comment">// 编号</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> time;<span class="comment">// 处理时间</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Job</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> time)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.num = num;</div><div class="line">		<span class="keyword">this</span>.time = time;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="comment">// 按从大到小排序</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Job o)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.time &gt; o.time)</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.time &lt; o.time)</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Machine</span>  <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Machine</span>&gt;</span>&#123;</div><div class="line">	<span class="keyword">int</span> num;</div><div class="line">	ArrayList&lt;Job&gt; doJob = <span class="keyword">new</span> ArrayList&lt;Job&gt;();</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> time = <span class="number">0</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Machine</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.num = num;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Job j)</span> </span>&#123;</div><div class="line">		doJob.add(j);</div><div class="line">		time += j.time;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</div><div class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">		sb.append(<span class="string">"机器"</span>+num+<span class="string">"处理："</span>);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; doJob.size();i++)</div><div class="line">			sb.append(doJob.get(i).num+<span class="string">"  "</span>);</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> String(sb);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Machine o)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		<span class="keyword">if</span>(<span class="keyword">this</span>.time &gt; o.time)</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.time &lt; o.time)</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 类名：MachinesSched 说明：多机调度算法 有多个作业，有多台机器，作业在完成前不能被打断，作业不能拆分， 给出调度方案</div><div class="line"> * 使n个作业尽可能短时间内完成</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MachinesSched</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 方法名：allocate </div><div class="line">	 * 按照从大到小的顺序分配给机器，然后机器 按照作业时间进堆，使每次剩下最长作业交给当前时间最短的机器处理</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">allocate</span><span class="params">(Job[] jobs,PriorityQueue&lt;Machine&gt; p)</span> </span>&#123;</div><div class="line">		Arrays.sort(jobs);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; jobs.length;i++)&#123;</div><div class="line">			Machine m = p.poll();</div><div class="line">			m.add(jobs[i]);</div><div class="line">			p.add(m);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"请输入作业个数："</span>);</div><div class="line">		<span class="keyword">int</span> jobNum = in.nextInt();</div><div class="line">		Job[] jobs = <span class="keyword">new</span> Job[jobNum];</div><div class="line">		System.out.println(<span class="string">"请输入各个作业时间"</span>);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; jobNum;i++)&#123;</div><div class="line">			<span class="keyword">int</span> time = in.nextInt();</div><div class="line">			jobs[i] = <span class="keyword">new</span> Job(i + <span class="number">1</span>,time);</div><div class="line">		&#125;</div><div class="line">		System.out.println(<span class="string">"请输入机器个数："</span>);</div><div class="line">		<span class="keyword">int</span> machineNum = in.nextInt();</div><div class="line">		</div><div class="line">		PriorityQueue&lt;Machine&gt; p = <span class="keyword">new</span> PriorityQueue&lt;Machine&gt;();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= machineNum; i++)</div><div class="line">		p.add(<span class="keyword">new</span> Machine(i));</div><div class="line">		</div><div class="line">		allocate(jobs,p);</div><div class="line">		System.out.println(p);</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> a;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> * 汽车加油问题，一辆汽车加满油可以行驶N公里，在这之间有N个加油站  第N+1为终点， 给出K+1 到K加油站之间的距离 问需要加几次油</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AddOil</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">howMany</span><span class="params">(<span class="keyword">int</span> m,<span class="keyword">int</span>[] station)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(!canArrive(m,station))&#123;</div><div class="line">			System.out.println(<span class="string">"不能到达"</span>);</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> full = m;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; station.length;i++)&#123;</div><div class="line">			<span class="keyword">if</span>(m &lt; station[i])&#123;</div><div class="line">				count++;</div><div class="line">				m = full;</div><div class="line">				m -= station[i];</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				m -= station[i];</div><div class="line">			&#125;</div><div class="line">				</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> count;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">canArrive</span><span class="params">(<span class="keyword">int</span> m ,<span class="keyword">int</span>[] station)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; station.length;i++)</div><div class="line">			<span class="keyword">if</span>(m &lt; station[i])</div><div class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"请输入可行驶距离："</span>);</div><div class="line">		<span class="keyword">int</span> m = in.nextInt();</div><div class="line">		System.out.println(<span class="string">"请输入加油站数量：："</span>);</div><div class="line">		</div><div class="line">		<span class="keyword">int</span> n = in.nextInt();</div><div class="line">		<span class="keyword">int</span>[] station = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"请输入加油站之间的距离：："</span>);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= n;i++)</div><div class="line">			station[i] = in.nextInt();</div><div class="line">		System.out.println(howMany(m,station)+<span class="string">""</span>);</div><div class="line">		</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再加上之前的Dijkstra Prim  Kruskal ，和多会场安排问题，都属于贪心的经典题目，贪心专题完.</p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2015/01/11/贪心算法/" data-title="贪心算法" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="贪心算法" data-url="//2015/01/11/贪心算法/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2015/01/11/贪心算法/" data-title="贪心算法" data-url="//2015/01/11/贪心算法/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

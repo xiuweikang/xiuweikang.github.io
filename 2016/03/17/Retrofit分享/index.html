@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Retrofit分享 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Retrofit简介Retrofit是Square开发的一个可以用于Android和Java的网络请求封装库。
+优点
+Retrofit可以利用接口，方法和注解来创建一个请求，方便管理。
+Retrofit速度较快
+可将response自动包装成Java对象
+
+依赖配置在1.x默认集成Gson库，不会集成OkHttp,如果需要OkHttp作为HTTP client，则需手动添加依赖
+12345depe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retrofit分享">
+<meta property="og:url" content="/2016/03/17/Retrofit分享/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="Retrofit简介Retrofit是Square开发的一个可以用于Android和Java的网络请求封装库。
+优点
+Retrofit可以利用接口，方法和注解来创建一个请求，方便管理。
+Retrofit速度较快
+可将response自动包装成Java对象
+
+依赖配置在1.x默认集成Gson库，不会集成OkHttp,如果需要OkHttp作为HTTP client，则需手动添加依赖
+12345depe">
+<meta property="og:image" content="http://www.jcodecraeer.com/uploads/20150418/1429351303115820.png">
+<meta property="og:updated_time" content="2016-07-19T03:55:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Retrofit分享">
+<meta name="twitter:description" content="Retrofit简介Retrofit是Square开发的一个可以用于Android和Java的网络请求封装库。
+优点
+Retrofit可以利用接口，方法和注解来创建一个请求，方便管理。
+Retrofit速度较快
+可将response自动包装成Java对象
+
+依赖配置在1.x默认集成Gson库，不会集成OkHttp,如果需要OkHttp作为HTTP client，则需手动添加依赖
+12345depe">
+<meta name="twitter:image" content="http://www.jcodecraeer.com/uploads/20150418/1429351303115820.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/View相关/">View相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+          <li>
+            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/06/Android基础/">Android Training重点</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
+          </li>
+        
+          <li>
+            <a href="/2015/10/14/Activity详解/">Activity详解</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/02/Linux常用命令/">Linux常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-Retrofit分享" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/17/Retrofit分享/" class="article-date">
+  <time datetime="2016-03-17T11:39:30.000Z" itemprop="datePublished">3月 17 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Retrofit分享
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Retrofit简介"><a href="#Retrofit简介" class="headerlink" title="Retrofit简介"></a>Retrofit简介</h2><p>Retrofit是Square开发的一个可以用于Android和Java的网络请求封装库。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>Retrofit可以利用接口，方法和注解来创建一个请求，方便管理。</li>
+<li>Retrofit速度较快<img src="http://www.jcodecraeer.com/uploads/20150418/1429351303115820.png" alt="image"></li>
+<li>可将response自动包装成Java对象</li>
+</ol>
+<h3 id="依赖配置"><a href="#依赖配置" class="headerlink" title="依赖配置"></a>依赖配置</h3><p>在1.x默认集成Gson库，不会集成OkHttp,如果需要OkHttp作为HTTP client，则需手动添加依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; OkHttp</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit:retrofit:1.9.0'</span></div><div class="line">    compile <span class="string">'com.squareup.okhttp:okhttp:2.7.2'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在2.0时默认集成OkHttp，不会集成Gson</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; Gson</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.0'</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="API声明"><a href="#API声明" class="headerlink" title="API声明"></a>API声明</h3><p>每个方法都必须带有注解来表明请求方式和请求的URL路径.</p>
+<p>支持的请求方法：GET,POST,DELETE,PUT,HEAD,PATCH,OPTIONS(2.0新增)</p>
+<h4 id="支持Url参数替换"><a href="#支持Url参数替换" class="headerlink" title="支持Url参数替换"></a>支持Url参数替换</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GET</span>(<span class="string">"/group/&#123;id&#125;/users"</span>)</div><div class="line"><span class="function">List&lt;User&gt; <span class="title">groupList</span><span class="params">(@Path(<span class="string">"id"</span>)</span> <span class="keyword">int</span> groupId)</span>;</div></pre></td></tr></table></figure>
+<p>在2.0时，支持Url动态配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GET</span></div><div class="line"><span class="function">Call&lt;ResponseData&gt; <span class="title">getWallet2</span><span class="params">(@Url String url)</span></span>;</div></pre></td></tr></table></figure></p>
+<h4 id="支持查询参数"><a href="#支持查询参数" class="headerlink" title="支持查询参数"></a>支持查询参数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GET</span>(<span class="string">"group/&#123;id&#125;/users"</span>)</div><div class="line">Call&lt;List&lt;User&gt;&gt; groupList(<span class="meta">@Path</span>(<span class="string">"id"</span>) <span class="keyword">int</span> groupId, <span class="meta">@Query</span>(<span class="string">"sort"</span>) String sort);</div></pre></td></tr></table></figure>
+<p>多个查询参数时<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GET</span>(<span class="string">"group/&#123;id&#125;/users"</span>)</div><div class="line">Call&lt;List&lt;User&gt;&gt; groupList(<span class="meta">@Path</span>(<span class="string">"id"</span>) <span class="keyword">int</span> groupId, <span class="meta">@QueryMap</span> Map&lt;String, String&gt; options);</div></pre></td></tr></table></figure></p>
+<h4 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h4><p>对象会被自动转化成Json格式的字符串<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@POST</span>(<span class="string">"users/new"</span>)</div><div class="line"><span class="function">Call&lt;User&gt; <span class="title">createUser</span><span class="params">(@Body User user)</span></span>;</div></pre></td></tr></table></figure></p>
+<h4 id="FormUrlEncoded"><a href="#FormUrlEncoded" class="headerlink" title="FormUrlEncoded"></a>FormUrlEncoded</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FormUrlEncoded</span></div><div class="line"><span class="meta">@POST</span>(<span class="string">"user/edit"</span>)</div><div class="line"><span class="function">Call&lt;User&gt; <span class="title">updateUser</span><span class="params">(@Field(<span class="string">"first_name"</span>)</span> String first, @<span class="title">Field</span><span class="params">(<span class="string">"last_name"</span>)</span> String last)</span>;</div></pre></td></tr></table></figure>
+<h4 id="Multipart"><a href="#Multipart" class="headerlink" title="Multipart"></a>Multipart</h4><p>1.x<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Multipart</span></div><div class="line"><span class="meta">@POST</span>(<span class="string">"/upload"</span>)</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">upload</span><span class="params">(@Part(<span class="string">"myfile"</span>)</span> TypedFile file,</span></div><div class="line">            @<span class="title">Part</span><span class="params">(<span class="string">"description"</span>)</span> String description,</div><div class="line">            Callback&lt;String&gt; cb);</div><div class="line">TypedFile typedFile = <span class="keyword">new</span> TypedFile(<span class="string">"multipart/form-data"</span>, <span class="keyword">new</span> File(<span class="string">"path/to/your/file"</span>));</div></pre></td></tr></table></figure></p>
+<p>2.0</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Multipart</span></div><div class="line"><span class="meta">@PUT</span>(<span class="string">"user/photo"</span>)</div><div class="line"><span class="function">Call&lt;User&gt; <span class="title">updateUser</span><span class="params">(@Part(<span class="string">"photo"</span>)</span> RequestBody photo)</span>;</div><div class="line">RequestBody requestFile =</div><div class="line">           RequestBody.create(MediaType.parse(<span class="string">"multipart/form-data"</span>), <span class="keyword">new</span> File(<span class="string">"path"</span>));</div></pre></td></tr></table></figure>
+<h4 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//静态</span></div><div class="line"><span class="meta">@Headers</span>(<span class="string">"Cache-Control: max-age=640000"</span>)</div><div class="line"><span class="meta">@GET</span>(<span class="string">"widget/list"</span>)</div><div class="line">Call&lt;List&lt;Widget&gt;&gt; widgetList();</div><div class="line"></div><div class="line"><span class="comment">//动态</span></div><div class="line"><span class="meta">@GET</span>(<span class="string">"user"</span>)</div><div class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(@Header(<span class="string">"Authorization"</span>)</span> String authorization)</span></div></pre></td></tr></table></figure>
+<p>1.x</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WmService1</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@GET</span>(<span class="string">"api/wallet/getcredit"</span>)</div><div class="line">    <span class="function">ResponseData <span class="title">getWalletSyn</span><span class="params">()</span></span>;<span class="comment">//同步</span></div><div class="line"></div><div class="line">    <span class="meta">@GET</span>(<span class="string">"api/wallet/getcredit"</span>)</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getWalletAsyn</span><span class="params">(Callback&lt;ResponseData&gt; callback)</span></span>;<span class="comment">//异步</span></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">ResponseData data = service.getWalletSyn();<span class="comment">//同步</span></div><div class="line"></div><div class="line">service.getWalletAsyn(<span class="keyword">new</span> Callback&lt;ResponseData&gt;() &#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">success</span><span class="params">(ResponseData responseData, Response response)</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">failure</span><span class="params">(RetrofitError error)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>2.0时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WMService2</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@GET</span>(<span class="string">"api/wallet/getcredit"</span>)</div><div class="line">    <span class="function">Call&lt;ResponseData&gt; <span class="title">getWallet</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Call&lt;ResponseData&gt; call = WmServiceGenerator.createService(WMService.class).getWallet();</div><div class="line">ResponseData data = call.execute().body;<span class="comment">//同步</span></div><div class="line"><span class="comment">//异步</span></div><div class="line">call.enqueue(<span class="keyword">new</span> Callback&lt;ResponseData&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;ResponseData&gt; call, Response&lt;ResponseData&gt; response)</span> </span>&#123;</div><div class="line">        ResponseData data = response.body();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;ResponseData&gt; call, Throwable t)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>注意：每个call只能执行一次，但可以调用clone()来创建一个一模一样的实例，开销是非常小的，同时，正在执行的请求是可以被取消的，直接调用call.cancel();</p>
+<h3 id="Interceptor"><a href="#Interceptor" class="headerlink" title="Interceptor"></a>Interceptor</h3><p>在1.x：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">RestAdapter.Builder builder = <span class="keyword">new</span> RestAdapter.Builder()</div><div class="line"></div><div class="line">builder.setRequestInterceptor(<span class="keyword">new</span> RequestInterceptor() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">intercept</span><span class="params">(RequestFacade request)</span> </span>&#123;</div><div class="line">            request.addHeader(<span class="string">"Accept"</span>, <span class="string">"application/json"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">RestAdapter adapter = builder.build();</div></pre></td></tr></table></figure>
+<p>如果集成了OkHttp则也可以在OkHttp中设置拦截器。Retrofit在2.0中默认集成OkHttp，Retrofit框架本身并不做网络请求而是交给OkHttp来处理，这样极大的简化了Retrofit。因此在2.0时，无法通过Retrofit来设置拦截器，只能通过OkHttp来实现，不管是在1.x还是2.0，这种方式都是比较推荐的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">OkHttpClient.Builder okBuilder = <span class="keyword">new</span> OkHttpClient().newBuilder();</div><div class="line">okBuilder.addNetworkInterceptor(<span class="keyword">new</span> Interceptor() &#123;</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> Response <span class="title">intercept</span><span class="params">(Chain chain)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        Request original = chain.request();</div><div class="line">        Request.Builder requestBuilder = original.newBuilder().addHeader(<span class="string">"Accept"</span>, <span class="string">"application/json"</span>);</div><div class="line">        Request request = requestBuilder.build();</div><div class="line">        <span class="keyword">return</span> chain.proceed(request);</div><div class="line">        &#125;</div><div class="line">        &#125;);</div><div class="line">okHttpClient = okBuilder.build();</div></pre></td></tr></table></figure></p>
+<h3 id="log"><a href="#log" class="headerlink" title="log"></a>log</h3><p>1.x<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RestAdapter.Builder builder = <span class="keyword">new</span> RestAdapter.Builder()  </div><div class="line">    .setEndpoint(API_LOCATION)</div><div class="line">    .setLogLevel(RestAdapter.LogLevel.FULL) <span class="comment">// this is the important line</span></div><div class="line">    .setClient(<span class="keyword">new</span> OkClient(<span class="keyword">new</span> OkHttpClient()));</div></pre></td></tr></table></figure></p>
+<p>logLevel有五种：NONE、BASIC、HEADERS、HEADERS_AND_ARG、FULL</p>
+<p>2.x<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">HttpLoggingInterceptor logging = <span class="keyword">new</span> HttpLoggingInterceptor();  </div><div class="line"><span class="comment">// set your desired log level</span></div><div class="line">logging.setLevel(Level.BODY);</div><div class="line"></div><div class="line">OkHttpClient.Builder httpClient = <span class="keyword">new</span> OkHttpClient.Builder();</div></pre></td></tr></table></figure></p>
+<p>logLevel四种：NONE, BASIC, HEADERS, BODY<br>同时需添加依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.squareup.okhttp3:logging-interceptor:3.2.0&apos;</div></pre></td></tr></table></figure></p>
+<p>如果有很多默认的参数需要每次添加时：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@FormUrlEncoded</span></div><div class="line"><span class="meta">@POST</span>(<span class="string">"/feedback"</span>)</div><div class="line"><span class="function">Call&lt;ResponseBody&gt; <span class="title">sendFeedbackSimple</span><span class="params">(  </span></span></div><div class="line">    @Field(<span class="string">"osName"</span>) String osName,</div><div class="line">    @<span class="title">Field</span><span class="params">(<span class="string">"osVersion"</span>)</span> <span class="keyword">int</span> osVersion,</div><div class="line">    @<span class="title">Field</span><span class="params">(<span class="string">"device"</span>)</span> String device,</div><div class="line">    @<span class="title">Field</span><span class="params">(<span class="string">"message"</span>)</span> String message,</div><div class="line">    @<span class="title">Field</span><span class="params">(<span class="string">"userIsATalker"</span>)</span> Boolean userIsATalker);</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sendFeedbackFormSimple</span><span class="params">(@NonNull String message)</span> </span>&#123;  </div><div class="line">    <span class="comment">// create the service to make the call, see first Retrofit blog post</span></div><div class="line">    FeedbackService taskService = ServiceGenerator.create(FeedbackService.class);</div><div class="line"></div><div class="line">    <span class="comment">// create flag if message is especially long</span></div><div class="line">    <span class="keyword">boolean</span> userIsATalker = (message.length() &gt; <span class="number">200</span>);</div><div class="line"></div><div class="line">    Call&lt;ResponseBody&gt; call = taskService.sendFeedbackSimple(</div><div class="line">            <span class="string">"Android"</span>,</div><div class="line">            android.os.Build.VERSION.SDK_INT,</div><div class="line">            Build.MODEL,</div><div class="line">            message,</div><div class="line">            userIsATalker</div><div class="line">    );</div><div class="line"></div><div class="line">    call.enqueue(<span class="keyword">new</span> Callback&lt;ResponseBody&gt;() &#123;</div><div class="line">        ...</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@POST</span>(<span class="string">"/feedback"</span>)</div><div class="line"><span class="function">Call&lt;ResponseBody&gt; <span class="title">sendFeedbackConstant</span><span class="params">(@Body UserFeedback feedbackObject)</span></span>;  </div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserFeedback</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String osName = <span class="string">"Android"</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> osVersion = android.os.Build.VERSION.SDK_INT;</div><div class="line">    <span class="keyword">private</span> String device = Build.MODEL;</div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> userIsATalker;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserFeedback</span><span class="params">(String message)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">        <span class="keyword">this</span>.userIsATalker = (message.length() &gt; <span class="number">200</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// getters &amp; setters</span></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sendFeedbackFormAdvanced</span><span class="params">(@NonNull String message)</span> </span>&#123;  </div><div class="line">    FeedbackService taskService = ServiceGenerator.create(FeedbackService.class);</div><div class="line"></div><div class="line">    Call&lt;ResponseBody&gt; call = taskService.sendFeedbackConstant(<span class="keyword">new</span> UserFeedback(message));</div><div class="line"></div><div class="line">    call.enqueue(<span class="keyword">new</span> Callback&lt;ResponseBody&gt;() &#123;</div><div class="line">        ...</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="URL处理"><a href="#URL处理" class="headerlink" title="URL处理"></a>URL处理</h3><p>在1.x中不存在对Url的检查，在2.0之后通过<code>HttpUrl</code>类来解析。主要有一下几个方面：</p>
+<ol>
+<li>如果你的baseUrl不是已”/“结尾时<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">baseUrl:	http:<span class="comment">//mpay.meituan.com/api</span></div><div class="line">endpoint:	/wallet/getcredit</div><div class="line">result:		http:<span class="comment">//mpay.meituan.com/wallet/getcredit</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样是不符合预期的，所以Retrofit主动做了检查，必须以”/“结尾，否则会crash  <code>baseUrl must end in /</code>。</p>
+<p>2.如果你的endpoint已“/”开始，代表了一个绝对路径，它将替换掉baseUrl的“/”后面的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">baseUrl: 	http://mpay.meituan.com/api6/</div><div class="line">endpoint:	/api7/wallet/getcredit</div><div class="line">result:		http://mpay.meituan.com/api7/wallet/getcredit</div></pre></td></tr></table></figure></p>
+<p>3.完全不同的Url时，会被完全替换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">baseUrl:	http://mpay.meituan.com/</div><div class="line">endpoint:	http://waimai.api.com/ or //waimai.api.com</div><div class="line">result:		http://waimai.api.com/</div></pre></td></tr></table></figure></p>
+<h3 id="自定义解析"><a href="#自定义解析" class="headerlink" title="自定义解析"></a>自定义解析</h3><p>1.x和2.0的其他区别：<br>在2.0中支持多种Converter并存，在1.x中一个RestAdapter只能绑定一个Converter对象，如果一个Api返回的结果需要Json反序列化，一个需要proto反序列化，则需要写两个接口，分别绑定RestAdapter。<br> 在2.0中则可以添加多个converter，但是需要注意，判断某个converter是否可以处理该回复是通过最终对象的类型来判断的。例如：当前有一个回复，它需要序列化成protobuf，这个时候需要找到适合的converter，因为Protobuf都是继承Message的，所以只需要判断是否是Message就可以了，而Json对象并不继承什么，所以无法找到适合的converter，因此JSON converter需要放在最后。</p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2016/03/17/Retrofit分享/" data-title="Retrofit分享" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="Retrofit分享" data-url="//2016/03/17/Retrofit分享/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2016/03/17/Retrofit分享/" data-title="Retrofit分享" data-url="//2016/03/17/Retrofit分享/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

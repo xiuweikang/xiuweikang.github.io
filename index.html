@@ -82,6 +82,10 @@
       <ul>
         
           <li>
+            <a href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+          </li>
+        
+          <li>
             <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
           </li>
         
@@ -117,10 +121,6 @@
             <a href="/2015/07/31/android屏幕适配/">android屏幕适配</a>
           </li>
         
-          <li>
-            <a href="/2015/07/30/java内存模型/">java内存模型</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -131,7 +131,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 18px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/数据结构/" style="font-size: 18px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 16px;">算法</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -166,6 +166,53 @@
 </aside>
         
         <section id="main">
+  
+    <article id="post-View的measure、layout、draw过程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/26/View的measure、layout、draw过程/" class="article-date">
+  <time datetime="2016-07-26T11:59:00.000Z" itemprop="datePublished">7月 26 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>View的整个过程是从ViewRoot开始的，实现类是ViewRootImpl类，在这个类中通过<code>setView（）</code>方法添加DecorView，之后以DecorView为rootView。在ViewRootImpl类中通过<code>performTraversals()</code>方法，经过measure、layout、draw三个过程最终将View绘制出来。</p>
+<h2 id="Measure过程"><a href="#Measure过程" class="headerlink" title="Measure过程"></a>Measure过程</h2><h3 id="MeasureSpec"><a href="#MeasureSpec" class="headerlink" title="MeasureSpec"></a>MeasureSpec</h3><p>首先提到MeasureSpec，这个类承担着MeasureMode和MeasureSize两个功能，将32位int的高两位表示MeasureMode，低30位代表MeasureSize，通过下面的代码我们可以看到MeasureSpec这个类的功能。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">public static class MeasureSpec &#123;</div><div class="line">        private static final int MODE_SHIFT = 30;</div><div class="line">        private static final int MODE_MASK  = 0x3 &lt;&lt; MODE_SHIFT;</div><div class="line">        public static final int UNSPECIFIED = 0 &lt;&lt; MODE_SHIFT;</div><div class="line">        public static final int EXACTLY     = 1 &lt;&lt; MODE_SHIFT;</div><div class="line">        public static final int AT_MOST     = 2 &lt;&lt; MODE_SHIFT;</div><div class="line">        public static int makeMeasureSpec(int size, int mode) &#123;</div><div class="line">            return (size &amp; ~MODE_MASK) | (mode &amp; MODE_MASK);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        public static int getMode(int measureSpec) &#123;</div><div class="line">            return (measureSpec &amp; MODE_MASK);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public static int getSize(int measureSpec) &#123;</div><div class="line">            return (measureSpec &amp; ~MODE_MASK);</div><div class="line">        &#125;</div><div class="line">``` </div><div class="line">### Measure过程</div><div class="line">最开始的measure起点是从`ViewRootImp`的`performTraversals()`开始的，在方法内部调用</div><div class="line"></div><div class="line">	performMeasure(childWidthMeasureSpec, childHeightMeasureSpec);</div><div class="line">参数分别由Window大小和自身的LayoutParams决定。对于最外层的DecorView来说一般是</div><div class="line"></div><div class="line">	 measureSpec = MeasureSpec.makeMeasureSpec(windowSize, MeasureSpec.EXACTLY);</div><div class="line">     </div><div class="line">也就是说尺寸是窗口的大小，mode是EXACTLY的.在PerformMeasure中调用`view.measure()`而在`measure（）`中调用`onMeasure()`进行测量。</div><div class="line">``` java</div><div class="line">  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</div><div class="line">        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));</div><div class="line">    &#125;</div><div class="line"> </div><div class="line"> </div><div class="line">  protected int getSuggestedMinimumWidth() &#123;</div><div class="line">        return (mBackground == null) ? mMinWidth : max(mMinWidth, mBackground.getMinimumWidth());</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">  public static int getDefaultSize(int size, int measureSpec) &#123;</div><div class="line">     int result = size;</div><div class="line">     int specMode = MeasureSpec.getMode(measureSpec);</div><div class="line">     int specSize = MeasureSpec.getSize(measureSpec);</div><div class="line"></div><div class="line">     switch (specMode) &#123;</div><div class="line">     case MeasureSpec.UNSPECIFIED:</div><div class="line">         result = size;</div><div class="line">         break;</div><div class="line">     case MeasureSpec.AT_MOST:</div><div class="line">     case MeasureSpec.EXACTLY:</div><div class="line">         result = specSize;</div><div class="line">         break;</div><div class="line">     &#125;</div><div class="line">     return result;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">  protected final void setMeasuredDimension(int measuredWidth, int measuredHeight) &#123;</div><div class="line">        setMeasuredDimensionRaw(measuredWidth, measuredHeight);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line"> private void setMeasuredDimensionRaw(int measuredWidth, int measuredHeight) &#123;</div><div class="line">        mMeasuredWidth = measuredWidth;</div><div class="line">        mMeasuredHeight = measuredHeight;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>通过以上代码可以看到，在onMeasure中调用setMeasuredDimension，在其中调用了getSuggestedMininumWidth()，在里面看是否存在背景，然后取了View的minWidth和背景的minWidth的较大值传入，在getDefaultSize中发现，只有在UNSPECIFIED模式时才会用到。同时需要注意的是AT_MOST模式时的尺寸是measureSpec的specSize，而measureSpec是哪来的我们看看ViewGroup中的方法。</p>
+<p>在ViewGroup中并没有重写onMeasure方法，那么子类一定会重写，以LinearLayout为例，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mOrientation == VERTICAL) &#123;</div><div class="line">            measureVertical(widthMeasureSpec, heightMeasureSpec);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            measureHorizontal(widthMeasureSpec, heightMeasureSpec);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>以measureVertical为例，在该方法中会对每个子View调用<code>measureChildWithMargins</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">measureChildWithMargins</span><span class="params">(View child,</span></span></div><div class="line">            <span class="keyword">int</span> parentWidthMeasureSpec, <span class="keyword">int</span> widthUsed,</div><div class="line">            <span class="keyword">int</span> parentHeightMeasureSpec, <span class="keyword">int</span> heightUsed) &#123;</div><div class="line">        <span class="keyword">final</span> MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();</div><div class="line"></div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,</div><div class="line">                mPaddingLeft + mPaddingRight + lp.leftMargin + lp.rightMargin</div><div class="line">                        + widthUsed, lp.width);</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,</div><div class="line">                mPaddingTop + mPaddingBottom + lp.topMargin + lp.bottomMargin</div><div class="line">                        + heightUsed, lp.height);</div><div class="line"></div><div class="line">        child.measure(childWidthMeasureSpec, childHeightMeasureSpec);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getChildMeasureSpec</span><span class="params">(<span class="keyword">int</span> spec, <span class="keyword">int</span> padding, <span class="keyword">int</span> childDimension)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> specMode = MeasureSpec.getMode(spec);</div><div class="line">        <span class="keyword">int</span> specSize = MeasureSpec.getSize(spec);</div><div class="line"></div><div class="line">        <span class="keyword">int</span> size = Math.max(<span class="number">0</span>, specSize - padding);</div><div class="line"></div><div class="line">        <span class="keyword">int</span> resultSize = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> resultMode = <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="keyword">switch</span> (specMode) &#123;</div><div class="line">        <span class="comment">// Parent has imposed an exact size on us</span></div><div class="line">        <span class="keyword">case</span> MeasureSpec.EXACTLY:</div><div class="line">            <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</div><div class="line">                resultSize = childDimension;</div><div class="line">                resultMode = MeasureSpec.EXACTLY;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</div><div class="line">                <span class="comment">// Child wants to be our size. So be it.</span></div><div class="line">                resultSize = size;</div><div class="line">                resultMode = MeasureSpec.EXACTLY;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</div><div class="line">                <span class="comment">// Child wants to determine its own size. It can't be</span></div><div class="line">                <span class="comment">// bigger than us.</span></div><div class="line">                resultSize = size;</div><div class="line">                resultMode = MeasureSpec.AT_MOST;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line"></div><div class="line">        <span class="comment">// Parent has imposed a maximum size on us</span></div><div class="line">        <span class="keyword">case</span> MeasureSpec.AT_MOST:</div><div class="line">            <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</div><div class="line">                <span class="comment">// Child wants a specific size... so be it</span></div><div class="line">                resultSize = childDimension;</div><div class="line">                resultMode = MeasureSpec.EXACTLY;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</div><div class="line">                <span class="comment">// Child wants to be our size, but our size is not fixed.</span></div><div class="line">                <span class="comment">// Constrain child to not be bigger than us.</span></div><div class="line">                resultSize = size;</div><div class="line">                resultMode = MeasureSpec.AT_MOST;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</div><div class="line">                <span class="comment">// Child wants to determine its own size. It can't be</span></div><div class="line">                <span class="comment">// bigger than us.</span></div><div class="line">                resultSize = size;</div><div class="line">                resultMode = MeasureSpec.AT_MOST;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line"></div><div class="line">        <span class="comment">// Parent asked to see how big we want to be</span></div><div class="line">        <span class="keyword">case</span> MeasureSpec.UNSPECIFIED:</div><div class="line">            <span class="keyword">if</span> (childDimension &gt;= <span class="number">0</span>) &#123;</div><div class="line">                <span class="comment">// Child wants a specific size... let him have it</span></div><div class="line">                resultSize = childDimension;</div><div class="line">                resultMode = MeasureSpec.EXACTLY;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.MATCH_PARENT) &#123;</div><div class="line">                <span class="comment">// Child wants to be our size... find out how big it should</span></div><div class="line">                <span class="comment">// be</span></div><div class="line">                resultSize = View.sUseZeroUnspecifiedMeasureSpec ? <span class="number">0</span> : size;</div><div class="line">                resultMode = MeasureSpec.UNSPECIFIED;</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (childDimension == LayoutParams.WRAP_CONTENT) &#123;</div><div class="line">                <span class="comment">// Child wants to determine its own size.... find out how</span></div><div class="line">                <span class="comment">// big it should be</span></div><div class="line">                resultSize = View.sUseZeroUnspecifiedMeasureSpec ? <span class="number">0</span> : size;</div><div class="line">                resultMode = MeasureSpec.UNSPECIFIED;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> MeasureSpec.makeMeasureSpec(resultSize, resultMode);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>在<code>getChildMeasureSpec（）</code>中传入了父View的Spec和padding其中padding包括了父View的左右padding、子View的左右margin，以及父View在水平方向上用了的空间，最后一个参数是子View的layputParams，在<code>getChildMeasureSpec()</code>中我们可以看到最重要的一个东西，就是父View是如何影响子View测量的一个过程：</p>
+<ul>
+<li>父类是EXACTLY时：子类为固定值或者MATCH_PARENT时子View都是EXACTLY模式，size也都固定，一个是自身的size，一个是父View剩余的size，这很好理解。当子View是WRAP_CONTENT时，子View的模式是AT_MOST模式，大小是剩下的size，结合上面提到的在getDefaultSize()会发现，当子View并没有重写onMeasure方法并对WRAP_CONTENT情况进行处理时的size其实就是MATH_PARENT。</li>
+</ul>
+<p>剩下的就不一一分析了，看图：<img src="http://ww2.sinaimg.cn/large/006tNc79jw1f6ekpzgshij30wi0b840p.jpg" alt="View测量模式图"><br>在这里可以注意到当子View是EXACTLY模式时，父View不管是什么，都是EXACTLY模式。</p>
+<p>最后：在得到了子View的MeasureSpec后，就传进了子View的measure方法，完成父View到子View测量的一个传递过程。</p>
+<p>最后总结一下measure的流程：最开始的measure过程是在ViewRootImp类中的performMeasure()中开始的，传入的measureSpec和其他View的不同，因为rootView并不存在父View（可以将其父View看成固定大小，且模式是EXACTLY的一个View),其自身的MeasureSpec是由Window大小和自身的LayoutParams决定得。之后在performMeasure中调用measure方法，在measure中调用onMeasure，当子View是ViewGroup时，会对每个子View调用MeasureChild()方法，在该方法中通过结合父View的MeasureSpec和子View的layoutParams得到子View的MeasureSpec，之后调用子View的Measure（），就这样一直解析View树，完成Measure过程</p>
+
+      
+    </div>
+
+  
+</article>
+
+  
+
   
     <article id="post-effective-java学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -649,47 +696,6 @@ android:focusableInTouchMode=&quot;true&quot;
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.meituan.kevin.ACTION_START"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span>/&gt;</span> //必须加，startActivity()会默认添加这个category</div><div class="line">      <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"com.meituan.kevin.second.CATEGORY"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.meituan.kevin.ACTION_START"</span>);</div><div class="line">intent.addCategory(<span class="string">"com.meituan.kevin.second.CATEGORY"</span>);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
 <h2 id="关闭Activity"><a href="#关闭Activity" class="headerlink" title="关闭Activity"></a>关闭Activity</h2><p>Activity可以显示调用finish()进行关闭，但是一般不这样做，一般是由Android系统来管理，只有确实不希望用户返回这个实例时才显示调用。</p>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-android屏幕适配" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/31/android屏幕适配/" class="article-date">
-  <time datetime="2015-07-31T01:09:43.000Z" itemprop="datePublished">7月 31 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/31/android屏幕适配/">android屏幕适配</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>原文:<a href="http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023">http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023</a></p>
-</blockquote>
-<p><img src="http://img1.gtimg.com/tech/pics/hv1/135/67/1688/109779420.png" alt=""></p>
         
             
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>

@@ -5,13 +5,25 @@
   
   <title>effective java学习笔记 | Kevin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="1.考虑用静态工厂方法代替构造器
+静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()
+静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)
+静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法">
+<meta property="og:type" content="article">
 <meta property="og:title" content="effective java学习笔记">
 <meta property="og:url" content="/2016/07/08/effective-java学习笔记/index.html">
 <meta property="og:site_name" content="Kevin">
-<meta property="og:updated_time" content="2016-07-19T03:55:14.000Z">
+<meta property="og:description" content="1.考虑用静态工厂方法代替构造器
+静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()
+静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)
+静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法">
+<meta property="og:updated_time" content="2016-08-02T13:13:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="effective java学习笔记">
+<meta name="twitter:description" content="1.考虑用静态工厂方法代替构造器
+静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()
+静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)
+静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法">
   
   
     <link rel="icon" href="/favicon.png">
@@ -83,6 +95,14 @@
       <ul>
         
           <li>
+            <a href="/2016/08/03/View基础相关/">View基础相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/03/Android动画详解/">Android动画详解</a>
+          </li>
+        
+          <li>
             <a href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
           </li>
         
@@ -114,14 +134,6 @@
             <a href="/2015/10/19/Android自定义View/">Android自定义View</a>
           </li>
         
-          <li>
-            <a href="/2015/10/14/Activity详解/">Activity详解</a>
-          </li>
-        
-          <li>
-            <a href="/2015/07/31/android屏幕适配/">android屏幕适配</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -132,7 +144,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 18.33px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/JVM/" style="font-size: 16px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 20px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 14px;">java</a> <a href="/tags/数据结构/" style="font-size: 18px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 16px;">算法</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a>
     </div>
   </div>
 
@@ -188,7 +200,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="1-考虑用静态工厂方法代替构造器"><a href="#1-考虑用静态工厂方法代替构造器" class="headerlink" title="1.考虑用静态工厂方法代替构造器"></a>1.考虑用静态工厂方法代替构造器</h3><ul>
+<li>静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()</li>
+<li>静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)</li>
+<li>静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法即可</li>
+<li>在创建参数化实例的时候，可以使代码变得更加简洁。比如：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; m = <span class="keyword">new</span> HashMap&lt;String, List&lt;String&gt;&gt;();</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; <span class="function">HashMap&lt;K, V&gt; <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HashMap&lt;K ,V&gt;();</div><div class="line">&#125;</div><div class="line">Map&lt;String, List&lt;String&gt;&gt; m = HashMap.newInstance();</div></pre></td></tr></table></figure>
+<h3 id="2-在遇到多个构造器参数时考虑用Builder"><a href="#2-在遇到多个构造器参数时考虑用Builder" class="headerlink" title="2.在遇到多个构造器参数时考虑用Builder"></a>2.在遇到多个构造器参数时考虑用Builder</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">    <span class="keyword">private</span> String mName;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mHeight;</div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(<span class="keyword">int</span> age, String name, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">        mAge = age;</div><div class="line">        mName = name;</div><div class="line">        mHeight = height;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>例如一个对象有多个属性需要设置，我们可以在构造方法中设置，如下，但是在调用时会<br>Person person = new Person(19, “名字”， 180);如果参数一旦变多则维护起来略麻烦，这时会考虑使用set方法，但是使用set方法在多线程中是不安全的，这时可以考虑采用Builder模式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">    <span class="keyword">private</span> String mName;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mSex;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">        mAge = builder.mAge;</div><div class="line">        mName = builder.mName;</div><div class="line">        mSex = builder.mSex;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">        <span class="keyword">private</span> String mName;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mSex;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">name</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">            mName = name;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">age</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">            mAge = age;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">sex</span><span class="params">(<span class="keyword">int</span> sex)</span> </span>&#123;</div><div class="line">            mSex = sex;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Person <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Person(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//调用时</span></div><div class="line"> Person person = <span class="keyword">new</span> Person.Builder()</div><div class="line">                .age(<span class="number">19</span>)</div><div class="line">                .name(<span class="string">"名字"</span>)</div><div class="line">                .sex(<span class="number">1</span>)</div><div class="line">                .build();</div></pre></td></tr></table></figure>
+<p>通过上面这种方式很清晰。</p>
+<h3 id="3-用私有构造器或者枚举属性强化Singleton属性"><a href="#3-用私有构造器或者枚举属性强化Singleton属性" class="headerlink" title="3.用私有构造器或者枚举属性强化Singleton属性"></a>3.用私有构造器或者枚举属性强化Singleton属性</h3><p>在java1.5后可以通过枚举来实现单例,这种方法简洁，而且创建的过程是线程安全的，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">&#125;</div><div class="line">  Person.INSTANCE.setName(<span class="string">"kevin"</span>);</div><div class="line">  System.out.println(Person.INSTANCE.getName());</div></pre></td></tr></table></figure></p>
+<h3 id="4-通过私有构造器强化不可实例化的能力"><a href="#4-通过私有构造器强化不可实例化的能力" class="headerlink" title="4.通过私有构造器强化不可实例化的能力"></a>4.通过私有构造器强化不可实例化的能力</h3><p>对于一些工具类来说，它只存在静态方法，这时它并不想被实例化，因此最好强化不可实例化的能力，给它添加私有构造器。</p>
+<h3 id="5-避免创建不必要的对象"><a href="#5-避免创建不必要的对象" class="headerlink" title="5.避免创建不必要的对象"></a>5.避免创建不必要的对象</h3><pre><code>String s = new String(&quot;kevin&quot;);
+</code></pre><p>在这里”kevin” 本来就是一个String对象，这时就多创建了一个对象。<br>同时除了重用不可变对象之外，也可以重用已知不会被修改的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date birthDate;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBabyBoomer</span><span class="params">()</span> </span>&#123;</div><div class="line">        Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone(<span class="string">"GMT"</span>));</div><div class="line">        gmtCal.set(<span class="number">1946</span>, Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        Date boomStart = gmtCal.getTime();</div><div class="line">        gmtCal.set(<span class="number">1965</span> ,Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        Date boomEnd = gmtCal.getTime();</div><div class="line">        <span class="keyword">return</span> birthDate.compareTo(boomStart) &gt;= <span class="number">0</span> </div><div class="line">                &amp;&amp; birthDate.compareTo(boomEnd) &lt; <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//在这里start和end都是不变的，而每次比较时都会生成2个Date同样的对象。</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date birthDate;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Date boomStart;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Date boomEnd;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone(<span class="string">"GMT"</span>));</div><div class="line">        gmtCal.set(<span class="number">1946</span>, Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        boomStart = gmtCal.getTime();</div><div class="line">        gmtCal.set(<span class="number">1965</span> ,Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        boomEnd = gmtCal.getTime();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBabyBoomer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> birthDate.compareTo(boomStart) &gt;= <span class="number">0</span></div><div class="line">                &amp;&amp; birthDate.compareTo(boomEnd) &lt; <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为Java的自动装箱机制导致下面的代码会产生很多对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Long l = <span class="number">0L</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i &lt; Long.MAX_VALUE; i++) &#123;</div><div class="line">      l += i;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="6-消除过期的引用"><a href="#6-消除过期的引用" class="headerlink" title="6.消除过期的引用"></a>6.消除过期的引用</h3><p>Java</p>
+
       
     </div>
 

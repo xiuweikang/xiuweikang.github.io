@@ -82,10 +82,6 @@
       <ul>
         
           <li>
-            <a href="/2016/09/21/AndroidManifest文件说明/">AndroidManifest注意点</a>
-          </li>
-        
-          <li>
             <a href="/2016/09/14/gradle学习/">gradle学习</a>
           </li>
         
@@ -119,6 +115,10 @@
         
           <li>
             <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
           </li>
         
       </ul>
@@ -166,53 +166,6 @@
 </aside>
         
         <section id="main">
-  
-    <article id="post-AndroidManifest文件说明" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/21/AndroidManifest文件说明/" class="article-date">
-  <time datetime="2016-09-21T02:43:04.000Z" itemprop="datePublished">9月 21 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/21/AndroidManifest文件说明/">AndroidManifest注意点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="新建Activity时需要注意以下属性："><a href="#新建Activity时需要注意以下属性：" class="headerlink" title="新建Activity时需要注意以下属性："></a>新建Activity时需要注意以下属性：</h2><ul>
-<li>theme: 默认是<code>AppTheme</code>，如果不需要ActionBar时指定为<code>AppTheme.NoActionBar</code></li>
-<li><p>configChanges:当系统配置发生改变时,Activity会被重建，为了防止该种情况，需要手动在创建Acitivity时添加下面的配置，如果需要监听相应的事件可以重写<code>onConfigurationChanged()</code>。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"</div></pre></td></tr></table></figure>
-</li>
-<li><p>hardwareAccelerated： 硬件加速设置，默认为开启，部分页面因为开启硬件加速可能导致crash，因此设置为false，建议为true。</p>
-</li>
-<li><p>screenOrientation: 因为我们的App不需要横屏，所以需强制设置为<code>portrait</code></p>
-</li>
-<li>exported: 设置该页面是否允许被第三方应用调起，true为允许，false为不允许。如果Activity包含有intent-filter 则值为true; 没有intent-filter则值为false。除了允许外部scheme跳转进来的页面设置成true外，其他页面需设置成false（包括只在内部scheme跳转的页面）,否则会产生解析Intent异常等安全漏洞。对于允许外部scheme跳转进来的页面需用<code>IntentUtil</code>来进行intent解析。判断一个页面是否允许外部scheme跳转只能通过业务区分。
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
   
     <article id="post-gradle学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -544,6 +497,55 @@ git commit --amend &quot;second commit&quot;
 
   
         
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-android-studio快捷键" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/17/android-studio快捷键/" class="article-date">
+  <time datetime="2016-02-17T12:53:52.000Z" itemprop="datePublished">2月 17 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>添加书签：F3<ul>
+<li>显示书签列表：cmd + F3</li>
+</ul>
+</li>
+<li>隐藏其他窗口:control + w（自定义）</li>
+<li>定位到父类的方法：cmd + u</li>
+<li>在finder中打开文件：cmd + 点击tab</li>
+<li>查看方法参数列表:cmd + p</li>
+<li>快速查看方法定义:cmd + y</li>
+<li>Esc：该操作仅仅把光标移回编辑器。<br>Shift + Esc：该操作会关闭当前面板，然后把光标移回到编辑器。</li>
+<li>按住Alt竖排选中</li>
+<li>语句补全:cmd + shift + enter</li>
+<li>代码补全时enter不对后面修改tab对后面修改</li>
+<li>cmd + alt + m 提取方法</li>
+<li>contral + alt + h查看调用层级</li>
+</ul>
+
       
     </div>
 

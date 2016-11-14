@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>shell学习 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一个Shell脚本12#!/bin/shecho &amp;quot;Hello World !&amp;quot;
+“#!/bin/sh”用于告诉系统该用什么解释器执行，主要有两种：bash和sh。echo是用于打印的命令
+运行Shell的两种方法作为可执行程序12chmod +x ./test.sh #使脚本具有可执行权限./test.sh #执行脚本
+通过解释器直接执行1/bin/sh test.sh
+当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell学习">
+<meta property="og:url" content="/2016/11/07/shell学习/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="第一个Shell脚本12#!/bin/shecho &amp;quot;Hello World !&amp;quot;
+“#!/bin/sh”用于告诉系统该用什么解释器执行，主要有两种：bash和sh。echo是用于打印的命令
+运行Shell的两种方法作为可执行程序12chmod +x ./test.sh #使脚本具有可执行权限./test.sh #执行脚本
+通过解释器直接执行1/bin/sh test.sh
+当">
+<meta property="og:updated_time" content="2016-11-14T00:49:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell学习">
+<meta name="twitter:description" content="第一个Shell脚本12#!/bin/shecho &amp;quot;Hello World !&amp;quot;
+“#!/bin/sh”用于告诉系统该用什么解释器执行，主要有两种：bash和sh。echo是用于打印的命令
+运行Shell的两种方法作为可执行程序12chmod +x ./test.sh #使脚本具有可执行权限./test.sh #执行脚本
+通过解释器直接执行1/bin/sh test.sh
+当">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/10/Build-Variants-Merge-Manifests/">Build Variants &amp; Merge Manifests</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/07/shell学习/">shell学习</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/14/gradle学习/">gradle学习</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/01/工具类交流/">工具类交流</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/03/View基础相关/">View基础相关</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/03/Android动画详解/">Android动画详解</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/15/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-shell学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/07/shell学习/" class="article-date">
+  <time datetime="2016-11-07T08:37:45.000Z" itemprop="datePublished">11月 7 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      shell学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一个Shell脚本"><a href="#第一个Shell脚本" class="headerlink" title="第一个Shell脚本"></a>第一个Shell脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">echo &quot;Hello World !&quot;</div></pre></td></tr></table></figure>
+<p>“#!/bin/sh”用于告诉系统该用什么解释器执行，主要有两种：bash和sh。echo是用于打印的命令</p>
+<h3 id="运行Shell的两种方法"><a href="#运行Shell的两种方法" class="headerlink" title="运行Shell的两种方法"></a>运行Shell的两种方法</h3><h6 id="作为可执行程序"><a href="#作为可执行程序" class="headerlink" title="作为可执行程序"></a>作为可执行程序</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod +x ./test.sh #使脚本具有可执行权限</div><div class="line">./test.sh #执行脚本</div></pre></td></tr></table></figure>
+<h6 id="通过解释器直接执行"><a href="#通过解释器直接执行" class="headerlink" title="通过解释器直接执行"></a>通过解释器直接执行</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/bin/sh test.sh</div></pre></td></tr></table></figure>
+<p>当使用这种形式时就不需要在前面指定需要哪种解释器。<br><a id="more"></a></p>
+<h2 id="Shell变量"><a href="#Shell变量" class="headerlink" title="Shell变量"></a>Shell变量</h2><p>在Bash中，每一个变量的值都是字符串，无论你给变量赋值时有没有使用引号，值都会以字符串的形式存储，有一些特殊的变量会被操作系统用来存储一些特别的值，这类变量称为<strong>环境变量</strong>，比如我们常设置的<code>JAVA_HOME</code>等,可以用env命令查看。</p>
+<h3 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">name=&quot;xiuweikang&quot;</div><div class="line">echo $name</div></pre></td></tr></table></figure>
+<p>在定义变量时注意变量名和等号之间不能有空格，在使用变量时需要用“$”符号,也可以通过${}来指定,防止歧义。</p>
+<h3 id="只读变量"><a href="#只读变量" class="headerlink" title="只读变量"></a>只读变量</h3><p>可以对变量添加readonly来将变量指定为只读的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">"xiuweikang"</span></div><div class="line">readonly name</div><div class="line">name=<span class="string">"wakaka"</span></div><div class="line">echo $name</div></pre></td></tr></table></figure></p>
+<p>执行上面的shell会出现<code>name: readonly variable</code>这个错误</p>
+<h3 id="删除变量"><a href="#删除变量" class="headerlink" title="删除变量"></a>删除变量</h3><p>可以对变量使用unset来将变量删除,删除后的变量将不能再使用，但是无法删除readonly的变量<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">"xiuweikang"</span></div><div class="line">unset name</div><div class="line">echo $name</div></pre></td></tr></table></figure></p>
+<p>执行上面的会输出空</p>
+<h2 id="Shell字符串"><a href="#Shell字符串" class="headerlink" title="Shell字符串"></a>Shell字符串</h2><h3 id="单引号"><a href="#单引号" class="headerlink" title="单引号"></a>单引号</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">age=<span class="number">16</span></div><div class="line">name=<span class="string">'xiuweikang $age'</span></div><div class="line">echo $name</div></pre></td></tr></table></figure>
+<ul>
+<li>单引号里的所有东西会原样输出，例如上面的会输出成<code>xiuweikang $age</code></li>
+</ul>
+<h3 id="双引号"><a href="#双引号" class="headerlink" title="双引号"></a>双引号</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">age=<span class="number">16</span></div><div class="line">name=<span class="string">"xiuweikang age=$age"</span></div><div class="line">echo $name</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">age=<span class="number">16</span></div><div class="line">name=<span class="string">"xiuweikang age=\$age"</span></div><div class="line">echo $name</div></pre></td></tr></table></figure>
+<ul>
+<li>双引号里可以引用变量，上面会输出<code>xiuweikang age=16</code></li>
+<li>双引号里可以存在转义字符,第二个例子会输出<code>xiuweikang age=$age</code></li>
+</ul>
+<h3 id="拼接字符串"><a href="#拼接字符串" class="headerlink" title="拼接字符串"></a>拼接字符串</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">"xiuweikang"</span></div><div class="line">age=<span class="string">"$&#123;name&#125; 16"</span></div><div class="line">echo $age</div></pre></td></tr></table></figure>
+<p>输出:<code>xiuweikang 16</code>,我们平时用的<code>export PATH=$ANDROID_HOME/platform-tools/:$PATH</code>就是很典型的字符串拼接</p>
+<h3 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">"xiuweikang"</span></div><div class="line">length=<span class="string">"$&#123;#name&#125;"</span></div><div class="line">echo $length</div></pre></td></tr></table></figure>
+<p>可以通过<code>#</code>来获取字符串长度</p>
+<h3 id="截取字符"><a href="#截取字符" class="headerlink" title="截取字符"></a>截取字符</h3><p>name=”xiuweikang”<br>part=${name:1:3}<br>echo $part<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">输出: `iuw`，意思是输出从第二个字符开始的一共3个字符</div><div class="line">## Shell数组</div><div class="line">### 数组定义</div><div class="line">仅支持一维数组，不支持多维数组</div><div class="line">数组的定义和读取如下，每个元素之间通过空格分开，下标从0开始。</div></pre></td></tr></table></figure></p>
+<p>array=(a b c d)<br>array[4]=e<br>echo ${array[4]}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">### 获取长度</div><div class="line">``` java</div><div class="line">array=(abc b c d)</div><div class="line">array[4]=e</div><div class="line">echo $&#123;array[4]&#125;</div><div class="line">length=$&#123;#array[*]&#125; #获取整个数组的长度</div><div class="line">length0=$&#123;#array[0]&#125; #获取单个元素的长度</div><div class="line">echo $length $length0</div></pre></td></tr></table></figure></p>
+<h3 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h3><pre><code>${#string}    $string的长度
+
+${string:position}    在$string中, 从位置$position开始提取子串
+${string:position:length}    在$string中, 从位置$position开始提取长度为$length的子串
+
+${string#substring}    从变量$string的开头, 删除最短匹配$substring的子串
+${string##substring}    从变量$string的开头, 删除最长匹配$substring的子串
+${string%substring}    从变量$string的结尾, 删除最短匹配$substring的子串
+${string%%substring}    从变量$string的结尾, 删除最长匹配$substring的子串
+
+${string/substring/replacement}    使用$replacement, 来代替第一个匹配的$substring
+${string//substring/replacement}    使用$replacement, 代替所有匹配的$substring
+${string/#substring/replacement}    如果$string的前缀匹配$substring, 那么就用$replacement来代替匹配到的$substring
+${string/%substring/replacement}    如果$string的后缀匹配$substring, 那么就用$replacement来代替匹配到的$substring
+</code></pre><h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><p>我们在执行脚本时可以指定参数，在脚本内可以通过$n来获取参数，其中$0是执行的文件名，$1是你传进去的第一个参数。</p>
+<p>执行<code>/bin/sh test.sh xiuweikang</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo $0 $1</div></pre></td></tr></table></figure></p>
+<p>输出：<code>test.sh xiuweikang</code></p>
+<p>还可以通过其他特殊字符获取参数信息：</p>
+<blockquote>
+<p>$#    传递到脚本的参数个数<br> $<em>    以一个单字符串显示所有向脚本传递的参数。如”$</em>“用「”」括起来的情况、以”$1 $2 … $n”的形式输出所有参数。<br>$$    脚本运行的当前进程ID号<br>$!    后台运行的最后一个进程的ID号<br>$@    与$*相同，但是使用时加引号，并在引号中返回每个参数。<br>如”$@”用「”」括起来的情况、以”$1” “$2” … “$n” 的形式输出所有参数。<br>$-    显示Shell使用的当前选项，与set命令功能相同。<br>$?    显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。</p>
+</blockquote>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo "aaa" &gt; test.sh #可以通过&gt;来将文本输出到指定文件中，但是后面的文件会先被清空</div><div class="line">echo "aaa" &gt; test.sh #同上，但是不清楚，是追加</div></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>可以向其他语言一样定义函数，然后进行调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print() &#123;</div><div class="line">	echo hello,world</div><div class="line">&#125;</div><div class="line"></div><div class="line">print</div></pre></td></tr></table></figure></p>
+<p>输出：hello,world，同时可以传递参数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print() &#123;</div><div class="line">	echo hello,world</div><div class="line">	echo $<span class="number">1</span></div><div class="line">&#125;</div><div class="line">print <span class="number">1</span> <span class="number">2</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2016/11/07/shell学习/" data-title="shell学习" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="shell学习" data-url="//2016/11/07/shell学习/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2016/11/07/shell学习/" data-title="shell学习" data-url="//2016/11/07/shell学习/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -82,6 +82,14 @@
       <ul>
         
           <li>
+            <a href="/2016/11/10/Build-Variants-Merge-Manifests/">Build Variants &amp; Merge Manifests</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/07/shell学习/">shell学习</a>
+          </li>
+        
+          <li>
             <a href="/2016/09/14/gradle学习/">gradle学习</a>
           </li>
         
@@ -113,14 +121,6 @@
             <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
           </li>
         
-          <li>
-            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -131,7 +131,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -166,6 +166,88 @@
 </aside>
         
         <section id="main">
+  
+    <article id="post-Build-Variants-Merge-Manifests" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/10/Build-Variants-Merge-Manifests/" class="article-date">
+  <time datetime="2016-11-10T02:42:31.000Z" itemprop="datePublished">11月 10 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/10/Build-Variants-Merge-Manifests/">Build Variants &amp; Merge Manifests</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>目前有这样的一个情景：在开发过程中我们需要在整个应用启动的前面选择合适的环境，因此我们会将整个应用的启动界面替换成HostChooseActivity，将WelcomeActivity相应的intent-filter注释掉。而在上线时又需要将HostChooseActivity在Manifest文件里注释掉，将WelcomeActivity的intent-filter打开。本地还好，但是在jenkins上就很麻烦,比如当目前的代码不包含可选环境时，QA需要一个可选环境的包来进行测试，这时就得本地重新更改代码然后push、merge、Jenkins重新打包，流程很复杂。所以希望能够根据不同的build type来选择合适的Manifest，最后在官方文档里找到了解决方案，在这之前先简单介绍下预备知识。</p>
+<h2 id="Build-Variants"><a href="#Build-Variants" class="headerlink" title="Build Variants"></a>Build Variants</h2><p>我们知道在Android Studio中有一个Build Variants，它是根据我们在gradle文件里的buildTypes和productFlavors生成的，通过这个我们可以对我们的项目创建不同的版本。例如：可以针对不同的渠道替换一些资源文件，或者更改min Api levels。下面介绍下buildTypes和productFlavors。</p>
+<h3 id="配置Build-Types"><a href="#配置Build-Types" class="headerlink" title="配置Build Types"></a>配置Build Types</h3><p>当你创建一个Module时，AS会自动的创建debug和release这两种build types，其中debug并不会在gradle文件里显示，但其实是存在的，我们点击AS的Build Variants时会看见，平时开发时默认的就是这个模式，而且它的debuggable是为true的。下面是一个例子：<br>
+        
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+  
+        
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-shell学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/07/shell学习/" class="article-date">
+  <time datetime="2016-11-07T08:37:45.000Z" itemprop="datePublished">11月 7 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/07/shell学习/">shell学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第一个Shell脚本"><a href="#第一个Shell脚本" class="headerlink" title="第一个Shell脚本"></a>第一个Shell脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">echo &quot;Hello World !&quot;</div></pre></td></tr></table></figure>
+<p>“#!/bin/sh”用于告诉系统该用什么解释器执行，主要有两种：bash和sh。echo是用于打印的命令</p>
+<h3 id="运行Shell的两种方法"><a href="#运行Shell的两种方法" class="headerlink" title="运行Shell的两种方法"></a>运行Shell的两种方法</h3><h6 id="作为可执行程序"><a href="#作为可执行程序" class="headerlink" title="作为可执行程序"></a>作为可执行程序</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod +x ./test.sh #使脚本具有可执行权限</div><div class="line">./test.sh #执行脚本</div></pre></td></tr></table></figure>
+<h6 id="通过解释器直接执行"><a href="#通过解释器直接执行" class="headerlink" title="通过解释器直接执行"></a>通过解释器直接执行</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/bin/sh test.sh</div></pre></td></tr></table></figure>
+<p>当使用这种形式时就不需要在前面指定需要哪种解释器。<br>
+        
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
+
+  
+        
+      
+    </div>
+
+  
+</article>
+
+  
+
   
     <article id="post-gradle学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -449,102 +531,6 @@ git commit --amend &quot;second commit&quot;
 <h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><blockquote>
 <p>git stash 可以将目前分支的工作区的修改暂存到一个栈中，可以多次通过git stash压栈，同时可以通过<code>git stash list</code>查看栈，<code>git stash pop</code>出栈并将修改放入当前分支的工作区，<code>git stash apply stash@{id}</code>不出栈然后将修改放入当前分支的工作区，<code>git stash clear</code>清栈</p>
 </blockquote>
-
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-Retrofit分享" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/03/17/Retrofit分享/" class="article-date">
-  <time datetime="2016-03-17T11:39:30.000Z" itemprop="datePublished">3月 17 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Retrofit简介"><a href="#Retrofit简介" class="headerlink" title="Retrofit简介"></a>Retrofit简介</h2><p>Retrofit是Square开发的一个可以用于Android和Java的网络请求封装库。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
-<li>Retrofit可以利用接口，方法和注解来创建一个请求，方便管理。</li>
-<li>Retrofit速度较快<img src="http://www.jcodecraeer.com/uploads/20150418/1429351303115820.png" alt="image"></li>
-<li>可将response自动包装成Java对象</li>
-</ol>
-<h3 id="依赖配置"><a href="#依赖配置" class="headerlink" title="依赖配置"></a>依赖配置</h3><p>在1.x默认集成Gson库，不会集成OkHttp,如果需要OkHttp作为HTTP client，则需手动添加依赖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; OkHttp</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit:retrofit:1.9.0'</span></div><div class="line">    compile <span class="string">'com.squareup.okhttp:okhttp:2.7.2'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在2.0时默认集成OkHttp，不会集成Gson</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; Gson</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.0'</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-android-studio快捷键" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/17/android-studio快捷键/" class="article-date">
-  <time datetime="2016-02-17T12:53:52.000Z" itemprop="datePublished">2月 17 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>添加书签：F3<ul>
-<li>显示书签列表：cmd + F3</li>
-</ul>
-</li>
-<li>隐藏其他窗口:control + w（自定义）</li>
-<li>定位到父类的方法：cmd + u</li>
-<li>在finder中打开文件：cmd + 点击tab</li>
-<li>查看方法参数列表:cmd + p</li>
-<li>快速查看方法定义:cmd + y</li>
-<li>Esc：该操作仅仅把光标移回编辑器。<br>Shift + Esc：该操作会关闭当前面板，然后把光标移回到编辑器。</li>
-<li>按住Alt竖排选中</li>
-<li>语句补全:cmd + shift + enter</li>
-<li>代码补全时enter不对后面修改tab对后面修改</li>
-<li>cmd + alt + m 提取方法</li>
-<li>contral + alt + h查看调用层级</li>
-</ul>
 
       
     </div>

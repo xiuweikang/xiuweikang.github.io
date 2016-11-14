@@ -82,6 +82,14 @@
       <ul>
         
           <li>
+            <a href="/2016/11/10/Build-Variants-Merge-Manifests/">Build Variants &amp; Merge Manifests</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/07/shell学习/">shell学习</a>
+          </li>
+        
+          <li>
             <a href="/2016/09/14/gradle学习/">gradle学习</a>
           </li>
         
@@ -113,14 +121,6 @@
             <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
           </li>
         
-          <li>
-            <a href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -131,7 +131,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -166,6 +166,102 @@
 </aside>
         
         <section id="main">
+  
+    <article id="post-Retrofit分享" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/17/Retrofit分享/" class="article-date">
+  <time datetime="2016-03-17T11:39:30.000Z" itemprop="datePublished">3月 17 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Retrofit简介"><a href="#Retrofit简介" class="headerlink" title="Retrofit简介"></a>Retrofit简介</h2><p>Retrofit是Square开发的一个可以用于Android和Java的网络请求封装库。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>Retrofit可以利用接口，方法和注解来创建一个请求，方便管理。</li>
+<li>Retrofit速度较快<img src="http://www.jcodecraeer.com/uploads/20150418/1429351303115820.png" alt="image"></li>
+<li>可将response自动包装成Java对象</li>
+</ol>
+<h3 id="依赖配置"><a href="#依赖配置" class="headerlink" title="依赖配置"></a>依赖配置</h3><p>在1.x默认集成Gson库，不会集成OkHttp,如果需要OkHttp作为HTTP client，则需手动添加依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; OkHttp</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit:retrofit:1.9.0'</span></div><div class="line">    compile <span class="string">'com.squareup.okhttp:okhttp:2.7.2'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在2.0时默认集成OkHttp，不会集成Gson</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; Gson</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.0'</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+  
+        
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-android-studio快捷键" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/17/android-studio快捷键/" class="article-date">
+  <time datetime="2016-02-17T12:53:52.000Z" itemprop="datePublished">2月 17 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>添加书签：F3<ul>
+<li>显示书签列表：cmd + F3</li>
+</ul>
+</li>
+<li>隐藏其他窗口:control + w（自定义）</li>
+<li>定位到父类的方法：cmd + u</li>
+<li>在finder中打开文件：cmd + 点击tab</li>
+<li>查看方法参数列表:cmd + p</li>
+<li>快速查看方法定义:cmd + y</li>
+<li>Esc：该操作仅仅把光标移回编辑器。<br>Shift + Esc：该操作会关闭当前面板，然后把光标移回到编辑器。</li>
+<li>按住Alt竖排选中</li>
+<li>语句补全:cmd + shift + enter</li>
+<li>代码补全时enter不对后面修改tab对后面修改</li>
+<li>cmd + alt + m 提取方法</li>
+<li>contral + alt + h查看调用层级</li>
+</ul>
+
+      
+    </div>
+
+  
+</article>
+
+  
+
   
     <article id="post-Device-Compatibility" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -596,88 +692,6 @@ android:focusableInTouchMode=&quot;true&quot;
         
             
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-虚拟机类加载机制" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/29/虚拟机类加载机制/" class="article-date">
-  <time datetime="2015-07-29T01:42:00.000Z" itemprop="datePublished">7月 29 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/29/虚拟机类加载机制/">虚拟机类加载机制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h2><p><img src="http://img.blog.csdn.net/20140105211344671" alt=""></p>
-<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>加载时类加载过程的第一个阶段，在加载阶段，虚拟机需要完成以下三件事情：</p>
-<p>1、通过一个类的全限定名来获取其定义的二进制字节流。</p>
-<p>2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</p>
-<p>3、在Java内存中中生成一个代表这个类的java.lang.Class对象，作为对方法区中这些数据的访问入口。（对HotSpot来说class对象比较特殊，它虽然是对象，但是存放在<code>方法区</code>里面）</p>
-<blockquote>
-<p>class对象会将作为程序访问方法区中的这些类型数据的外部接口<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-class文件结构" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/29/class文件结构/" class="article-date">
-  <time datetime="2015-07-29T00:04:07.000Z" itemprop="datePublished">7月 29 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/29/class文件结构/">class文件结构</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://blog.csdn.net/luanlouis/article/details/39960815">JAVA虚拟机原理图解</a><br><img src="http://img.blog.csdn.net/20141008125149484?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVhbmxvdWlz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
 
   
         

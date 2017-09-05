@@ -82,43 +82,43 @@
       <ul>
         
           <li>
-            <a href="/2016/11/10/Build-Variants-Merge-Manifests/">AndroidManifests文件合并</a>
+            <a href="/2017/05/31/非默认版本发布实践/">非默认版本发布实践</a>
           </li>
         
           <li>
-            <a href="/2016/11/07/shell学习/">shell学习</a>
+            <a href="/2017/04/13/jenkins打包详解/">jenkins打包详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/14/gradle学习/">gradle学习</a>
+            <a href="/2017/04/05/绘画机制/">SufaceView详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/01/工具类交流/">工具类交流</a>
+            <a href="/2017/03/19/jenkins打包job/">jenkins打包job</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/View基础相关/">View基础相关</a>
+            <a href="/2017/03/08/WindowManager详解/">WindowManager详解</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/Android动画详解/">Android动画详解</a>
+            <a href="/2017/03/02/常用adb命令/">常用adb 命令</a>
           </li>
         
           <li>
-            <a href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+            <a href="/2017/02/27/Android依赖管理/">Android依赖管理</a>
           </li>
         
           <li>
-            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+            <a href="/2017/02/22/Android内存分析/">Android内存分析</a>
           </li>
         
           <li>
-            <a href="/2016/05/15/git笔记/">git笔记</a>
+            <a href="/2017/01/11/Lint学习/">Lint学习</a>
           </li>
         
           <li>
-            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+            <a href="/2016/12/21/Android-v2签名/">Android</a>
           </li>
         
       </ul>
@@ -131,7 +131,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -167,10 +167,10 @@
         
         <section id="main">
   
-    <article id="post-虚拟机类加载机制" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android动画详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/29/虚拟机类加载机制/" class="article-date">
-  <time datetime="2015-07-29T01:42:00.000Z" itemprop="datePublished">7月 29 2015</time>
+    <a href="/2016/08/03/Android动画详解/" class="article-date">
+  <time datetime="2016-08-03T02:14:52.000Z" itemprop="datePublished">8月 3 2016</time>
 </a>
     
   </div>
@@ -181,7 +181,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/29/虚拟机类加载机制/">虚拟机类加载机制</a>
+      <a class="article-title" href="/2016/08/03/Android动画详解/">Android动画详解</a>
     </h1>
   
 
@@ -189,16 +189,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h2><p><img src="http://img.blog.csdn.net/20140105211344671" alt=""></p>
-<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>加载时类加载过程的第一个阶段，在加载阶段，虚拟机需要完成以下三件事情：</p>
-<p>1、通过一个类的全限定名来获取其定义的二进制字节流。</p>
-<p>2、将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</p>
-<p>3、在Java内存中中生成一个代表这个类的java.lang.Class对象，作为对方法区中这些数据的访问入口。（对HotSpot来说class对象比较特殊，它虽然是对象，但是存放在<code>方法区</code>里面）</p>
-<blockquote>
-<p>class对象会将作为程序访问方法区中的这些类型数据的外部接口<br>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>动画主要分为三种：View动画、帧动画、属性动画，分别介绍：</p>
+<h4 id="View动画"><a href="#View动画" class="headerlink" title="View动画"></a>View动画</h4><p>View动画的作用对象是View,主要包含<code>平移动画</code>、<code>缩放动画</code>、<code>旋转动画</code>、<code>透明度动画</code>。分别对应<code>TranslateAnimation</code>、<code>ScaleAnimation</code>、<code>RotateAnimation</code>、<code>AlphaAnimation</code>。可以通过XML来实现也可以通过代码,需要注意一点的是View动画最大的缺点是不能交互，View自身的属性并不会发生变化。例如对一个放大的View进行点击，点击区域其实还是原本View的点击区域。<br>
         
             
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
   
         
@@ -211,10 +206,10 @@
   
 
   
-    <article id="post-class文件结构" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-View的measure、layout、draw过程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/29/class文件结构/" class="article-date">
-  <time datetime="2015-07-29T00:04:07.000Z" itemprop="datePublished">7月 29 2015</time>
+    <a href="/2016/07/26/View的measure、layout、draw过程/" class="article-date">
+  <time datetime="2016-07-26T11:59:00.000Z" itemprop="datePublished">7月 26 2016</time>
 </a>
     
   </div>
@@ -225,7 +220,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/29/class文件结构/">class文件结构</a>
+      <a class="article-title" href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
     </h1>
   
 
@@ -233,10 +228,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://blog.csdn.net/luanlouis/article/details/39960815">JAVA虚拟机原理图解</a><br><img src="http://img.blog.csdn.net/20141008125149484?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHVhbmxvdWlz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>View的整个过程是从ViewRoot开始的，实现类是ViewRootImpl类，在这个类中通过<code>setView（）</code>方法添加DecorView，之后以DecorView为rootView。在ViewRootImpl类中通过<code>performTraversals()</code>方法，经过measure、layout、draw三个过程最终将View绘制出来。<br>
         
             
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
   
         
@@ -249,10 +244,10 @@
   
 
   
-    <article id="post-虚拟机性能监控与故障处理工具" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-effective-java学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/28/虚拟机性能监控与故障处理工具/" class="article-date">
-  <time datetime="2015-07-28T02:35:21.000Z" itemprop="datePublished">7月 28 2015</time>
+    <a href="/2016/07/08/effective-java学习笔记/" class="article-date">
+  <time datetime="2016-07-08T08:43:48.000Z" itemprop="datePublished">7月 8 2016</time>
 </a>
     
   </div>
@@ -263,7 +258,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/28/虚拟机性能监控与故障处理工具/">虚拟机性能监控与故障处理工具</a>
+      <a class="article-title" href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
     </h1>
   
 
@@ -271,19 +266,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="jps-虚拟机进程状况工具"><a href="#jps-虚拟机进程状况工具" class="headerlink" title="jps:虚拟机进程状况工具"></a>jps:虚拟机进程状况工具</h3><p>可以看到该JAVA Application所使用的操作系统的进程ID</p>
-<p>常用参数</p>
-<ul>
-<li>-l 输出主类的全名，如果执行Jar包，则输出Jar的路径</li>
-<li>-v 输出虚拟机进程启动时的JVM参数</li>
+        <h3 id="1-考虑用静态工厂方法代替构造器"><a href="#1-考虑用静态工厂方法代替构造器" class="headerlink" title="1.考虑用静态工厂方法代替构造器"></a>1.考虑用静态工厂方法代替构造器</h3><ul>
+<li>静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()</li>
+<li>静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)</li>
+<li>静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法即可</li>
+<li>在创建参数化实例的时候，可以使代码变得更加简洁。比如：</li>
 </ul>
-<p><img src="http://ww1.sinaimg.cn/large/b00f9334jw1euiarni2ztj20hl08x751.jpg" alt=""><br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; m = <span class="keyword">new</span> HashMap&lt;String, List&lt;String&gt;&gt;();</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; <span class="function">HashMap&lt;K, V&gt; <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HashMap&lt;K ,V&gt;();</div><div class="line">&#125;</div><div class="line">Map&lt;String, List&lt;String&gt;&gt; m = HashMap.newInstance();</div></pre></td></tr></table></figure>
+<h3 id="2-在遇到多个构造器参数时考虑用Builder"><a href="#2-在遇到多个构造器参数时考虑用Builder" class="headerlink" title="2.在遇到多个构造器参数时考虑用Builder"></a>2.在遇到多个构造器参数时考虑用Builder</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">    <span class="keyword">private</span> String mName;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mHeight;</div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(<span class="keyword">int</span> age, String name, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">        mAge = age;</div><div class="line">        mName = name;</div><div class="line">        mHeight = height;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>例如一个对象有多个属性需要设置，我们可以在构造方法中设置，如下，但是在调用时会<br>Person person = new Person(19, “名字”， 180);如果参数一旦变多则维护起来略麻烦，这时会考虑使用set方法，但是使用set方法在多线程中是不安全的，这时可以考虑采用Builder模式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">    <span class="keyword">private</span> String mName;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mSex;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">        mAge = builder.mAge;</div><div class="line">        mName = builder.mName;</div><div class="line">        mSex = builder.mSex;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">        <span class="keyword">private</span> String mName;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mSex;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">name</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">            mName = name;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">age</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">            mAge = age;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">sex</span><span class="params">(<span class="keyword">int</span> sex)</span> </span>&#123;</div><div class="line">            mSex = sex;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Person <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Person(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//调用时</span></div><div class="line"> Person person = <span class="keyword">new</span> Person.Builder()</div><div class="line">                .age(<span class="number">19</span>)</div><div class="line">                .name(<span class="string">"名字"</span>)</div><div class="line">                .sex(<span class="number">1</span>)</div><div class="line">                .build();</div></pre></td></tr></table></figure>
+<p>通过上面这种方式很清晰。</p>
+<h3 id="3-用私有构造器或者枚举属性强化Singleton属性"><a href="#3-用私有构造器或者枚举属性强化Singleton属性" class="headerlink" title="3.用私有构造器或者枚举属性强化Singleton属性"></a>3.用私有构造器或者枚举属性强化Singleton属性</h3><p>在java1.5后可以通过枚举来实现单例,这种方法简洁，而且创建的过程是线程安全的，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">&#125;</div><div class="line">  Person.INSTANCE.setName(<span class="string">"kevin"</span>);</div><div class="line">  System.out.println(Person.INSTANCE.getName());</div></pre></td></tr></table></figure></p>
+<h3 id="4-通过私有构造器强化不可实例化的能力"><a href="#4-通过私有构造器强化不可实例化的能力" class="headerlink" title="4.通过私有构造器强化不可实例化的能力"></a>4.通过私有构造器强化不可实例化的能力</h3><p>对于一些工具类来说，它只存在静态方法，这时它并不想被实例化，因此最好强化不可实例化的能力，给它添加私有构造器。</p>
+<h3 id="5-避免创建不必要的对象"><a href="#5-避免创建不必要的对象" class="headerlink" title="5.避免创建不必要的对象"></a>5.避免创建不必要的对象</h3><pre><code>String s = new String(&quot;kevin&quot;);
+</code></pre><p>在这里”kevin” 本来就是一个String对象，这时就多创建了一个对象。<br>同时除了重用不可变对象之外，也可以重用已知不会被修改的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date birthDate;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBabyBoomer</span><span class="params">()</span> </span>&#123;</div><div class="line">        Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone(<span class="string">"GMT"</span>));</div><div class="line">        gmtCal.set(<span class="number">1946</span>, Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        Date boomStart = gmtCal.getTime();</div><div class="line">        gmtCal.set(<span class="number">1965</span> ,Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        Date boomEnd = gmtCal.getTime();</div><div class="line">        <span class="keyword">return</span> birthDate.compareTo(boomStart) &gt;= <span class="number">0</span> </div><div class="line">                &amp;&amp; birthDate.compareTo(boomEnd) &lt; <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//在这里start和end都是不变的，而每次比较时都会生成2个Date同样的对象。</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date birthDate;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Date boomStart;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Date boomEnd;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone(<span class="string">"GMT"</span>));</div><div class="line">        gmtCal.set(<span class="number">1946</span>, Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        boomStart = gmtCal.getTime();</div><div class="line">        gmtCal.set(<span class="number">1965</span> ,Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        boomEnd = gmtCal.getTime();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBabyBoomer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> birthDate.compareTo(boomStart) &gt;= <span class="number">0</span></div><div class="line">                &amp;&amp; birthDate.compareTo(boomEnd) &lt; <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为Java的自动装箱机制导致下面的代码会产生很多对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Long l = <span class="number">0L</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i &lt; Long.MAX_VALUE; i++) &#123;</div><div class="line">      l += i;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="6-消除过期的引用"><a href="#6-消除过期的引用" class="headerlink" title="6.消除过期的引用"></a>6.消除过期的引用</h3><p>Java</p>
 
-  
-        
       
     </div>
 
@@ -293,10 +294,10 @@
   
 
   
-    <article id="post-JVM垃圾收集机制" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-git笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/28/JVM垃圾收集机制/" class="article-date">
-  <time datetime="2015-07-28T01:55:34.000Z" itemprop="datePublished">7月 28 2015</time>
+    <a href="/2016/05/15/git笔记/" class="article-date">
+  <time datetime="2016-05-15T08:23:12.000Z" itemprop="datePublished">5月 15 2016</time>
 </a>
     
   </div>
@@ -307,7 +308,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/28/JVM垃圾收集机制/">JVM垃圾收集机制</a>
+      <a class="article-title" href="/2016/05/15/git笔记/">git笔记</a>
     </h1>
   
 
@@ -315,21 +316,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>因为通过引用计数的方法无法解决循环引用的问题，所以目前的虚拟机都是通过可达性分析算法来判断一个对象是否该回收。</p>
+        <h3 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h3><blockquote>
+<p>git commit –amend 用当前暂存区的快照提交，同时可以对上次的commit信息进行修改</p>
 </blockquote>
-<p>可达性分析算法的基本思路就是通过一系列的GC Roots对象作为起始点，通过这个节点向下搜索，如果一个对象没有一条从GC Roots到该对象的路径，则不可达，即可被回收。</p>
-<h2 id="JAVA中的引用："><a href="#JAVA中的引用：" class="headerlink" title="JAVA中的引用："></a>JAVA中的引用：</h2><ul>
-<li>强引用：永远不会被回收的引用对象 Object o = new Object()</li>
-<li>软引用：在OOM之前会把这些对象作为垃圾对象进行回收，如果还没有足够的内存，则OOM，通过SoftReference类来实现</li>
-<li>弱引用： 存活到下一次垃圾收集发生之前WeakReference实现</li>
-<li>虚引用：最弱的，唯一目的是在对象被回收时收到一个系统通知。 PhantomReference实现。
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+<pre><code>git commit -m &quot;first commit&quot;
+git add forget_file.txt
+git commit --amend &quot;second commit&quot;
+//以上将漏掉的文件添加进暂存区，但是commit log上只存在second commit
+</code></pre><blockquote>
+<p>git reset HEAD file 将当前文件从暂存区回到工作区<br>git checkout – file 将在工作区进行修改的文件还原</p>
+</blockquote>
+<h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><blockquote>
+<p>git reset [HEAD^][commit id] 回退到上一个版本或commit id指定的版本，将之前的修改放入工作区。 git reset –hard [HEAD^][commit id] 回退，但是工作区不包含修改<br>git reflog可以查看历史commit id,用于重置版本回退</p>
+</blockquote>
+<h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><blockquote>
+<p>git stash 可以将目前分支的工作区的修改暂存到一个栈中，可以多次通过git stash压栈，同时可以通过<code>git stash list</code>查看栈，<code>git stash pop</code>出栈并将修改放入当前分支的工作区，<code>git stash apply stash@{id}</code>不出栈然后将修改放入当前分支的工作区，<code>git stash clear</code>清栈</p>
+</blockquote>
 
-  
-        
       
     </div>
 
@@ -339,10 +342,10 @@
   
 
   
-    <article id="post-JVM原理" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Retrofit分享" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/28/JVM原理/" class="article-date">
-  <time datetime="2015-07-27T23:40:21.000Z" itemprop="datePublished">7月 28 2015</time>
+    <a href="/2016/03/17/Retrofit分享/" class="article-date">
+  <time datetime="2016-03-17T11:39:30.000Z" itemprop="datePublished">3月 17 2016</time>
 </a>
     
   </div>
@@ -353,7 +356,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/28/JVM原理/">JVM内存模型</a>
+      <a class="article-title" href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
     </h1>
   
 
@@ -361,56 +364,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://img.blog.csdn.net/20141013141216040" alt=""><br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-java基础知识" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/12/java基础知识/" class="article-date">
-  <time datetime="2015-07-12T07:47:00.000Z" itemprop="datePublished">7月 12 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/12/java基础知识/">java基础知识</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java与C/C++不同点：</p>
-<p> &gt;</p>
-<ol>
-<li>Java为解释型语言  程序经java编译器编译成字节码，然后在JVM上解释执行，C/C++则是经过编译和链接后生成可执行的二进制文件。所以C/C++一般比JAVA快，但不具备平台无关性。</li>
-<li>Java不支持多继承，无指针，无goto但保留goto关键字</li>
+        <h2 id="Retrofit简介"><a href="#Retrofit简介" class="headerlink" title="Retrofit简介"></a>Retrofit简介</h2><p>Retrofit是Square开发的一个可以用于Android和Java的网络请求封装库。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>Retrofit可以利用接口，方法和注解来创建一个请求，方便管理。</li>
+<li>Retrofit速度较快<img src="http://www.jcodecraeer.com/uploads/20150418/1429351303115820.png" alt="image"></li>
+<li>可将response自动包装成Java对象</li>
 </ol>
-<p>public static void main(String[] args)为程序的入口地址，参数args为开发人员在命令行状态下与程序交互提供了一种手段</p>
-<p>Java程序初始化过程：</p>
-<p>（父类静态变量 |父类静态代码块） （子类静态变量 |子类静态代码块） 父类非静态变量 父类非静态代码块 父类构造函数 子类非静态变量  子类非静态代码块 子类构造函数<br>
+<h3 id="依赖配置"><a href="#依赖配置" class="headerlink" title="依赖配置"></a>依赖配置</h3><p>在1.x默认集成Gson库，不会集成OkHttp,如果需要OkHttp作为HTTP client，则需手动添加依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; OkHttp</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit:retrofit:1.9.0'</span></div><div class="line">    compile <span class="string">'com.squareup.okhttp:okhttp:2.7.2'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在2.0时默认集成OkHttp，不会集成Gson</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; Gson</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.0'</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
         
             
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
   
         
@@ -423,10 +389,10 @@
   
 
   
-    <article id="post-集合类解析" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-android-studio快捷键" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/11/集合类解析/" class="article-date">
-  <time datetime="2015-07-11T12:36:46.000Z" itemprop="datePublished">7月 11 2015</time>
+    <a href="/2016/02/17/android-studio快捷键/" class="article-date">
+  <time datetime="2016-02-17T12:53:52.000Z" itemprop="datePublished">2月 17 2016</time>
 </a>
     
   </div>
@@ -437,7 +403,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/集合类解析/">集合类解析</a>
+      <a class="article-title" href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
     </h1>
   
 
@@ -445,14 +411,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JAVA集合类详解"><a href="#JAVA集合类详解" class="headerlink" title="JAVA集合类详解"></a>JAVA集合类详解</h1><p><img src="http://img.blog.csdn.net/20150710085816164" alt="集合框架图"></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/源码解析/">源码解析</a></li></ul>
+        <ul>
+<li>添加书签：F3<ul>
+<li>显示书签列表：cmd + F3</li>
+</ul>
+</li>
+<li>隐藏其他窗口:control + w（自定义）</li>
+<li>定位到父类的方法：cmd + u</li>
+<li>在finder中打开文件：cmd + 点击tab</li>
+<li>查看方法参数列表:cmd + p</li>
+<li>快速查看方法定义:cmd + y</li>
+<li>Esc：该操作仅仅把光标移回编辑器。<br>Shift + Esc：该操作会关闭当前面板，然后把光标移回到编辑器。</li>
+<li>按住Alt竖排选中</li>
+<li>语句补全:cmd + shift + enter</li>
+<li>代码补全时enter不对后面修改tab对后面修改</li>
+<li>cmd + alt + m 提取方法</li>
+<li>contral + alt + h查看调用层级</li>
+</ul>
 
-  
-        
       
     </div>
 
@@ -462,10 +438,10 @@
   
 
   
-    <article id="post-TCP-IP详解笔记-9" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Device-Compatibility" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/13/TCP-IP详解笔记-9/" class="article-date">
-  <time datetime="2015-05-13T07:48:05.000Z" itemprop="datePublished">5月 13 2015</time>
+    <a href="/2015/12/27/Device-Compatibility/" class="article-date">
+  <time datetime="2015-12-27T09:20:49.000Z" itemprop="datePublished">12月 27 2015</time>
 </a>
     
   </div>
@@ -476,7 +452,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/13/TCP-IP详解笔记-9/">TCP/IP详解笔记(9)</a>
+      <a class="article-title" href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
     </h1>
   
 
@@ -484,13 +460,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>TFTP简单文本传输协议和BOOTP引导程序协议<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li></ul>
+        <h2 id="Device-feature"><a href="#Device-feature" class="headerlink" title="Device feature"></a>Device feature</h2><p>Android系统对每个硬件或者软件 feature定义了相应feature id，如果你不希望没有某个feature的设备下载你的app时，你可以在manifest里写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span> &gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">uses-feature</span> <span class="attr">android:name</span>=<span class="string">"android.hardware.sensor.compass"</span></span></div><div class="line">                  <span class="attr">android:required</span>=<span class="string">"true"</span> /&gt;</div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>也可以设置成false，表明不需要，可以在运行时动态检查：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">PackageManager pm = getPackageManager();</div><div class="line"><span class="keyword">if</span> (!pm.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS)) &#123;</div><div class="line">    <span class="comment">// This device does not have a compass, turn off the compass feature</span></div><div class="line">    disableCompassFeature();<span class="comment">//自定义方法处理相应逻辑</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Platform-version"><a href="#Platform-version" class="headerlink" title="Platform version"></a>Platform version</h2><p>Android是向前兼容的，4.0是兼容2.3的但是却无法跑4.0之后的，因此如果自己的app用到了比较新的api，这时是无法在旧版本上跑的，因此你需要声明你app所支持的最低sdk版本，target版本则是你app充分利用的最高版本，例如当你的app的tagrgetVersion是19，但是用到的某个api在21时更新了，这时你的app会跑19，而不会跑21，这时就需要注意targetSdkVersion这个属性了</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-sdk</span> <span class="attr">android:minSdkVersion</span>=<span class="string">"14"</span> <span class="attr">android:targetSdkVersion</span>=<span class="string">"21"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.HONEYCOMB) &#123;</div><div class="line">    <span class="comment">// Running on something older than API level 11, so disable</span></div><div class="line">    <span class="comment">// the drag/drop features that use ClipboardManager APIs</span></div><div class="line">    disableDragAndDrop();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-  
-        
       
     </div>
 
@@ -500,10 +477,10 @@
   
 
   
-    <article id="post-TCP-IP详解笔记-8" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android基础" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/13/TCP-IP详解笔记-8/" class="article-date">
-  <time datetime="2015-05-13T07:48:05.000Z" itemprop="datePublished">5月 13 2015</time>
+    <a href="/2015/12/06/Android基础/" class="article-date">
+  <time datetime="2015-12-06T15:35:10.000Z" itemprop="datePublished">12月 6 2015</time>
 </a>
     
   </div>
@@ -514,7 +491,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/13/TCP-IP详解笔记-8/">TCP/IP详解笔记(8)</a>
+      <a class="article-title" href="/2015/12/06/Android基础/">Android Training重点</a>
     </h1>
   
 
@@ -522,13 +499,210 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>广播、多播 IGMP协议 DNS协议</p>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li></ul>
+        <h2 id="适配"><a href="#适配" class="headerlink" title="适配"></a>适配</h2><p>Android屏幕有两种属性,size 和 density</p>
+<blockquote>
+<p>size: small,normal,large,xlarge<br>density: low (ldpi), medium (mdpi), high (hdpi), extra high (xhdpi)</p>
+</blockquote>
+<p>屏幕的布局(landscape or portrait)也被认为是不同的</p>
+<p>Android系统会根据当前设备的信息来获取相应的资源。 例如将某个布局资源放在res/layout-large下时，当屏幕为large时，会取这里的。</p>
+<p><a href="http://developer.android.com/intl/zh-cn/guide/topics/resources/providing-resources.html#BestMatch" target="_blank" rel="external">提供资源列表</a></p>
+<blockquote>
+<p>文字：txtName.setText(getResources().getText(R.string.name));</p>
+<p>图片：imgIcon.setBackgroundDrawableResource(R.drawable.icon);</p>
+<p>颜色：txtName.setTextColor(getResouces().getColor(R.color.red));</p>
+<p>布局：setContentView(R.layout.main);</p>
+<p>控件：txtName = (TextView)findViewById(R.id.txt_name);</p>
+</blockquote>
+<h2 id="View相关"><a href="#View相关" class="headerlink" title="View相关"></a>View相关</h2><h3 id="View基础"><a href="#View基础" class="headerlink" title="View基础"></a>View基础</h3><h3 id="ActionBar"><a href="#ActionBar" class="headerlink" title="ActionBar"></a>ActionBar</h3><p>ActionBar的overflow 并不是在每个设备上都显示的，如果有menu物理键时则不会显示，可以通过如下设置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setOverflowShowingAlways</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		ViewConfiguration config = ViewConfiguration.get(<span class="keyword">this</span>);</div><div class="line">		Field menuKeyField = ViewConfiguration.class.getDeclaredField(<span class="string">"sHasPermanentMenuKey"</span>);</div><div class="line">		menuKeyField.setAccessible(<span class="keyword">true</span>);</div><div class="line">		menuKeyField.setBoolean(config, <span class="keyword">false</span>);</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="LayoutInflater"><a href="#LayoutInflater" class="headerlink" title="LayoutInflater"></a>LayoutInflater</h3><blockquote>
+<p>inflate(int resource, ViewGroup root, boolean attachToRoot) </p>
+<ol>
+<li>如果root为null，attachToRoot将失去作用，设置任何值都没有意义。</li>
+<li>如果root不为null，attachToRoot设为true，则会给加载的布局文件的指定一个父布局，即root。</li>
+<li>如果root不为null，attachToRoot设为false，则会将布局文件最外层的所有layout属性以root为父容器进行设置，当该view被添加到父view当中时，这些layout属性会自动生效。</li>
+</ol>
+</blockquote>
+<h3 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h3><ol>
+<li><strong>android:layout_weight</strong>的真实含义是:一旦View设置了该属性(假设有效的情况下)，那么该 View的宽度等于原有宽度(android:layout_width)加上剩余空间的占比！对于所有的View默认的权重是0，如果只设置了一个View的权重大于0，则该View将占据除去别的View本身占据的空间的所有剩余空间。因此这里设置EditText的权重为1，使其能够占据除了按钮之外的所有空间。</li>
+</ol>
+<ol>
+<li>当 android:orientation=”vertical” 时， 只有水平方向的设置才起作用，垂直方向的设置不起作用。<br>即：layout_gravity = left，right，center_horizontal 是生效的。<br>当 android:orientation=”horizontal” 时， 只有垂直方向的设置才起作用，水平方向的设置不起作用。<br>即：top，bottom，center_vertical 是生效的。<br>3.<strong>margin与padding的区别</strong>:首先margin代表的是偏移,比如marginleft = “5dp”表示组件离容器左边缘偏移5dp; 而padding代表的则是填充,而填充的对象针对的是组件中的元素,比如TextView中的文字<br>比如为TextView设置paddingleft = “5dp”,则是在组件里的元素的左边填充5dp的空间！<br>margin针对的是容器中的组件，而padding针对的是组件中的元素，要区分开来！</li>
+</ol>
+<h3 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> TextView txtZQD;  </div><div class="line"></div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_main);  </div><div class="line">        txtZQD = (TextView) findViewById(R.id.txtZQD);  </div><div class="line">        Drawable[] drawable = txtZQD.getCompoundDrawables();  </div><div class="line">        <span class="comment">// 数组下表0~3,依次是:左上右下  </span></div><div class="line">        drawable[<span class="number">1</span>].setBounds(<span class="number">100</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>);  </div><div class="line">        txtZQD.setCompoundDrawables(drawable[<span class="number">0</span>], drawable[<span class="number">1</span>], drawable[<span class="number">2</span>],  </div><div class="line">                drawable[<span class="number">3</span>]);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>①Drawable[] drawable = txtZQD.getCompoundDrawables( );<br>获得四个不同方向上的图片资源,数组元素依次是:左上右下的图片<br>②drawable1.setBounds(100, 0, 200, 200);<br>接着获得资源后,可以调用setBounds设置左上右下坐标点,比如这里设置了代表的是:<br>长是:从离文字最左边开始100dp处到200dp处<br>宽是:从文字上方0dp处往上延伸200dp!<br>③txtZQD.setCompoundDrawables(drawable[0], drawable1, drawable2,<br>drawable3);为TextView重新设置drawable数组!没有图片可以用null代替哦!<br>PS：另外，从上面看出我们也可以直接在Java代码中调用setCompoundDrawables为<br>TextView设置图片！</p>
+</blockquote>
+<ul>
+<li>TextView在XML中可以设置<code>autoLink</code>属性，值如果是all，则根据协议头匹配。 在java代码中：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TextView txt = (TextView) findViewById(R.id.txt_link);</div><div class="line">txt.setAutoLinkMask(Linkify.ALL);</div><div class="line">txt.setMovementMethod(LinkMovementMethod.getInstance());<span class="comment">//必须存在，此方法在需要响应用户事件时使用，如点击一个电话号码就跳转到拨号页面。如果不执行这个方法是不会响应事件的，即便文本看着已经是下划线蓝色字了</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>TextView同时还支持Html标签，通过<code>setText(Html.fromHtml(....))</code> 设置。常用有：</p>
+<pre><code>&lt;font&gt;：设置颜色和字体。
+&lt;big&gt;：设置字体大号
+&lt;small&gt;：设置字体小号
+&lt;i&gt;&lt;b&gt;：斜体粗体
+&lt;a&gt;：连接网址
+&lt;img&gt;：图片
+</code></pre></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">TextView t1 = (TextView)findViewById(R.id.txtOne);</div><div class="line">String s1 = <span class="string">"&lt;font color='blue'&gt;&lt;b&gt;百度一下，你就知道~：&lt;/b&gt;&lt;/font&gt;&lt;br&gt;"</span>;</div><div class="line">s1 += <span class="string">"&lt;a href = 'http://www.baidu.com'&gt;百度&lt;/a&gt;"</span>;</div><div class="line">t1.setText(Html.fromHtml(s1));</div><div class="line">t1.setMovementMethod(LinkMovementMethod.getInstance());<span class="comment">//如果想链接有效时设置</span></div></pre></td></tr></table></figure>
+<ul>
+<li>除了上面的HTML可以定制我们TextView的样式外，还可以使用SpannableString和SpannableStringBuilder来完成，两者区别：前者针对的是不可变文本，而后者则是针对可变文本</li>
+</ul>
+<ul>
+<li><p>SpannableString可供我们使用的API有下面这些：</p>
+<ul>
+<li><p>BackgroundColorSpan 背景色</p>
+</li>
+<li><p>ClickableSpan 文本可点击，有点击事件</p>
+</li>
+<li><p>ForegroundColorSpan 文本颜色（前景色）</p>
+</li>
+<li><p>MaskFilterSpan 修饰效果，如模糊(BlurMaskFilter)、浮雕(EmbossMaskFilter)</p>
+</li>
+<li><p>MetricAffectingSpan 父类，一般不用</p>
+</li>
+<li><p>RasterizerSpan 光栅效果</p>
+</li>
+<li><p>StrikethroughSpan 删除线（中划线）</p>
+</li>
+<li><p>SuggestionSpan 相当于占位符</p>
+</li>
+<li><p>UnderlineSpan 下划线</p>
+</li>
+<li><p>AbsoluteSizeSpan 绝对大小（文本字体）</p>
+</li>
+<li><p>DynamicDrawableSpan 设置图片，基于文本基线或底部对齐。</p>
+</li>
+<li><p>ImageSpan 图片</p>
+</li>
+<li><p>RelativeSizeSpan 相对大小（文本字体）</p>
+</li>
+<li><p>ReplacementSpan 父类，一般不用</p>
+</li>
+<li><p>ScaleXSpan 基于x轴缩放</p>
+</li>
+<li><p>StyleSpan 字体样式：粗体、斜体等</p>
+</li>
+<li><p>SubscriptSpan 下标（数学公式会用到）</p>
+</li>
+<li><p>SuperscriptSpan 上标（数学公式会用到）</p>
+</li>
+<li><p>TextAppearanceSpan 文本外貌（包括字体、大小、样式和颜色）</p>
+</li>
+<li><p>TypefaceSpan 文本字体</p>
+</li>
+<li><p>URLSpan 文本超链接</p>
+</li>
+</ul>
+</li>
+<li><p>实现滚动效果 </p>
+</li>
+</ul>
+<pre><code class="xml">android:ellipsize=&quot;marquee&quot;
+android:focusable=&quot;true&quot;
+android:focusableInTouchMode=&quot;true&quot;
+</code></pre>
+<ul>
+<li><p>字间距：</p>
+<ul>
+<li>android:textScaleX：调节字间距的，默认值1.0f，值是float</li>
+<li>Java中setScaleX(2.0f); </li>
+</ul>
+</li>
+<li><p>行间距：<br>Android系统中TextView默认显示中文时会比较紧凑，为了让每行保持的行间距</p>
+<ul>
+<li>android:lineSpacingExtra：设置行间距，如”3dp” </li>
+<li>android:lineSpacingMultiplier：设置行间距的倍数，如”1.2”</li>
+<li>Java代码中可以通过: setLineSpacing方法来设置</li>
+</ul>
+</li>
+</ul>
+<h3 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h3><ul>
+<li>android:selectAllOnFocus=”true” 当EditText获得焦点后会全选文本</li>
+<li>inputType 限制输入类型 如 phone</li>
+<li>EditText默认是多行显示的，并且能够自动换行，即当一行显示不完的时候，他会自动换到第二行</li>
+<li>另外EditText还为我们提供了设置英文字母大写类型的属性：android:capitalize<br>默认none，提供了三个可选值：<ul>
+<li>sentences：仅第一个字母大写</li>
+<li>words：每一个单词首字母大小，用空格区分单词</li>
+<li>characters:每一个英文字母都大写</li>
+</ul>
+</li>
+<li>android:windowSoftInputMode<br>Activity主窗口与软键盘的交互模式，可以用来避免输入法面板遮挡问题，Android1.5后的一个新特性。 </li>
+</ul>
+<h3 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h3><ul>
+<li>clickable在xml设置成false时，扔可点击触发事件，在java中则不会触发，enable则完全不可点击，并且有置灰效果</li>
+<li>shape 可以理解成 drawable资源，可以在selector中使用</li>
+</ul>
+<h3 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h3><ul>
+<li>①background通常指的都是背景,而src指的是内容!! </li>
+<li>②当使用src填入图片时,是按照图片大小直接填充,并不会进行拉伸<br>而使用background填入图片,则是会根据ImageView给定的宽度来进行拉伸 </li>
+<li>Java代码中设置blackground和src属性:<ul>
+<li>前景(对应src属性):setImageDrawable( ); </li>
+<li>背景(对应background属性):setBackgroundDrawable( );</li>
+</ul>
+</li>
+</ul>
+<h3 id="ViewPager"><a href="#ViewPager" class="headerlink" title="ViewPager"></a>ViewPager</h3><ul>
+<li>mViewPager.setOffscreenPageLimit(1); 可以保存一页的状态，在第一次时，会调用两个页面的响应的oncreate()，onResume(). 默认是1.</li>
+<li>和ViewFlipper的区别：ViewFlipper继承ViewAnimator，切换view的时候是有动画效果的，适合做ppt，多界面的程序欢迎引导界面，算是个轻量级的组件，适合展示静态数据，少量数据。<br>ViewPager继承ViewGroup。看官网描述，这货和Fragment是好搭档，Fragment有自己的生命周期。也就是说ViewPager更适用复杂的视图切换，而且Viewpager有自己的adapter，这也让其适应复杂对象，实现数据的动态加载。</li>
+</ul>
+<h3 id="OnNewIntent"><a href="#OnNewIntent" class="headerlink" title="OnNewIntent"></a>OnNewIntent</h3><ul>
+<li>在当前Acticity A跳转到当前Activity A时，如果A是singleTop时，则会回调A的OnNewIntent，其他页跳转到改页面时不会回调</li>
+<li>Activity B为singleTask时，从其他Activity跳转到B时，如果在栈中存在则它之上的Activity出栈，并回调OnNewIntent(),不存在则创建并压栈，不调用OnNewIntent.</li>
+</ul>
+
+      
+    </div>
 
   
+</article>
+
+  
+
+  
+    <article id="post-Android自定义View" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/19/Android自定义View/" class="article-date">
+  <time datetime="2015-10-19T07:36:40.000Z" itemprop="datePublished">10月 19 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/19/Android自定义View/">Android自定义View</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为Android的UI 大部分都是直接通过xml文件的，但是在xml文件里我们只是写明了 一些键值对，例如 layout_height = “100dp” 一个view的显示绘制逻辑则是在类中实现。</p>
+<p>自定义View分为几个步骤:</p>
+<p>第一步：在valuse/arrts创建我们view的属性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"customview"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"testArray"</span> <span class="attr">format</span>=<span class="string">"integer"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>也可直接，不过在获取时略微麻烦</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"testArray"</span> <span class="attr">format</span>=<span class="string">"integer"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>第二步：在我们的自定义的view的构造方法中获取这些属性对应的值，这些值就是被我们定义在布局文件里的：例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com.example.kevin.myapplication.MyView</span></span></div><div class="line"> 		<span class="attr">android:layout_width</span>=<span class="string">"150dp"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"120dp"</span></div><div class="line">        <span class="attr">spa:testArray</span>=<span class="string">"520"</span></div><div class="line">        <span class="attr">spa:text</span>=<span class="string">"hello world"</span> /&gt;</div></pre></td></tr></table></figure>
+<p>内部是通过解析xml将其封装在<code>AttributeSet</code>对象里，并传入view的构造参数里。因此我们在view的构造函数里是可以直接获取到定义的各个属性的值的。但是一般不推荐，因为当一些值是引用时，获取的是id,我们还需要进行转化。所以大部分是直接 </p>
+<p>TypedArray ta =context.obtainStyledAttributes(attrs,R.styleable.customview);</p>
+<p>此时declare-styleable：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.customview);</div><div class="line">String text = ta.getString(R.styleable.customview_text);</div><div class="line"><span class="keyword">int</span> testArray = ta.getInteger(R.styleable.customview_testArray,<span class="number">1</span>);</div></pre></td></tr></table></figure></p>
+<p>没有的则需要手动得到id，存入数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTextView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = MyTextView.class.getSimpleName();</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] mAttr = &#123; android.R.attr.text, R.attr.testAttr &#125;;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ATTR_ANDROID_TEXT = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ATTR_TESTATTR = <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTextView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line"></div><div class="line">        <span class="comment">// ==&gt;use typedarray</span></div><div class="line">        TypedArray ta = context.obtainStyledAttributes(attrs, mAttr);</div><div class="line"></div><div class="line">        String text = ta.getString(ATTR_ANDROID_TEXT);</div><div class="line">        <span class="keyword">int</span> textAttr = ta.getInteger(ATTR_TESTATTR, -<span class="number">1</span>);</div><div class="line">        <span class="comment">//输出 text = Hello world! , textAttr = 520</span></div><div class="line">        Log.e(TAG, <span class="string">"text = "</span> + text + <span class="string">" , textAttr = "</span> + textAttr);</div><div class="line"></div><div class="line">        ta.recycle();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而写成declare-styleable的会自动生成如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">attr</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> testAttr=<span class="number">0x7f0100a9</span>;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">styleable</span> </span>&#123;</div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> test_android_text = <span class="number">0</span>;</div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> test_testAttr = <span class="number">1</span>;</div><div class="line">      <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] test = &#123;</div><div class="line">            <span class="number">0x0101014f</span>, <span class="number">0x7f0100a9</span></div><div class="line">        &#125;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>第三步：如果我们的view需要支持<code>wrap_content</code>则需要重写<code>onMeasure()</code>来设置一个最大值。</p>
+<p>第四步：根据得到的每个属性的值，用andorid原生的api来写绘制逻辑,重写onDraw()。</p>
+
       
     </div>
 
@@ -541,7 +715,7 @@
 
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -552,7 +726,7 @@
   
   <div class="outer footer_center">
     <div id="footer-info" class="inner">
-      &copy; 2016 Kevin<br>
+      &copy; 2017 Kevin<br>
       彼此当年少，莫负好时光
   </br>
     </div>

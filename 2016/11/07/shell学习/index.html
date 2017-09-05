@@ -19,7 +19,7 @@
 运行Shell的两种方法作为可执行程序12chmod +x ./test.sh #使脚本具有可执行权限./test.sh #执行脚本
 通过解释器直接执行1/bin/sh test.sh
 当">
-<meta property="og:updated_time" content="2016-11-14T00:49:14.000Z">
+<meta property="og:updated_time" content="2016-12-21T07:31:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell学习">
 <meta name="twitter:description" content="第一个Shell脚本12#!/bin/shecho &amp;quot;Hello World !&amp;quot;
@@ -98,43 +98,43 @@
       <ul>
         
           <li>
-            <a href="/2016/11/10/Build-Variants-Merge-Manifests/">AndroidManifests文件合并</a>
+            <a href="/2017/05/31/非默认版本发布实践/">非默认版本发布实践</a>
           </li>
         
           <li>
-            <a href="/2016/11/07/shell学习/">shell学习</a>
+            <a href="/2017/04/13/jenkins打包详解/">jenkins打包详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/14/gradle学习/">gradle学习</a>
+            <a href="/2017/04/05/绘画机制/">SufaceView详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/01/工具类交流/">工具类交流</a>
+            <a href="/2017/03/19/jenkins打包job/">jenkins打包job</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/View基础相关/">View基础相关</a>
+            <a href="/2017/03/08/WindowManager详解/">WindowManager详解</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/Android动画详解/">Android动画详解</a>
+            <a href="/2017/03/02/常用adb命令/">常用adb 命令</a>
           </li>
         
           <li>
-            <a href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+            <a href="/2017/02/27/Android依赖管理/">Android依赖管理</a>
           </li>
         
           <li>
-            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+            <a href="/2017/02/22/Android内存分析/">Android内存分析</a>
           </li>
         
           <li>
-            <a href="/2016/05/15/git笔记/">git笔记</a>
+            <a href="/2017/01/11/Lint学习/">Lint学习</a>
           </li>
         
           <li>
-            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+            <a href="/2016/12/21/Android-v2签名/">Android</a>
           </li>
         
       </ul>
@@ -147,7 +147,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -210,14 +210,14 @@
 <p>当使用这种形式时就不需要在前面指定需要哪种解释器。<br><a id="more"></a></p>
 <h2 id="Shell变量"><a href="#Shell变量" class="headerlink" title="Shell变量"></a>Shell变量</h2><p>在Bash中，每一个变量的值都是字符串，无论你给变量赋值时有没有使用引号，值都会以字符串的形式存储，有一些特殊的变量会被操作系统用来存储一些特别的值，这类变量称为<strong>环境变量</strong>，比如我们常设置的<code>JAVA_HOME</code>等,可以用env命令查看。</p>
 <h3 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">name=&quot;xiuweikang&quot;</div><div class="line">echo $name</div></pre></td></tr></table></figure>
-<p>在定义变量时注意变量名和等号之间不能有空格，在使用变量时需要用“$”符号,也可以通过${}来指定,防止歧义。</p>
+<p>在定义变量时注意变量名和等号之间不能有空格，在使用变量时需要用<code>$</code>符号,也可以通过${}来指定,防止歧义。</p>
 <h3 id="只读变量"><a href="#只读变量" class="headerlink" title="只读变量"></a>只读变量</h3><p>可以对变量添加readonly来将变量指定为只读的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">"xiuweikang"</span></div><div class="line">readonly name</div><div class="line">name=<span class="string">"wakaka"</span></div><div class="line">echo $name</div></pre></td></tr></table></figure></p>
 <p>执行上面的shell会出现<code>name: readonly variable</code>这个错误</p>
 <h3 id="删除变量"><a href="#删除变量" class="headerlink" title="删除变量"></a>删除变量</h3><p>可以对变量使用unset来将变量删除,删除后的变量将不能再使用，但是无法删除readonly的变量<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">"xiuweikang"</span></div><div class="line">unset name</div><div class="line">echo $name</div></pre></td></tr></table></figure></p>
 <p>执行上面的会输出空</p>
 <h2 id="Shell字符串"><a href="#Shell字符串" class="headerlink" title="Shell字符串"></a>Shell字符串</h2><h3 id="单引号"><a href="#单引号" class="headerlink" title="单引号"></a>单引号</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">age=<span class="number">16</span></div><div class="line">name=<span class="string">'xiuweikang $age'</span></div><div class="line">echo $name</div></pre></td></tr></table></figure>
 <ul>
-<li>单引号里的所有东西会原样输出，例如上面的会输出成<code>xiuweikang $age</code></li>
+<li>单引号里的所有东西会原样输出，例如上面的会输出成<code>xiuweikang $age</code>，里面的特殊字符不需要转义</li>
 </ul>
 <h3 id="双引号"><a href="#双引号" class="headerlink" title="双引号"></a>双引号</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">age=<span class="number">16</span></div><div class="line">name=<span class="string">"xiuweikang age=$age"</span></div><div class="line">echo $name</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">age=<span class="number">16</span></div><div class="line">name=<span class="string">"xiuweikang age=\$age"</span></div><div class="line">echo $name</div></pre></td></tr></table></figure>
@@ -229,8 +229,10 @@
 <p>输出:<code>xiuweikang 16</code>,我们平时用的<code>export PATH=$ANDROID_HOME/platform-tools/:$PATH</code>就是很典型的字符串拼接</p>
 <h3 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name=<span class="string">"xiuweikang"</span></div><div class="line">length=<span class="string">"$&#123;#name&#125;"</span></div><div class="line">echo $length</div></pre></td></tr></table></figure>
 <p>可以通过<code>#</code>来获取字符串长度</p>
-<h3 id="截取字符"><a href="#截取字符" class="headerlink" title="截取字符"></a>截取字符</h3><p>name=”xiuweikang”<br>part=${name:1:3}<br>echo $part<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">输出: `iuw`，意思是输出从第二个字符开始的一共3个字符</div><div class="line">## Shell数组</div><div class="line">### 数组定义</div><div class="line">仅支持一维数组，不支持多维数组</div><div class="line">数组的定义和读取如下，每个元素之间通过空格分开，下标从0开始。</div></pre></td></tr></table></figure></p>
-<p>array=(a b c d)<br>array[4]=e<br>echo ${array[4]}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">### 获取长度</div><div class="line">``` java</div><div class="line">array=(abc b c d)</div><div class="line">array[4]=e</div><div class="line">echo $&#123;array[4]&#125;</div><div class="line">length=$&#123;#array[*]&#125; #获取整个数组的长度</div><div class="line">length0=$&#123;#array[0]&#125; #获取单个元素的长度</div><div class="line">echo $length $length0</div></pre></td></tr></table></figure></p>
+<h3 id="截取字符"><a href="#截取字符" class="headerlink" title="截取字符"></a>截取字符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name=&quot;xiuweikang&quot;</div><div class="line">part=$&#123;name:1:3&#125;</div><div class="line">echo $part</div></pre></td></tr></table></figure>
+<p>输出: <code>iuw</code>，意思是输出从第二个字符开始的一共3个字符</p>
+<h2 id="Shell数组"><a href="#Shell数组" class="headerlink" title="Shell数组"></a>Shell数组</h2><h3 id="数组定义"><a href="#数组定义" class="headerlink" title="数组定义"></a>数组定义</h3><p>仅支持一维数组，不支持多维数组<br>数组的定义和读取如下，每个元素之间通过空格分开，下标从0开始。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">array=(a b c d)</div><div class="line">array[4]=e</div><div class="line">echo $&#123;array[4]&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="获取长度"><a href="#获取长度" class="headerlink" title="获取长度"></a>获取长度</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">array=(abc b c d)</div><div class="line">array[4]=e</div><div class="line">echo $&#123;array[4]&#125;</div><div class="line">length=$&#123;#array[*]&#125; #获取整个数组的长度</div><div class="line">length0=$&#123;#array[0]&#125; #获取单个元素的长度</div><div class="line">echo $length $length0</div></pre></td></tr></table></figure>
 <h3 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h3><pre><code>${#string}    $string的长度
 
 ${string:position}    在$string中, 从位置$position开始提取子串
@@ -252,7 +254,7 @@ ${string/%substring/replacement}    如果$string的后缀匹配$substring, 那�
 <blockquote>
 <p>$#    传递到脚本的参数个数<br> $<em>    以一个单字符串显示所有向脚本传递的参数。如”$</em>“用「”」括起来的情况、以”$1 $2 … $n”的形式输出所有参数。<br>$$    脚本运行的当前进程ID号<br>$!    后台运行的最后一个进程的ID号<br>$@    与$*相同，但是使用时加引号，并在引号中返回每个参数。<br>如”$@”用「”」括起来的情况、以”$1” “$2” … “$n” 的形式输出所有参数。<br>$-    显示Shell使用的当前选项，与set命令功能相同。<br>$?    显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。</p>
 </blockquote>
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo "aaa" &gt; test.sh #可以通过&gt;来将文本输出到指定文件中，但是后面的文件会先被清空</div><div class="line">echo "aaa" &gt; test.sh #同上，但是不清楚，是追加</div></pre></td></tr></table></figure>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo "aaa" &gt; test.sh #可以通过&gt;来将文本输出到指定文件中，但是后面的文件会先被清空</div><div class="line">echo "aaa" &gt;&gt; test.sh #同上，但是不清除，是追加</div></pre></td></tr></table></figure>
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>可以向其他语言一样定义函数，然后进行调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print() &#123;</div><div class="line">	echo hello,world</div><div class="line">&#125;</div><div class="line"></div><div class="line">print</div></pre></td></tr></table></figure></p>
 <p>输出：hello,world，同时可以传递参数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">print() &#123;</div><div class="line">	echo hello,world</div><div class="line">	echo $<span class="number">1</span></div><div class="line">&#125;</div><div class="line">print <span class="number">1</span> <span class="number">2</span></div></pre></td></tr></table></figure></p>
 
@@ -304,7 +306,7 @@ ${string/%substring/replacement}    如果$string的后缀匹配$substring, 那�
   
   <div class="outer footer_center">
     <div id="footer-info" class="inner">
-      &copy; 2016 Kevin<br>
+      &copy; 2017 Kevin<br>
       彼此当年少，莫负好时光
   </br>
     </div>

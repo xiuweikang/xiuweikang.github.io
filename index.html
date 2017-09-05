@@ -82,43 +82,43 @@
       <ul>
         
           <li>
-            <a href="/2016/11/10/Build-Variants-Merge-Manifests/">AndroidManifests文件合并</a>
+            <a href="/2017/05/31/非默认版本发布实践/">非默认版本发布实践</a>
           </li>
         
           <li>
-            <a href="/2016/11/07/shell学习/">shell学习</a>
+            <a href="/2017/04/13/jenkins打包详解/">jenkins打包详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/14/gradle学习/">gradle学习</a>
+            <a href="/2017/04/05/绘画机制/">SufaceView详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/01/工具类交流/">工具类交流</a>
+            <a href="/2017/03/19/jenkins打包job/">jenkins打包job</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/View基础相关/">View基础相关</a>
+            <a href="/2017/03/08/WindowManager详解/">WindowManager详解</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/Android动画详解/">Android动画详解</a>
+            <a href="/2017/03/02/常用adb命令/">常用adb 命令</a>
           </li>
         
           <li>
-            <a href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+            <a href="/2017/02/27/Android依赖管理/">Android依赖管理</a>
           </li>
         
           <li>
-            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+            <a href="/2017/02/22/Android内存分析/">Android内存分析</a>
           </li>
         
           <li>
-            <a href="/2016/05/15/git笔记/">git笔记</a>
+            <a href="/2017/01/11/Lint学习/">Lint学习</a>
           </li>
         
           <li>
-            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+            <a href="/2016/12/21/Android-v2签名/">Android</a>
           </li>
         
       </ul>
@@ -131,7 +131,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -167,10 +167,10 @@
         
         <section id="main">
   
-    <article id="post-Build-Variants-Merge-Manifests" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-非默认版本发布实践" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/10/Build-Variants-Merge-Manifests/" class="article-date">
-  <time datetime="2016-11-10T02:42:31.000Z" itemprop="datePublished">11月 10 2016</time>
+    <a href="/2017/05/31/非默认版本发布实践/" class="article-date">
+  <time datetime="2017-05-31T09:11:03.000Z" itemprop="datePublished">5月 31 2017</time>
 </a>
     
   </div>
@@ -181,7 +181,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/10/Build-Variants-Merge-Manifests/">AndroidManifests文件合并</a>
+      <a class="article-title" href="/2017/05/31/非默认版本发布实践/">非默认版本发布实践</a>
     </h1>
   
 
@@ -189,14 +189,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>目前有这样的一个情景：在开发过程中我们需要在整个应用启动的前面选择合适的环境，因此我们会将整个应用的启动界面替换成HostChooseActivity，将WelcomeActivity相应的启动intent-filter注释掉。而在上线时又需要将HostChooseActivity在Manifest文件里注释掉，将WelcomeActivity的intent-filter打开。本地还好，但是在jenkins上就很麻烦,比如当目前的代码不包含可选环境时，QA需要一个可选环境的包来进行测试，这时就得本地重新更改代码然后push、merge、Jenkins重新打包，流程很复杂。所以希望能够根据不同的build type来选择合适的Manifest，最后在官方文档里找到了解决方案，在这之前先简单介绍下预备知识。</p>
-<h2 id="Build-Variants"><a href="#Build-Variants" class="headerlink" title="Build Variants"></a>Build Variants</h2><p>我们知道在Android Studio中有一个Build Variants，它是根据我们在gradle文件里的buildTypes和productFlavors生成的，通过这个我们可以对我们的项目创建不同的版本。例如：可以针对不同的渠道替换一些资源文件，或者更改min Api levels。下面介绍下buildTypes和productFlavors。</p>
-<h3 id="配置Build-Types"><a href="#配置Build-Types" class="headerlink" title="配置Build Types"></a>配置Build Types</h3><p>当你创建一个Module时，AS会自动的创建debug和release这两种build types，其中debug并不会在gradle文件里显示，但其实是存在的，我们点击AS的Build Variants时会看见，平时开发时默认的就是这个模式，而且它的debuggable是为true的。下面是一个例子：<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+        <h2 id="发布Library以非默认的variants"><a href="#发布Library以非默认的variants" class="headerlink" title="发布Library以非默认的variants"></a>发布Library以非默认的variants</h2><p>默认的，library最终只以release的方式在Android项目里引用，即使你指定它的BuildVariant，但是我们通过添加标识来指定默认的发布方式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  <span class="comment">// Sets the "debug" build variant as the default variant</span></div><div class="line">  <span class="comment">// of the library that Gradle should publish.</span></div><div class="line">  defaultPublishConfig <span class="string">"debug"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果包含了flavors，你就必须指定它的完整的名字,例如。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  defaultPublishConfig <span class="string">"demoDebug"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在发布release时，你需要针对不同的build varients改变defaultPublishConfig，很麻烦，所以你可以告诉gradle，去生成一个Library所有的build varients，然后指定就可以了：如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  <span class="comment">// Tells Gradle to build all variants of the library. Note that this</span></div><div class="line">  <span class="comment">// may increase build times because Gradle must build multiple AARs,</span></div><div class="line">  <span class="comment">// instead of only one.</span></div><div class="line">  publishNonDefault <span class="keyword">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>指定当执行<code>demoDebug</code>时，Library也用<code>demoDebug</code>：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">android &#123;...&#125;</div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// Creates Gradle dependency configurations to use in the dependencies block.</span></div><div class="line">configurations &#123;</div><div class="line">  <span class="comment">// Initializes placeholder configurations that the Android plugin can use when targeting</span></div><div class="line">  <span class="comment">// the corresponding variant of the app.</span></div><div class="line">  demoDebugCompile &#123;&#125;</div><div class="line">  fullReleaseCompile &#123;&#125;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">  <span class="comment">// If the library configures multiple build variants using product flavors,</span></div><div class="line">  <span class="comment">// you must target one of the library's variants using its full configuration name.</span></div><div class="line">  <span class="function">demoDebugCompile <span class="title">project</span><span class="params">(path: <span class="string">':my-library-module'</span>, configuration: <span class="string">'demoDebug'</span>)</span></span></div><div class="line">  fullReleaseCompile <span class="title">project</span><span class="params">(path: <span class="string">':my-library-module'</span>, configuration: <span class="string">'fullRelease'</span>)</span></div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="具体"><a href="#具体" class="headerlink" title="具体"></a>具体</h3>
+      
+    </div>
 
   
+</article>
+
+  
+
+  
+    <article id="post-jenkins打包详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/13/jenkins打包详解/" class="article-date">
+  <time datetime="2017-04-13T09:10:08.000Z" itemprop="datePublished">4月 13 2017</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/13/jenkins打包详解/">jenkins打包详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
         
       
     </div>
@@ -207,10 +235,10 @@
   
 
   
-    <article id="post-shell学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-绘画机制" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/07/shell学习/" class="article-date">
-  <time datetime="2016-11-07T08:37:45.000Z" itemprop="datePublished">11月 7 2016</time>
+    <a href="/2017/04/05/绘画机制/" class="article-date">
+  <time datetime="2017-04-05T12:21:15.000Z" itemprop="datePublished">4月 5 2017</time>
 </a>
     
   </div>
@@ -221,7 +249,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/07/shell学习/">shell学习</a>
+      <a class="article-title" href="/2017/04/05/绘画机制/">SufaceView详解</a>
     </h1>
   
 
@@ -229,16 +257,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第一个Shell脚本"><a href="#第一个Shell脚本" class="headerlink" title="第一个Shell脚本"></a>第一个Shell脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">echo &quot;Hello World !&quot;</div></pre></td></tr></table></figure>
-<p>“#!/bin/sh”用于告诉系统该用什么解释器执行，主要有两种：bash和sh。echo是用于打印的命令</p>
-<h3 id="运行Shell的两种方法"><a href="#运行Shell的两种方法" class="headerlink" title="运行Shell的两种方法"></a>运行Shell的两种方法</h3><h6 id="作为可执行程序"><a href="#作为可执行程序" class="headerlink" title="作为可执行程序"></a>作为可执行程序</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod +x ./test.sh #使脚本具有可执行权限</div><div class="line">./test.sh #执行脚本</div></pre></td></tr></table></figure>
-<h6 id="通过解释器直接执行"><a href="#通过解释器直接执行" class="headerlink" title="通过解释器直接执行"></a>通过解释器直接执行</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/bin/sh test.sh</div></pre></td></tr></table></figure>
-<p>当使用这种形式时就不需要在前面指定需要哪种解释器。<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
-
-  
         
       
     </div>
@@ -249,10 +267,10 @@
   
 
   
-    <article id="post-gradle学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-jenkins打包job" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/14/gradle学习/" class="article-date">
-  <time datetime="2016-09-14T03:22:54.000Z" itemprop="datePublished">9月 14 2016</time>
+    <a href="/2017/03/19/jenkins打包job/" class="article-date">
+  <time datetime="2017-03-19T07:26:47.000Z" itemprop="datePublished">3月 19 2017</time>
 </a>
     
   </div>
@@ -263,7 +281,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/14/gradle学习/">gradle学习</a>
+      <a class="article-title" href="/2017/03/19/jenkins打包job/">jenkins打包job</a>
     </h1>
   
 
@@ -271,218 +289,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Groovy基础"><a href="#Groovy基础" class="headerlink" title="Groovy基础"></a>Groovy基础</h2><h3 id="常见语法"><a href="#常见语法" class="headerlink" title="常见语法"></a>常见语法</h3><h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><p>Groovy可以和Java一样声明和使用一个类,定义和使用一个方法。同时也提供了一个属性的默认的get和set方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function">String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">def person = <span class="keyword">new</span> Person(<span class="string">"xiuweikang"</span>);</div><div class="line">print person.<span class="function">name</div><div class="line"></div><div class="line">String <span class="title">getPersonName</span><span class="params">(Person person)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> person.name</div><div class="line">&#125;</div><div class="line"><span class="function">println <span class="title">getPersonName</span><span class="params">(person)</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 默认get、set</span></div><div class="line">class Person </span>&#123;</div><div class="line">	String name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">def person = <span class="keyword">new</span> Person()</div><div class="line">person.setName(<span class="string">"xiuweikang"</span>)</div><div class="line">print person.getName()</div></pre></td></tr></table></figure>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gradle/">Gradle</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-工具类交流" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/01/工具类交流/" class="article-date">
-  <time datetime="2016-09-01T02:46:35.000Z" itemprop="datePublished">9月 1 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/01/工具类交流/">工具类交流</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么样的类可以称作是工具类"><a href="#什么样的类可以称作是工具类" class="headerlink" title="什么样的类可以称作是工具类"></a>什么样的类可以称作是工具类</h3><ol>
-<li>与业务完全无关，独立，常用且通用</li>
-<li>与业务相关，常用
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-View基础相关" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/03/View基础相关/" class="article-date">
-  <time datetime="2016-08-03T02:34:44.000Z" itemprop="datePublished">8月 3 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/03/View基础相关/">View基础相关</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h3><p>在Android打算的撒打算的oid中的坐标系是以屏幕左上角为原点，向右为X轴正方向，向下为Y轴正方向，角度如下：<br><img src="https://camo.githubusercontent.com/a0c38e4f124e4b2b4a90e0767f24ee9e7b76f992/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303558746469326a773166317179686a793768386a333038633064777133322e6a7067" alt=""><img src="https://camo.githubusercontent.com/42523a55dc2c71f288166c04da524e350d9abfe4/687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f30303558746469326a7731663171796862717669686a333038633064776a72682e6a7067" alt=""></p>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-Android动画详解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/03/Android动画详解/" class="article-date">
-  <time datetime="2016-08-03T02:14:52.000Z" itemprop="datePublished">8月 3 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/03/Android动画详解/">Android动画详解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>动画主要分为三种：View动画、帧动画、属性动画，分别介绍：</p>
-<h4 id="View动画"><a href="#View动画" class="headerlink" title="View动画"></a>View动画</h4><p>View动画的作用对象是View,主要包含<code>平移动画</code>、<code>缩放动画</code>、<code>旋转动画</code>、<code>透明度动画</code>。分别对应<code>TranslateAnimation</code>、<code>ScaleAnimation</code>、<code>RotateAnimation</code>、<code>AlphaAnimation</code>。可以通过XML来实现也可以通过代码,需要注意一点的是View动画最大的缺点是不能交互，View自身的属性并不会发生变化。例如对一个放大的View进行点击，点击区域其实还是原本View的点击区域。<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-View的measure、layout、draw过程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/26/View的measure、layout、draw过程/" class="article-date">
-  <time datetime="2016-07-26T11:59:00.000Z" itemprop="datePublished">7月 26 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>View的整个过程是从ViewRoot开始的，实现类是ViewRootImpl类，在这个类中通过<code>setView（）</code>方法添加DecorView，之后以DecorView为rootView。在ViewRootImpl类中通过<code>performTraversals()</code>方法，经过measure、layout、draw三个过程最终将View绘制出来。<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-effective-java学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/08/effective-java学习笔记/" class="article-date">
-  <time datetime="2016-07-08T08:43:48.000Z" itemprop="datePublished">7月 8 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-考虑用静态工厂方法代替构造器"><a href="#1-考虑用静态工厂方法代替构造器" class="headerlink" title="1.考虑用静态工厂方法代替构造器"></a>1.考虑用静态工厂方法代替构造器</h3><ul>
-<li>静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()</li>
-<li>静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)</li>
-<li>静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法即可</li>
-<li>在创建参数化实例的时候，可以使代码变得更加简洁。比如：</li>
+        <p>介绍目前jenkins可以自动完成的工作有：</p>
+<ol>
+<li>打包</li>
+<li>添加apk_hash</li>
+<li>添加apk版本标识</li>
+<li>上传apk到抢鲜</li>
+<li>上传mapping文件到cat、perf</li>
+</ol>
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><p>通过执行gradle 相应的task，来打不同的渠道包。<br>在<code>构建</code>标签下添加<code>Invoke Gradle script</code>，选择合适的gradle版本，优先选择<code>Use Gradle Wrapper</code>， Tasks：<code>clean assembleWaimaiRelease</code>，这里打的就是不带渠道的Release包，具体可以打哪些包参考工程的build variants</p>
+<h2 id="添加apk-hash"><a href="#添加apk-hash" class="headerlink" title="添加apk_hash"></a>添加apk_hash</h2><p>用于apk的唯一标识，用在第三方sdk在进行apk匹配。比如robust需要根据apk_hash来下发对应的补丁。在gradle android plugin2.2下，可以直接通过将带有版本号的文件夹压缩进apk内，然后读取文件名来获取，但在2.2后，Google采用v2签名，加快了校验的速度，当然可以通过添加<code>v2SigningEnabled false</code>来关闭。目前的解决方案是接入walle，具体的可以参考<a href="http://tech.meituan.com/android-apk-v2-signature-scheme.html" target="_blank" rel="external">http://tech.meituan.com/android-apk-v2-signature-scheme.html</a>，在jenkins里对apk做md5，然后将其写入，在代码里通过walle读取。<br>主要job如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">APK_MD5=$(md5sum $&#123;ORIGIN_APK_FILE&#125; | cut -d <span class="string">' '</span> -f <span class="number">1</span>)</div><div class="line">echo <span class="string">"APK_MD5:$APK_MD5"</span></div><div class="line">java -jar /data/config/walle/walle-cli-all.jar put -e wmhash=$&#123;APK_MD5&#125; $&#123;ORIGIN_APK_FILE&#125; $&#123;NEW_APK_FILE&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="添加apk版本标识"><a href="#添加apk版本标识" class="headerlink" title="添加apk版本标识"></a>添加apk版本标识</h2><p>主要用于发现问题时能够及时定位到哪个包，哪些代码。实现方法：在<code>gradle.properties</code>里添加<br><code>BUILD_NUMBER=376</code>,然后在buildTypes下添加<code>buildConfigField &quot;int&quot;, &quot;BUILD_NUMBER&quot;, BUILD_NUMBER</code>，然后在代码里就可以通过<code>BuildConfig.BUILD_NUMBER</code>来获取，之后在jenkins打包的时候读取<code>gradle.properties</code>文件就可以对apk添加对应的标识，然后提交git。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">BUILD_NUMBER_STR=`grep <span class="string">"BUILD_NUMBER"</span> gradle.properties`</div><div class="line">BUILD_NUMBER_PREFIX=`echo $BUILD_NUMBER_STR | cut -d <span class="string">'='</span> -f <span class="number">1</span>`</div><div class="line">BUILD_NUMBER_SURFIX=`echo $BUILD_NUMBER_STR | cut -d <span class="string">'='</span> -f <span class="number">2</span>`</div><div class="line">NEW_BUILD_NUMBER_SURFIX=$((BUILD_NUMBER_SURFIX+<span class="number">1</span>))</div><div class="line">NEW_BUILD_NUMBER_STR=$BUILD_NUMBER_PREFIX=$NEW_BUILD_NUMBER_SURFIX</div><div class="line">sed -i -e <span class="string">"s/$BUILD_NUMBER_STR/$NEW_BUILD_NUMBER_STR/"</span> gradle.properties</div><div class="line">git add gradle.properties</div><div class="line">git commit -m <span class="string">"Merge:版本号自动升级，从$BUILD_NUMBER_SURFIX升级到$NEW_BUILD_NUMBER_SURFIX"</span></div><div class="line">git push origin $&#123;branch&#125;</div><div class="line">git tag v$NEW_BUILD_NUMBER_SURFIX</div><div class="line">git push origin --tag</div><div class="line"></div><div class="line">echo <span class="string">" $BUILD_NUMBER_SURFIX to $NEW_BUILD_NUMBER_SURFIX successfully"</span></div></pre></td></tr></table></figure>
+<h2 id="上传apk到抢鲜"><a href="#上传apk到抢鲜" class="headerlink" title="上传apk到抢鲜"></a>上传apk到抢鲜</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DEP_URL=<span class="string">"https://apptest.sankuai.com/packageUpload?appName=waimai&amp;platform=android&amp;appChineseName=美团外卖_$&#123;version&#125;_$&#123;BUILD_NUMBER_WM&#125;_Release"</span></div><div class="line"></div><div class="line">curl --form <span class="string">"apk=@$&#123;NEW_APK_FILE&#125;"</span> $DEP_URL</div></pre></td></tr></table></figure>
+<h2 id="上传mapping文件"><a href="#上传mapping文件" class="headerlink" title="上传mapping文件"></a>上传mapping文件</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> [ $&#123;upload_mapping_file&#125; != <span class="keyword">false</span> ]</div><div class="line">then</div><div class="line">  zip -j mapping.txt.zip $WORKSPACE/MeiTuanWaiMaiProject/MeiTuanWaiMai/build/outputs/mapping/waimai/release/mapping.txt</div><div class="line">  curl --request POST \</div><div class="line">  --url <span class="string">"https://perf.sankuai.com/api/light/symbols?project=meituanwaimai&amp;appVersion=$&#123;version&#125;&amp;buildVersion=default&amp;bundleId=meituanwaimai&amp;access_token=570620bf45358617785c4fc7"</span> \</div><div class="line">  --form file=<span class="string">"@mapping.txt.zip"</span></div><div class="line">  rm mapping.txt.zip</div><div class="line">fi</div></pre></td></tr></table></figure>
+<h2 id="jenkins工程介绍"><a href="#jenkins工程介绍" class="headerlink" title="jenkins工程介绍"></a>jenkins工程介绍</h2><p>打包具体地址：<a href="http://archon.sankuai.com/view/waimai/" target="_blank" rel="external">http://archon.sankuai.com/view/waimai/</a></p>
+<ul>
+<li>waimai_debug 打debug包</li>
+<li>waimai_develop 打develop包</li>
+<li>waimai_release 打release包</li>
+<li>waimai_search 打搜索包</li>
+<li>waimai_android_ceres_archive 打ceres包</li>
+<li>waimai_android_minerva_archive 打minerva包</li>
+<li>waimai_channel_pakage 打渠道包，会自动上传到ftp服务器</li>
+<li>打首发包推荐用waimai_release，配置下打包命令，因为首发包基本只有一个，没必要把所有的渠道都打出来，浪费时间，而且需要把robust的生成的文件保存下来</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;String&gt;&gt; m = <span class="keyword">new</span> HashMap&lt;String, List&lt;String&gt;&gt;();</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K, V&gt; <span class="function">HashMap&lt;K, V&gt; <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HashMap&lt;K ,V&gt;();</div><div class="line">&#125;</div><div class="line">Map&lt;String, List&lt;String&gt;&gt; m = HashMap.newInstance();</div></pre></td></tr></table></figure>
-<h3 id="2-在遇到多个构造器参数时考虑用Builder"><a href="#2-在遇到多个构造器参数时考虑用Builder" class="headerlink" title="2.在遇到多个构造器参数时考虑用Builder"></a>2.在遇到多个构造器参数时考虑用Builder</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">    <span class="keyword">private</span> String mName;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mHeight;</div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(<span class="keyword">int</span> age, String name, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">        mAge = age;</div><div class="line">        mName = name;</div><div class="line">        mHeight = height;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>例如一个对象有多个属性需要设置，我们可以在构造方法中设置，如下，但是在调用时会<br>Person person = new Person(19, “名字”， 180);如果参数一旦变多则维护起来略麻烦，这时会考虑使用set方法，但是使用set方法在多线程中是不安全的，这时可以考虑采用Builder模式。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">    <span class="keyword">private</span> String mName;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mSex;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">(Builder builder)</span> </span>&#123;</div><div class="line">        mAge = builder.mAge;</div><div class="line">        mName = builder.mName;</div><div class="line">        mSex = builder.mSex;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mAge;</div><div class="line">        <span class="keyword">private</span> String mName;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mSex;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">name</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">            mName = name;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">age</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">            mAge = age;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">sex</span><span class="params">(<span class="keyword">int</span> sex)</span> </span>&#123;</div><div class="line">            mSex = sex;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Person <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Person(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//调用时</span></div><div class="line"> Person person = <span class="keyword">new</span> Person.Builder()</div><div class="line">                .age(<span class="number">19</span>)</div><div class="line">                .name(<span class="string">"名字"</span>)</div><div class="line">                .sex(<span class="number">1</span>)</div><div class="line">                .build();</div></pre></td></tr></table></figure>
-<p>通过上面这种方式很清晰。</p>
-<h3 id="3-用私有构造器或者枚举属性强化Singleton属性"><a href="#3-用私有构造器或者枚举属性强化Singleton属性" class="headerlink" title="3.用私有构造器或者枚举属性强化Singleton属性"></a>3.用私有构造器或者枚举属性强化Singleton属性</h3><p>在java1.5后可以通过枚举来实现单例,这种方法简洁，而且创建的过程是线程安全的，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">&#125;</div><div class="line">  Person.INSTANCE.setName(<span class="string">"kevin"</span>);</div><div class="line">  System.out.println(Person.INSTANCE.getName());</div></pre></td></tr></table></figure></p>
-<h3 id="4-通过私有构造器强化不可实例化的能力"><a href="#4-通过私有构造器强化不可实例化的能力" class="headerlink" title="4.通过私有构造器强化不可实例化的能力"></a>4.通过私有构造器强化不可实例化的能力</h3><p>对于一些工具类来说，它只存在静态方法，这时它并不想被实例化，因此最好强化不可实例化的能力，给它添加私有构造器。</p>
-<h3 id="5-避免创建不必要的对象"><a href="#5-避免创建不必要的对象" class="headerlink" title="5.避免创建不必要的对象"></a>5.避免创建不必要的对象</h3><pre><code>String s = new String(&quot;kevin&quot;);
-</code></pre><p>在这里”kevin” 本来就是一个String对象，这时就多创建了一个对象。<br>同时除了重用不可变对象之外，也可以重用已知不会被修改的对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date birthDate;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBabyBoomer</span><span class="params">()</span> </span>&#123;</div><div class="line">        Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone(<span class="string">"GMT"</span>));</div><div class="line">        gmtCal.set(<span class="number">1946</span>, Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        Date boomStart = gmtCal.getTime();</div><div class="line">        gmtCal.set(<span class="number">1965</span> ,Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        Date boomEnd = gmtCal.getTime();</div><div class="line">        <span class="keyword">return</span> birthDate.compareTo(boomStart) &gt;= <span class="number">0</span> </div><div class="line">                &amp;&amp; birthDate.compareTo(boomEnd) &lt; <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">//在这里start和end都是不变的，而每次比较时都会生成2个Date同样的对象。</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  Person &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Date birthDate;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Date boomStart;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Date boomEnd;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone(<span class="string">"GMT"</span>));</div><div class="line">        gmtCal.set(<span class="number">1946</span>, Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        boomStart = gmtCal.getTime();</div><div class="line">        gmtCal.set(<span class="number">1965</span> ,Calendar.JANUARY, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        boomEnd = gmtCal.getTime();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBabyBoomer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> birthDate.compareTo(boomStart) &gt;= <span class="number">0</span></div><div class="line">                &amp;&amp; birthDate.compareTo(boomEnd) &lt; <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>因为Java的自动装箱机制导致下面的代码会产生很多对象<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Long l = <span class="number">0L</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i &lt; Long.MAX_VALUE; i++) &#123;</div><div class="line">      l += i;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="6-消除过期的引用"><a href="#6-消除过期的引用" class="headerlink" title="6.消除过期的引用"></a>6.消除过期的引用</h3><p>Java</p>
 
       
     </div>
@@ -493,10 +324,10 @@
   
 
   
-    <article id="post-git笔记" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-WindowManager详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/15/git笔记/" class="article-date">
-  <time datetime="2016-05-15T08:23:12.000Z" itemprop="datePublished">5月 15 2016</time>
+    <a href="/2017/03/08/WindowManager详解/" class="article-date">
+  <time datetime="2017-03-08T03:43:55.000Z" itemprop="datePublished">3月 8 2017</time>
 </a>
     
   </div>
@@ -507,7 +338,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/15/git笔记/">git笔记</a>
+      <a class="article-title" href="/2017/03/08/WindowManager详解/">WindowManager详解</a>
     </h1>
   
 
@@ -515,22 +346,199 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h3><blockquote>
-<p>git commit –amend 用当前暂存区的快照提交，同时可以对上次的commit信息进行修改</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Window是一个抽先类，代表一个窗口，具体实现类是PhoneWindow，Android中所有的View的展示都是依赖于Window的，Window是View的管理者，事件分发也是由window传递给DecorView，在由DecorView分发给子View。可以通过WindowManager来获取一个Window,WindowManager是访问Window的入口。</p>
+<h2 id="添加Window"><a href="#添加Window" class="headerlink" title="添加Window"></a>添加Window</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">View view = LayoutInflater.from(<span class="keyword">this</span>).inflate(R.layout.layout_window, <span class="keyword">null</span>);</div><div class="line">mLayoutParams = <span class="keyword">new</span> WindowManager.LayoutParams(</div><div class="line">        WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, <span class="number">0</span>, <span class="number">0</span>,</div><div class="line">        PixelFormat.TRANSPARENT);<span class="comment">//0,0 分别是type和flags参数，在后面分别配置了</span></div><div class="line">mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL</div><div class="line">        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE</div><div class="line">        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;</div><div class="line">mLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;</div><div class="line">mLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;</div><div class="line">mLayoutParams.x = <span class="number">0</span>;</div><div class="line">mLayoutParams.y = <span class="number">0</span>;</div><div class="line">mWindowManager.addView(view, mLayoutParams);</div></pre></td></tr></table></figure>
+<h2 id="Window-Type"><a href="#Window-Type" class="headerlink" title="Window Type"></a>Window Type</h2><p>Type包含三种类型，application_window、sub_window、system_window,每种类型都包含自己的子类型，每个类型都有自己的层级范围，层级高的会覆盖在层级低的上面。</p>
+<ol>
+<li>application_window：应用级别窗口，对应层级1-99，对应着一个Activity，在离开页面的时候需要销毁</li>
+<li>sub_window:对应层级1000-1999，子窗口是指该窗口必须要有一个父窗口，这个窗口可以是应用级别的PopupWindow、Dialog就是一个子窗口，Dialog不能用application context的原因就是这。</li>
+<li>system_window:对应层级2000-2999，系统级别窗口不需要对应的Activity有，也不需要父窗口，展示范围是整个手机，需要申请权限</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.SYSTEM_ALERT_WINDOW"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="Window-Flag"><a href="#Window-Flag" class="headerlink" title="Window Flag"></a>Window Flag</h2><ul>
+<li>FLAG_NOT_FOCUSABLE：表示window不需要获取焦点，也不需要接收各种输入事件。此标记会同时启用FLAG_NOT_TOUCH_MODAL，最终事件会直接传递给下层的具有焦点的window；</li>
+<li>FLAG_NOT_TOUCH_MODAL：在此模式下，系统会将window区域外的单击事件传递给底层的window，当前window区域内的单击事件则自己处理，一般都需要开启这个标记；</li>
+<li>FLAG_SHOW_WHEN_LOCKED：开启此模式可以让Window显示在锁屏的界面上。</li>
+</ul>
+<h2 id="Window的使用"><a href="#Window的使用" class="headerlink" title="Window的使用"></a>Window的使用</h2><p>WindowManager是Window的唯一操作入口，它实现了ViewManager，只有三个方法<code>addView()</code>,<code>updateViewLayout()</code>,<code>removeView()</code>,我们可以通过这三个方法来对Window进行操作<br>但WindowManager也是一个interface,具体实现类是<code>WindowManagerImpl</code>,通过源码可以看到，WindowManager的add、remove、update操作都交由<code>WindowManagerGlobal</code>来做，它是一个单例，所以我们就知道了所有Window的管理其实都是有<code>WindowManagerGlobal</code>来做的,具体如下图。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2016/11/29/de065f5755c0e4931bc2668166116cd5" alt="https://user-gold-cdn.xitu.io/2016/11/29/de065f5755c0e4931bc2668166116cd5">,</p>
+
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-常用adb命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/02/常用adb命令/" class="article-date">
+  <time datetime="2017-03-02T12:05:14.000Z" itemprop="datePublished">3月 2 2017</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/02/常用adb命令/">常用adb 命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>adb shell dumpsys activity [package-name] 可以查看手机里所有四大组件的信息 或者查看指定包名的<br>adb shell dumpsys meminfo [package-name] 可以查看手机的内存信息，或指定包名的信息</p>
 </blockquote>
-<pre><code>git commit -m &quot;first commit&quot;
-git add forget_file.txt
-git commit --amend &quot;second commit&quot;
-//以上将漏掉的文件添加进暂存区，但是commit log上只存在second commit
-</code></pre><blockquote>
-<p>git reset HEAD file 将当前文件从暂存区回到工作区<br>git checkout – file 将在工作区进行修改的文件还原</p>
+
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-Android依赖管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/27/Android依赖管理/" class="article-date">
+  <time datetime="2017-02-27T13:29:36.000Z" itemprop="datePublished">2月 27 2017</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/27/Android依赖管理/">Android依赖管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在接入第三方SDK的时候经常会遇到一些依赖的冲突等问题，需要解决，主要有以下的几种方式：</p>
+<h3 id="gradle-dependencies"><a href="#gradle-dependencies" class="headerlink" title="gradle dependencies"></a>gradle dependencies</h3><p>通过<code>gradle dependencies</code>可以找出整个应用的依赖，按照层级展示<br><img src="https://ww3.sinaimg.cn/large/006tNc79ly1fd5z4vhkfnj30om0z4wqi.jpg" alt=""></p>
+<ul>
+<li>可以看出每一个依赖包都是由：group-moudle-version组成的</li>
+<li>后面带<code>(*)</code>的代表该Library或者aar包下存在相同的依赖</li>
+<li><code>-&gt;</code>代表最终使用的版本，可以看到如果存在相同的依赖包时，会优先使用高版本的依赖包，这可能就存在冲突</li>
+</ul>
+<h3 id="transitive"><a href="#transitive" class="headerlink" title="transitive"></a>transitive</h3><p>Transitive用于自动处理子依赖项。默认为true，gradle自动添加子依赖.设置为false，则需要手动添加每个依赖项。例如：<br><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fd6hdtvju9j30vc0q8woh.jpg" alt=""><br>对<code>com.meituan.mapsdk2d</code>来说，当transitive为true时会自动添加其下的依赖，当transitive为false时，如下图：<br><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fd6hhuch0rj30nx02ngme.jpg" alt=""><br>你需要手动添加它所需要的依赖。</p>
+<p>通过下面的可以统一指定transitive<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">configurations.all &#123;</div><div class="line">   transitive = <span class="keyword">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果你所依赖的包比较少，希望自己管理每个包时，适合这种方式，但是当引入的sdk很多时，这种方式就有些力不从心了。</p>
+<h3 id="版本覆盖"><a href="#版本覆盖" class="headerlink" title="版本覆盖"></a>版本覆盖</h3><p><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fd6hmwx0wrj30pj0410uc.jpg" alt=""><br><img src="https://ww3.sinaimg.cn/large/006tNc79ly1fd6hnpze7sj30le01tt92.jpg" alt=""></p>
+<p>当存在相同的依赖时，会用<code>a-&gt;b</code>的这种形式告诉你a版本的被b版本的覆盖了，通过上图可以看到高版本的会覆盖低版本的依赖。这时就可能会存在问题，如果高版本的不兼容低版本的，引入低版本依赖的sdk就会报错，存在冲突。</p>
+<h3 id="force"><a href="#force" class="headerlink" title="force"></a>force</h3><p>force可以强制指定某个版本的依赖<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">configurations.all &#123;</div><div class="line">   resolutionStrategy &#123;</div><div class="line">       force <span class="string">'com.android.support:support-v4:23.4.0'</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fd6hxtbdijj30p0066tb4.jpg" alt=""><br>我们可以看到support包被强制指定成23.4.0版本了</p>
+<h3 id="exclude"><a href="#exclude" class="headerlink" title="exclude"></a>exclude</h3><p>exclude规则可以帮我们排除指定的依赖。例如所有依赖里匹配的或者指定排除某个依赖里的,有group和moudle参数，可以分别使用。</p>
+<p>例如：<br><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fd7l5n3776j30po03u0u0.jpg" alt=""><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">configurations &#123;</div><div class="line">   all*.exclude group: <span class="string">'com.android.support'</span> moudle: <span class="string">'appcompat-v7'</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">   compile <span class="string">'com.meituan.mapsdk2d:sdk2d:0.2.5'</span></div><div class="line">   compile <span class="string">'com.android.support:appcompat-v7:23.4.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fd7lxewh5gj30qh0awwig.jpg" alt=""></p>
+<p>可以看到v7包都没有了。<br>但我们也可以单独给某个模块下添加exclude<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">compile (<span class="string">'com.meituan.mapsdk2d:sdk2d:0.2.5'</span>)&#123;</div><div class="line">       transitive = <span class="keyword">true</span></div><div class="line">       exclude group: <span class="string">'com.android.support'</span>, <span class="keyword">module</span>: <span class="string">'appcompat-v7'</span></div><div class="line">   &#125;</div><div class="line">compile <span class="string">'com.android.support:appcompat-v7:23.4.0'</span></div></pre></td></tr></table></figure></p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fd7mb50i4vj30o50d40wy.jpg" alt=""><br>可以看到mapsdk下的v7包没了，下面的还是存在的</p>
+<h3 id="不同compile下的冲突"><a href="#不同compile下的冲突" class="headerlink" title="不同compile下的冲突"></a>不同compile下的冲突</h3><p>相同compile下的依赖会自动改成依赖高版本，不同compile则会产生冲突<br><img src="https://ww1.sinaimg.cn/large/006tNc79ly1fd7n1ggjc7j30u402s0t5.jpg" alt=""></p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79ly1fd7n5ulyr8j31kw02njuc.jpg" alt=""></p>
+<h3 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h3><p><a href="https://docs.gradle.org/current/userguide/dependency_management.html" target="_blank" rel="external">https://docs.gradle.org/current/userguide/dependency_management.html</a></p>
+
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-Android内存分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/22/Android内存分析/" class="article-date">
+  <time datetime="2017-02-22T12:19:48.000Z" itemprop="datePublished">2月 22 2017</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/22/Android内存分析/">Android内存分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="内存指标概念"><a href="#内存指标概念" class="headerlink" title="内存指标概念"></a>内存指标概念</h2><p><img src="https://ww1.sinaimg.cn/large/006tNbRwly1fe3ifvuz5bj314j0bs0v2.jpg" alt=""><br>故内存的大小关系：VSS &gt;= RSS &gt;= PSS &gt;= USS</p>
+<h2 id="内存分析命令"><a href="#内存分析命令" class="headerlink" title="内存分析命令"></a>内存分析命令</h2><h3 id="adb-shell-dumpsys-meminfo"><a href="#adb-shell-dumpsys-meminfo" class="headerlink" title="adb shell dumpsys meminfo"></a>adb shell dumpsys meminfo</h3><p>命令输出包括4部分：<br><img src="https://ww4.sinaimg.cn/large/006tNbRwly1fe3ix89jwjj314l0eadiz.jpg" alt=""></p>
+<p>可以 <code>adb shell dumpsys meminfo --package [packagename]</code>查看某一进程下的:<br><img src="https://ww1.sinaimg.cn/large/006tKfTcly1feprgxtm1rj316z0qu43a.jpg" alt=""></p>
+<p>使用Debug的getMemoryInfo(Debug.MemoryInfo memoryInfo)或ActivityManager的MemoryInfo[] getProcessMemoryInfo(int[] pids)<br>该方式得到的MemoryInfo所描述的内存使用情况比较详细.数据的单位是KＢ.MemoryInfo的Field如下:</p>
+<blockquote>
+<p>dalvikPrivateDirty： The private dirty pages used by dalvik。<br>dalvikPss ：The proportional set size for dalvik.<br>dalvikSharedDirty ：The shared dirty pages used by dalvik.<br>nativePrivateDirty ：The private dirty pages used by the native heap.<br>nativePss ：The proportional set size for the native heap.<br>nativeSharedDirty ：The shared dirty pages used by the native heap.<br>otherPrivateDirty ：The private dirty pages used by everything else.<br>otherPss ：The proportional set size for everything else.<br>otherSharedDirty ：The shared dirty pages used by everything else.</p>
 </blockquote>
-<h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><blockquote>
-<p>git reset [HEAD^][commit id] 回退到上一个版本或commit id指定的版本，将之前的修改放入工作区。 git reset –hard [HEAD^][commit id] 回退，但是工作区不包含修改<br>git reflog可以查看历史commit id,用于重置版本回退</p>
-</blockquote>
-<h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><blockquote>
-<p>git stash 可以将目前分支的工作区的修改暂存到一个栈中，可以多次通过git stash压栈，同时可以通过<code>git stash list</code>查看栈，<code>git stash pop</code>出栈并将修改放入当前分支的工作区，<code>git stash apply stash@{id}</code>不出栈然后将修改放入当前分支的工作区，<code>git stash clear</code>清栈</p>
-</blockquote>
+<p>Android和Linux一样有大量内存在进程之间进程共享。某个进程准确的使用好多内存实际上是很难统计的。<br>因为有paging out to disk（换页），所以如果你把所有映射到进程的内存相加，它可能大于你的内存的实际物理大小。</p>
+<pre><code> dalvik：是指dalvik所使用的内存。
+ native：是被native堆使用的内存。应该指使用C\C++在堆上分配的内存。
+ other:是指除dalvik和native使用的内存。但是具体是指什么呢？至少包括在C\C++分配的非堆内存，比如分配在栈上的内存。puzlle!
+private:是指私有的。非共享的。
+share:是指共享的内存。
+PSS：实际使用的物理内存（比例分配共享库占用的内存）
+Pss：它是把共享内存根据一定比例分摊到共享它的各个进程来计算所得到进程使用内存。网上又说是比例分配共享库占用的内存，那么至于这里的共享是否只是库的共享，还是不清楚。
+PrivateDirty：它是指非共享的，又不能换页出去（can not be paged to disk ）的内存的大小。比如Linux为了提高分配内存速度而缓冲的小对象，即使你的进程结束，该内存也不会释放掉，它只是又重新回到缓冲中而已。
+SharedDirty:参照PrivateDirty我认为它应该是指共享的，又不能换页出去（can not be paged to disk ）的内存的大小。比如Linux为了提高分配内存速度而缓冲的小对象，即使所有共享它的进程结束，该内存也不会释放掉，它只是又重新回到缓冲中而已。
+</code></pre><h2 id="为什么会OOM"><a href="#为什么会OOM" class="headerlink" title="为什么会OOM"></a>为什么会OOM</h2><p>这个是因为Android系统对dalvik的vm heapsize作了硬性限制，当java进程申请的java空间超过阈值时，就会抛出OOM异常（这个阈值可以是48M、24M、16M等，视机型而定），可以通过adb shell getprop | grep dalvik.vm.heapgrowthlimit查看此值。</p>
+<p>也就是说，程序发生OMM并不表示RAM不足，而是因为程序申请的java heap对象超过了dalvik vm heapgrowthlimit。也就是说，在RAM充足的情况下，也可能发生OOM。</p>
+<h2 id="如何绕过dalvikvm-heapsize的限制"><a href="#如何绕过dalvikvm-heapsize的限制" class="headerlink" title="如何绕过dalvikvm heapsize的限制"></a>如何绕过dalvikvm heapsize的限制</h2><ol>
+<li>创建子进程</li>
+<li>使用jni在native heap上申请空间，nativeheap的增长并不受dalvik vm heapsize的限制，只要RAM有剩余空间，程序员可以一直在native heap上申请空间，当然如果 RAM快耗尽，memory killer会杀进程释放RAM</li>
+</ol>
+
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-Lint学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/11/Lint学习/" class="article-date">
+  <time datetime="2017-01-11T11:41:34.000Z" itemprop="datePublished">1月 11 2017</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/11/Lint学习/">Lint学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Lint是一个静态代码检查工具，可以帮助我们发现代码中的bug，或者影响性能的代码。在sdk 16后就默认安装lint，Android Studio中也集成了lint。被 </p>
 
       
     </div>
@@ -544,7 +552,7 @@ git commit --amend &quot;second commit&quot;
 
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -555,7 +563,7 @@ git commit --amend &quot;second commit&quot;
   
   <div class="outer footer_center">
     <div id="footer-info" class="inner">
-      &copy; 2016 Kevin<br>
+      &copy; 2017 Kevin<br>
       彼此当年少，莫负好时光
   </br>
     </div>

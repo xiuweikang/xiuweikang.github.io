@@ -82,43 +82,43 @@
       <ul>
         
           <li>
-            <a href="/2016/11/10/Build-Variants-Merge-Manifests/">AndroidManifests文件合并</a>
+            <a href="/2017/05/31/非默认版本发布实践/">非默认版本发布实践</a>
           </li>
         
           <li>
-            <a href="/2016/11/07/shell学习/">shell学习</a>
+            <a href="/2017/04/13/jenkins打包详解/">jenkins打包详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/14/gradle学习/">gradle学习</a>
+            <a href="/2017/04/05/绘画机制/">SufaceView详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/01/工具类交流/">工具类交流</a>
+            <a href="/2017/03/19/jenkins打包job/">jenkins打包job</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/View基础相关/">View基础相关</a>
+            <a href="/2017/03/08/WindowManager详解/">WindowManager详解</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/Android动画详解/">Android动画详解</a>
+            <a href="/2017/03/02/常用adb命令/">常用adb 命令</a>
           </li>
         
           <li>
-            <a href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+            <a href="/2017/02/27/Android依赖管理/">Android依赖管理</a>
           </li>
         
           <li>
-            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+            <a href="/2017/02/22/Android内存分析/">Android内存分析</a>
           </li>
         
           <li>
-            <a href="/2016/05/15/git笔记/">git笔记</a>
+            <a href="/2017/01/11/Lint学习/">Lint学习</a>
           </li>
         
           <li>
-            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+            <a href="/2016/12/21/Android-v2签名/">Android</a>
           </li>
         
       </ul>
@@ -131,7 +131,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -167,10 +167,10 @@
         
         <section id="main">
   
-    <article id="post-Retrofit分享" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android-v2签名" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/03/17/Retrofit分享/" class="article-date">
-  <time datetime="2016-03-17T11:39:30.000Z" itemprop="datePublished">3月 17 2016</time>
+    <a href="/2016/12/21/Android-v2签名/" class="article-date">
+  <time datetime="2016-12-21T02:48:43.000Z" itemprop="datePublished">12月 21 2016</time>
 </a>
     
   </div>
@@ -181,7 +181,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+      <a class="article-title" href="/2016/12/21/Android-v2签名/">Android</a>
     </h1>
   
 
@@ -189,70 +189,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Retrofit简介"><a href="#Retrofit简介" class="headerlink" title="Retrofit简介"></a>Retrofit简介</h2><p>Retrofit是Square开发的一个可以用于Android和Java的网络请求封装库。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
-<li>Retrofit可以利用接口，方法和注解来创建一个请求，方便管理。</li>
-<li>Retrofit速度较快<img src="http://www.jcodecraeer.com/uploads/20150418/1429351303115820.png" alt="image"></li>
-<li>可将response自动包装成Java对象</li>
-</ol>
-<h3 id="依赖配置"><a href="#依赖配置" class="headerlink" title="依赖配置"></a>依赖配置</h3><p>在1.x默认集成Gson库，不会集成OkHttp,如果需要OkHttp作为HTTP client，则需手动添加依赖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; OkHttp</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit:retrofit:1.9.0'</span></div><div class="line">    compile <span class="string">'com.squareup.okhttp:okhttp:2.7.2'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在2.0时默认集成OkHttp，不会集成Gson</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;  </div><div class="line">    <span class="comment">// Retrofit &amp; Gson</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:retrofit:2.0.0'</span></div><div class="line">    compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-android-studio快捷键" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/02/17/android-studio快捷键/" class="article-date">
-  <time datetime="2016-02-17T12:53:52.000Z" itemprop="datePublished">2月 17 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/android-studio快捷键/">android studio快捷键</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>添加书签：F3<ul>
-<li>显示书签列表：cmd + F3</li>
-</ul>
-</li>
-<li>隐藏其他窗口:control + w（自定义）</li>
-<li>定位到父类的方法：cmd + u</li>
-<li>在finder中打开文件：cmd + 点击tab</li>
-<li>查看方法参数列表:cmd + p</li>
-<li>快速查看方法定义:cmd + y</li>
-<li>Esc：该操作仅仅把光标移回编辑器。<br>Shift + Esc：该操作会关闭当前面板，然后把光标移回到编辑器。</li>
-<li>按住Alt竖排选中</li>
-<li>语句补全:cmd + shift + enter</li>
-<li>代码补全时enter不对后面修改tab对后面修改</li>
-<li>cmd + alt + m 提取方法</li>
-<li>contral + alt + h查看调用层级</li>
-</ul>
+        <p>为了提高Android系统的安全性，Google从Android 7.0开始增加一种新的增强签名模式，从Android Gradle Plugin 2.2.0开始，构建系统在打包应用后签名时默认使用APK signature scheme v2，该模式在原有的签名模式上，增加校验APK的SHA256哈希值，如果签名后对APK作了任何修改，安装时会校验失败，提示没有签名无法安装,解决办法是在 signingConfigs 里增加 v2SigningEnabled false<br><img src="http://ww3.sinaimg.cn/large/006tNbRwjw1fay9lxdtt6j30r9042jt5.jpg" alt="11:45:34.jpg"></p>
 
       
     </div>
@@ -263,10 +200,10 @@
   
 
   
-    <article id="post-Device-Compatibility" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android数据存储" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/12/27/Device-Compatibility/" class="article-date">
-  <time datetime="2015-12-27T09:20:49.000Z" itemprop="datePublished">12月 27 2015</time>
+    <a href="/2016/12/06/Android数据存储/" class="article-date">
+  <time datetime="2016-12-06T02:33:34.000Z" itemprop="datePublished">12月 6 2016</time>
 </a>
     
   </div>
@@ -277,7 +214,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/27/Device-Compatibility/">Device Compatibility</a>
+      <a class="article-title" href="/2016/12/06/Android数据存储/">Android数据存储和Android7适配</a>
     </h1>
   
 
@@ -285,199 +222,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Device-feature"><a href="#Device-feature" class="headerlink" title="Device feature"></a>Device feature</h2><p>Android系统对每个硬件或者软件 feature定义了相应feature id，如果你不希望没有某个feature的设备下载你的app时，你可以在manifest里写：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span> &gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">uses-feature</span> <span class="attr">android:name</span>=<span class="string">"android.hardware.sensor.compass"</span></span></div><div class="line">                  <span class="attr">android:required</span>=<span class="string">"true"</span> /&gt;</div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>也可以设置成false，表明不需要，可以在运行时动态检查：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">PackageManager pm = getPackageManager();</div><div class="line"><span class="keyword">if</span> (!pm.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS)) &#123;</div><div class="line">    <span class="comment">// This device does not have a compass, turn off the compass feature</span></div><div class="line">    disableCompassFeature();<span class="comment">//自定义方法处理相应逻辑</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Platform-version"><a href="#Platform-version" class="headerlink" title="Platform version"></a>Platform version</h2><p>Android是向前兼容的，4.0是兼容2.3的但是却无法跑4.0之后的，因此如果自己的app用到了比较新的api，这时是无法在旧版本上跑的，因此你需要声明你app所支持的最低sdk版本，target版本则是你app充分利用的最高版本，例如当你的app的tagrgetVersion是19，但是用到的某个api在21时更新了，这时你的app会跑19，而不会跑21，这时就需要注意targetSdkVersion这个属性了</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">uses-sdk</span> <span class="attr">android:minSdkVersion</span>=<span class="string">"14"</span> <span class="attr">android:targetSdkVersion</span>=<span class="string">"21"</span>/&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.HONEYCOMB) &#123;</div><div class="line">    <span class="comment">// Running on something older than API level 11, so disable</span></div><div class="line">    <span class="comment">// the drag/drop features that use ClipboardManager APIs</span></div><div class="line">    disableDragAndDrop();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-Android基础" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/06/Android基础/" class="article-date">
-  <time datetime="2015-12-06T15:35:10.000Z" itemprop="datePublished">12月 6 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/06/Android基础/">Android Training重点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="适配"><a href="#适配" class="headerlink" title="适配"></a>适配</h2><p>Android屏幕有两种属性,size 和 density</p>
-<blockquote>
-<p>size: small,normal,large,xlarge<br>density: low (ldpi), medium (mdpi), high (hdpi), extra high (xhdpi)</p>
-</blockquote>
-<p>屏幕的布局(landscape or portrait)也被认为是不同的</p>
-<p>Android系统会根据当前设备的信息来获取相应的资源。 例如将某个布局资源放在res/layout-large下时，当屏幕为large时，会取这里的。</p>
-<p><a href="http://developer.android.com/intl/zh-cn/guide/topics/resources/providing-resources.html#BestMatch" target="_blank" rel="external">提供资源列表</a></p>
-<blockquote>
-<p>文字：txtName.setText(getResources().getText(R.string.name));</p>
-<p>图片：imgIcon.setBackgroundDrawableResource(R.drawable.icon);</p>
-<p>颜色：txtName.setTextColor(getResouces().getColor(R.color.red));</p>
-<p>布局：setContentView(R.layout.main);</p>
-<p>控件：txtName = (TextView)findViewById(R.id.txt_name);</p>
-</blockquote>
-<h2 id="View相关"><a href="#View相关" class="headerlink" title="View相关"></a>View相关</h2><h3 id="View基础"><a href="#View基础" class="headerlink" title="View基础"></a>View基础</h3><h3 id="ActionBar"><a href="#ActionBar" class="headerlink" title="ActionBar"></a>ActionBar</h3><p>ActionBar的overflow 并不是在每个设备上都显示的，如果有menu物理键时则不会显示，可以通过如下设置：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setOverflowShowingAlways</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		ViewConfiguration config = ViewConfiguration.get(<span class="keyword">this</span>);</div><div class="line">		Field menuKeyField = ViewConfiguration.class.getDeclaredField(<span class="string">"sHasPermanentMenuKey"</span>);</div><div class="line">		menuKeyField.setAccessible(<span class="keyword">true</span>);</div><div class="line">		menuKeyField.setBoolean(config, <span class="keyword">false</span>);</div><div class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="LayoutInflater"><a href="#LayoutInflater" class="headerlink" title="LayoutInflater"></a>LayoutInflater</h3><blockquote>
-<p>inflate(int resource, ViewGroup root, boolean attachToRoot) </p>
+        <p>Android提供了几种选项用于应用数据的持久化，你可以根据自己的需要来选择合适的方式来进行数据存储，比如你的数据是否是私有的，你的数据需要多大的空间，以及你的数据格式是什么样的。目前的存储方式有以下几种：</p>
 <ol>
-<li>如果root为null，attachToRoot将失去作用，设置任何值都没有意义。</li>
-<li>如果root不为null，attachToRoot设为true，则会给加载的布局文件的指定一个父布局，即root。</li>
-<li>如果root不为null，attachToRoot设为false，则会将布局文件最外层的所有layout属性以root为父容器进行设置，当该view被添加到父view当中时，这些layout属性会自动生效。</li>
+<li>SharedPerferences</li>
+<li>内部存储</li>
+<li>外部存储</li>
+<li>SQLite数据库</li>
+<li>网络连接</li>
 </ol>
-</blockquote>
-<h3 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h3><ol>
-<li><strong>android:layout_weight</strong>的真实含义是:一旦View设置了该属性(假设有效的情况下)，那么该 View的宽度等于原有宽度(android:layout_width)加上剩余空间的占比！对于所有的View默认的权重是0，如果只设置了一个View的权重大于0，则该View将占据除去别的View本身占据的空间的所有剩余空间。因此这里设置EditText的权重为1，使其能够占据除了按钮之外的所有空间。</li>
-</ol>
+<h2 id="SharedPerferences"><a href="#SharedPerferences" class="headerlink" title="SharedPerferences"></a>SharedPerferences</h2><p>SP主要适用于读取K-V结构的。你还可以用PreferenceActivity来创建一个设置用户偏好的页面，它会自动帮你处理K-V，定制型较差。SP也可以设置读取的权限，包含privateprivate是只允许对本应用访问创建的文件，readable、writeable则是其他应用对创建的文件只有可读、写权限，一般很少用这个。主要位于应用包下的shared_prefs文件下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDataWithSP</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">    SharedPreferences sp = getSharedPreferences(FILE_NAME, MODE_WORLD_READABLE);</div><div class="line">    SharedPreferences.Editor editor = sp.edit();</div><div class="line">    editor.putString(<span class="string">"name"</span>, data);</div><div class="line">    editor.commit();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getDataWithSP</span><span class="params">()</span> </span>&#123;</div><div class="line">    SharedPreferences sp = getSharedPreferences(FILE_NAME, MODE_WORLD_READABLE);</div><div class="line">    <span class="keyword">return</span> sp.getString(<span class="string">"name"</span>, <span class="string">"jiangzijian"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="用内部存储"><a href="#用内部存储" class="headerlink" title="用内部存储"></a>用内部存储</h2><p>内部存储是通过对文件的读写来实现的，默认是private的，即操作该文件时会直接覆盖，<code>MODE_APPEND</code>是追加，MODE_WORLD_READABLE和MODE_WORLD_WRITEABLE在API17后废弃掉了，同时在Android7.0时不能够通过文件名分享私有文件也不能通过file://来分享，否则会直接crash。如果App要分享私有文件给其他app,需要通过<code>FLAG_GRANT_READ_URI_PERMISSION</code>的<code>FileProvider</code>。主要位于应用包名下的files文件下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDataWithInStorage</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        FileOutputStream fos = openFileOutput(In_STORAGE_FILE_NAME, MODE_APPEND);</div><div class="line">        fos.write(data.getBytes());</div><div class="line">        fos.close();</div><div class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getDataWithInStorage</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</div><div class="line">    FileInputStream fis = openFileInput(In_STORAGE_FILE_NAME);</div><div class="line">    String s = <span class="string">""</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">        <span class="keyword">int</span> n = fis.read(bytes);</div><div class="line">        s = <span class="keyword">new</span> String(bytes, <span class="number">0</span> , n);</div><div class="line">        fis.close();</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> s;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="存储缓存文件"><a href="#存储缓存文件" class="headerlink" title="存储缓存文件"></a>存储缓存文件</h3><p>可以通过<code>getCacheDir()</code>来获取一个内部的目录，主要用于存储一些临时的缓存文件。当设备的内部存储空间不够时，Android会优先删除该目录下的文件，然而我们不能依赖于系统去清理，应该自己来维护。该文件主要位于应用包名下的cache文件下</p>
+<h2 id="用外部存储"><a href="#用外部存储" class="headerlink" title="用外部存储"></a>用外部存储</h2><p>每个Android设备都支持一个共享的外部存储，这个外部存储可以是一个sd卡，也可以是内部的存储，保存在外部存储的是全局可读的，并且可以在插上usb移动到电脑上。</p>
+<p>为了能够读取或写入外部存储的文件，需要获取 <code>READ_EXTERNAL_STORAGE</code> 或者<code>WRITE_EXTERNAL_STORAGE</code>权限<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在对外部存储的文件做任何操作前都需要先检查下存储媒介的状态是否是可写或者可读的，不然会出问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Checks if external storage is available for read and write */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isExternalStorageWritable</span><span class="params">()</span> </span>&#123;</div><div class="line">    String state = Environment.getExternalStorageState();</div><div class="line">    <span class="keyword">if</span> (Environment.MEDIA_MOUNTED.equals(state)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* Checks if external storage is available to at least read */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isExternalStorageReadable</span><span class="params">()</span> </span>&#123;</div><div class="line">    String state = Environment.getExternalStorageState();</div><div class="line">    <span class="keyword">if</span> (Environment.MEDIA_MOUNTED.equals(state) ||</div><div class="line">        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="文件能够被分享给其他app"><a href="#文件能够被分享给其他app" class="headerlink" title="文件能够被分享给其他app"></a>文件能够被分享给其他app</h3><p>一般来说，用户通过app产生的一些新文件应当保存在设备的公共的地方，比如说用户产生的图片、音频等等。执行该操作时需要使用共享的公共目录，比如Music/、Pictures等，这些是系统推荐的，通过将您的文件保存到相应的媒体类型目录，系统的媒体扫描程序可以在系统中正确地归类您的文件（例如铃声在系统设置中显示为铃声而不是音乐）。也可以自己添加合适的type。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> File <span class="title">getAlbumStorageDir</span><span class="params">(String albumName)</span> </span>&#123;</div><div class="line">    <span class="comment">// Get the directory for the user's public pictures directory.</span></div><div class="line">    File file = <span class="keyword">new</span> File(Environment.getExternalStoragePublicDirectory(</div><div class="line">            Environment.DIRECTORY_PICTURES), albumName);</div><div class="line">    <span class="keyword">if</span> (!file.mkdirs()) &#123;</div><div class="line">        Log.e(LOG_TAG, <span class="string">"Directory not created"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> file;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="保存应用的私有文件"><a href="#保存应用的私有文件" class="headerlink" title="保存应用的私有文件"></a>保存应用的私有文件</h3><p>如果要保存的文件不希望被其他应用访问，可以通过调用<code>getExternalFilesDir</code>来使用外部存储来进行私有存储，此方法也可以通过type来指定子目录的类型。已分配某个内部存储器分区用作外部存储的设备可能还提供了 SD 卡槽。在使用运行 Android 4.3 和更低版本的这类设备时，getExternalFilesDir() 方法将仅提供内部分区的访问权限，而您的应用无法读取或写入 SD 卡。不过，从 Android 4.4 开始，可通过调用 getExternalFilesDirs() 来同时访问两个位置，该方法将会返回包含各个位置条目的 File 数组。 数组中的第一个条目被视为外部主存储；除非该位置已满或不可用，否则应该使用该位置。 如果希望在支持 Android 4.3 和更低版本的同时访问两个可能的位置，请使用支持库中的静态方法 ContextCompat.getExternalFilesDirs()。 在 Android 4.3 和更低版本中，此方法也会返回一个 File 数组，但其中始终仅包含一个条目。</p>
+<h3 id="保存缓存文件"><a href="#保存缓存文件" class="headerlink" title="保存缓存文件"></a>保存缓存文件</h3><p>与内部存储类似，外部存储也包含了一个用于存储缓存文件的目录，可以通过<code>getExternalCacheDir()</code>来得到，也可以通过与前述 ContextCompat.getExternalFilesDirs() 相似，您也可以通过调用 ContextCompat.getExternalCacheDirs() 来访问辅助外部存储（如果可用）上的缓存目录。</p>
+<h2 id="Android7权限适配"><a href="#Android7权限适配" class="headerlink" title="Android7权限适配"></a>Android7权限适配</h2><p>在Android7中强制使用了StrictMode,带来的影响就是禁止向自己App外的应用公开<code>file://</code>的URI，否则将会报<code>FileUriExposedException</code>异常，该异常是在startActivity的时候做的，所以如果你的App的target api是低于24的话，你的App并不会崩溃，如果你启动的应用尝试用你传过去的URI向其他应用（包括自己的应用）公开的话，也是会Crash的。正确的做法是发送一项<code>content：//URI</code>,并授予URI临时访问权限。系统为我们封装了<code>FileProvider</code>类来简化操作。</p>
+<p>比如下面的这段代码如果在Android7上且，target api是24时就会Crash:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();</div><div class="line">path += File.separator + <span class="string">"PIC_"</span> + System.currentTimeMillis() + <span class="string">".JPG"</span>;</div><div class="line">File file = <span class="keyword">new</span> File(path);</div><div class="line"><span class="keyword">if</span> (!file.getParentFile().exists()) &#123;</div><div class="line">    file.getParentFile().mkdirs();</div><div class="line">&#125;</div><div class="line">Uri imageUri = Uri.fromFile(file);</div><div class="line">Log.e(<span class="string">"uri"</span>, imageUri.toString());</div><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);<span class="comment">//设置Action为拍照</span></div><div class="line">intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);<span class="comment">//将拍取的照片保存到指定URI</span></div><div class="line">startActivityForResult(intent, <span class="number">1006</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="FileProvider"><a href="#FileProvider" class="headerlink" title="FileProvider"></a>FileProvider</h3><p>解决方案是官方提供了一个<code>FileProvider</code>类来将文件的路径转换.具体的使用方法：</p>
 <ol>
-<li>当 android:orientation=”vertical” 时， 只有水平方向的设置才起作用，垂直方向的设置不起作用。<br>即：layout_gravity = left，right，center_horizontal 是生效的。<br>当 android:orientation=”horizontal” 时， 只有垂直方向的设置才起作用，水平方向的设置不起作用。<br>即：top，bottom，center_vertical 是生效的。<br>3.<strong>margin与padding的区别</strong>:首先margin代表的是偏移,比如marginleft = “5dp”表示组件离容器左边缘偏移5dp; 而padding代表的则是填充,而填充的对象针对的是组件中的元素,比如TextView中的文字<br>比如为TextView设置paddingleft = “5dp”,则是在组件里的元素的左边填充5dp的空间！<br>margin针对的是容器中的组件，而padding针对的是组件中的元素，要区分开来！</li>
+<li>在manifest中添加provider<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">provider</span></span></div><div class="line">         <span class="attr">android:name</span>=<span class="string">"android.support.v4.content.FileProvider"</span></div><div class="line">         <span class="attr">android:authorities</span>=<span class="string">"com.example.kevin.fileprovider"</span></div><div class="line">         <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">         <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</div><div class="line">         <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">             <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></div><div class="line">             <span class="attr">android:resource</span>=<span class="string">"@xml/wm_file_path"</span> /&gt;</div><div class="line"></div><div class="line">     <span class="tag">&lt;/<span class="name">provider</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
 </ol>
-<h3 id="TextView"><a href="#TextView" class="headerlink" title="TextView"></a>TextView</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> TextView txtZQD;  </div><div class="line"></div><div class="line">    <span class="meta">@Override</span>  </div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);  </div><div class="line">        setContentView(R.layout.activity_main);  </div><div class="line">        txtZQD = (TextView) findViewById(R.id.txtZQD);  </div><div class="line">        Drawable[] drawable = txtZQD.getCompoundDrawables();  </div><div class="line">        <span class="comment">// 数组下表0~3,依次是:左上右下  </span></div><div class="line">        drawable[<span class="number">1</span>].setBounds(<span class="number">100</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>);  </div><div class="line">        txtZQD.setCompoundDrawables(drawable[<span class="number">0</span>], drawable[<span class="number">1</span>], drawable[<span class="number">2</span>],  </div><div class="line">                drawable[<span class="number">3</span>]);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了防止manifest文件merge冲突，可以用自己实现的FileProvider。</p>
+<ol>
+<li>在res目录下创建xml目录，然后创建一个路径文件（如wm_file_path.xml）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;resources&gt;</div><div class="line">    &lt;paths&gt;</div><div class="line">        &lt;external-path</div><div class="line">            name=&quot;camera_photos&quot;</div><div class="line">            path=&quot;Pictures/waimai2&quot; /&gt;</div><div class="line">    &lt;/paths&gt;ß</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>&lt;path&gt;</code> 结点下可以包括</p>
+
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-Android软键盘相关详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/05/Android软键盘相关详解/" class="article-date">
+  <time datetime="2016-12-05T07:01:29.000Z" itemprop="datePublished">12月 5 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/05/Android软键盘相关详解/">Android软键盘相关详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android控制软键盘的交互主要是通过Activity的<code>android:windowSoftInputMode</code>属性来设置的，它一共有10个值，可以用“|”来设置多个值分别是：</p>
 <blockquote>
-<p>①Drawable[] drawable = txtZQD.getCompoundDrawables( );<br>获得四个不同方向上的图片资源,数组元素依次是:左上右下的图片<br>②drawable1.setBounds(100, 0, 200, 200);<br>接着获得资源后,可以调用setBounds设置左上右下坐标点,比如这里设置了代表的是:<br>长是:从离文字最左边开始100dp处到200dp处<br>宽是:从文字上方0dp处往上延伸200dp!<br>③txtZQD.setCompoundDrawables(drawable[0], drawable1, drawable2,<br>drawable3);为TextView重新设置drawable数组!没有图片可以用null代替哦!<br>PS：另外，从上面看出我们也可以直接在Java代码中调用setCompoundDrawables为<br>TextView设置图片！</p>
+<p> stateUnspecified，stateUnchanged，stateHidden，stateAlwaysHidden，stateVisible，stateAlwaysVisible，adjustUnspecified，adjustResize，adjustPan，adjustNothing。</p>
 </blockquote>
-<ul>
-<li>TextView在XML中可以设置<code>autoLink</code>属性，值如果是all，则根据协议头匹配。 在java代码中：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TextView txt = (TextView) findViewById(R.id.txt_link);</div><div class="line">txt.setAutoLinkMask(Linkify.ALL);</div><div class="line">txt.setMovementMethod(LinkMovementMethod.getInstance());<span class="comment">//必须存在，此方法在需要响应用户事件时使用，如点击一个电话号码就跳转到拨号页面。如果不执行这个方法是不会响应事件的，即便文本看着已经是下划线蓝色字了</span></div></pre></td></tr></table></figure>
-<ul>
-<li><p>TextView同时还支持Html标签，通过<code>setText(Html.fromHtml(....))</code> 设置。常用有：</p>
-<pre><code>&lt;font&gt;：设置颜色和字体。
-&lt;big&gt;：设置字体大号
-&lt;small&gt;：设置字体小号
-&lt;i&gt;&lt;b&gt;：斜体粗体
-&lt;a&gt;：连接网址
-&lt;img&gt;：图片
-</code></pre></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">TextView t1 = (TextView)findViewById(R.id.txtOne);</div><div class="line">String s1 = <span class="string">"&lt;font color='blue'&gt;&lt;b&gt;百度一下，你就知道~：&lt;/b&gt;&lt;/font&gt;&lt;br&gt;"</span>;</div><div class="line">s1 += <span class="string">"&lt;a href = 'http://www.baidu.com'&gt;百度&lt;/a&gt;"</span>;</div><div class="line">t1.setText(Html.fromHtml(s1));</div><div class="line">t1.setMovementMethod(LinkMovementMethod.getInstance());<span class="comment">//如果想链接有效时设置</span></div></pre></td></tr></table></figure>
-<ul>
-<li>除了上面的HTML可以定制我们TextView的样式外，还可以使用SpannableString和SpannableStringBuilder来完成，两者区别：前者针对的是不可变文本，而后者则是针对可变文本</li>
-</ul>
-<ul>
-<li><p>SpannableString可供我们使用的API有下面这些：</p>
-<ul>
-<li><p>BackgroundColorSpan 背景色</p>
-</li>
-<li><p>ClickableSpan 文本可点击，有点击事件</p>
-</li>
-<li><p>ForegroundColorSpan 文本颜色（前景色）</p>
-</li>
-<li><p>MaskFilterSpan 修饰效果，如模糊(BlurMaskFilter)、浮雕(EmbossMaskFilter)</p>
-</li>
-<li><p>MetricAffectingSpan 父类，一般不用</p>
-</li>
-<li><p>RasterizerSpan 光栅效果</p>
-</li>
-<li><p>StrikethroughSpan 删除线（中划线）</p>
-</li>
-<li><p>SuggestionSpan 相当于占位符</p>
-</li>
-<li><p>UnderlineSpan 下划线</p>
-</li>
-<li><p>AbsoluteSizeSpan 绝对大小（文本字体）</p>
-</li>
-<li><p>DynamicDrawableSpan 设置图片，基于文本基线或底部对齐。</p>
-</li>
-<li><p>ImageSpan 图片</p>
-</li>
-<li><p>RelativeSizeSpan 相对大小（文本字体）</p>
-</li>
-<li><p>ReplacementSpan 父类，一般不用</p>
-</li>
-<li><p>ScaleXSpan 基于x轴缩放</p>
-</li>
-<li><p>StyleSpan 字体样式：粗体、斜体等</p>
-</li>
-<li><p>SubscriptSpan 下标（数学公式会用到）</p>
-</li>
-<li><p>SuperscriptSpan 上标（数学公式会用到）</p>
-</li>
-<li><p>TextAppearanceSpan 文本外貌（包括字体、大小、样式和颜色）</p>
-</li>
-<li><p>TypefaceSpan 文本字体</p>
-</li>
-<li><p>URLSpan 文本超链接</p>
-</li>
-</ul>
-</li>
-<li><p>实现滚动效果 </p>
-</li>
-</ul>
-<pre><code class="xml">android:ellipsize=&quot;marquee&quot;
-android:focusable=&quot;true&quot;
-android:focusableInTouchMode=&quot;true&quot;
-</code></pre>
-<ul>
-<li><p>字间距：</p>
-<ul>
-<li>android:textScaleX：调节字间距的，默认值1.0f，值是float</li>
-<li>Java中setScaleX(2.0f); </li>
-</ul>
-</li>
-<li><p>行间距：<br>Android系统中TextView默认显示中文时会比较紧凑，为了让每行保持的行间距</p>
-<ul>
-<li>android:lineSpacingExtra：设置行间距，如”3dp” </li>
-<li>android:lineSpacingMultiplier：设置行间距的倍数，如”1.2”</li>
-<li>Java代码中可以通过: setLineSpacing方法来设置</li>
-</ul>
-</li>
-</ul>
-<h3 id="EditText"><a href="#EditText" class="headerlink" title="EditText"></a>EditText</h3><ul>
-<li>android:selectAllOnFocus=”true” 当EditText获得焦点后会全选文本</li>
-<li>inputType 限制输入类型 如 phone</li>
-<li>EditText默认是多行显示的，并且能够自动换行，即当一行显示不完的时候，他会自动换到第二行</li>
-<li>另外EditText还为我们提供了设置英文字母大写类型的属性：android:capitalize<br>默认none，提供了三个可选值：<ul>
-<li>sentences：仅第一个字母大写</li>
-<li>words：每一个单词首字母大小，用空格区分单词</li>
-<li>characters:每一个英文字母都大写</li>
-</ul>
-</li>
-<li>android:windowSoftInputMode<br>Activity主窗口与软键盘的交互模式，可以用来避免输入法面板遮挡问题，Android1.5后的一个新特性。 </li>
-</ul>
-<h3 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h3><ul>
-<li>clickable在xml设置成false时，扔可点击触发事件，在java中则不会触发，enable则完全不可点击，并且有置灰效果</li>
-<li>shape 可以理解成 drawable资源，可以在selector中使用</li>
-</ul>
-<h3 id="ImageView"><a href="#ImageView" class="headerlink" title="ImageView"></a>ImageView</h3><ul>
-<li>①background通常指的都是背景,而src指的是内容!! </li>
-<li>②当使用src填入图片时,是按照图片大小直接填充,并不会进行拉伸<br>而使用background填入图片,则是会根据ImageView给定的宽度来进行拉伸 </li>
-<li>Java代码中设置blackground和src属性:<ul>
-<li>前景(对应src属性):setImageDrawable( ); </li>
-<li>背景(对应background属性):setBackgroundDrawable( );</li>
-</ul>
-</li>
-</ul>
-<h3 id="ViewPager"><a href="#ViewPager" class="headerlink" title="ViewPager"></a>ViewPager</h3><ul>
-<li>mViewPager.setOffscreenPageLimit(1); 可以保存一页的状态，在第一次时，会调用两个页面的响应的oncreate()，onResume(). 默认是1.</li>
-<li>和ViewFlipper的区别：ViewFlipper继承ViewAnimator，切换view的时候是有动画效果的，适合做ppt，多界面的程序欢迎引导界面，算是个轻量级的组件，适合展示静态数据，少量数据。<br>ViewPager继承ViewGroup。看官网描述，这货和Fragment是好搭档，Fragment有自己的生命周期。也就是说ViewPager更适用复杂的视图切换，而且Viewpager有自己的adapter，这也让其适应复杂对象，实现数据的动态加载。</li>
-</ul>
-<h3 id="OnNewIntent"><a href="#OnNewIntent" class="headerlink" title="OnNewIntent"></a>OnNewIntent</h3><ul>
-<li>在当前Acticity A跳转到当前Activity A时，如果A是singleTop时，则会回调A的OnNewIntent，其他页跳转到改页面时不会回调</li>
-<li>Activity B为singleTask时，从其他Activity跳转到B时，如果在栈中存在则它之上的Activity出栈，并回调OnNewIntent(),不存在则创建并压栈，不调用OnNewIntent.</li>
-</ul>
+<p>从名字上看可以分为两类：分别是state和adjust。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006y8mN6jw1fafy7lz27lj31bl0u2wno.jpg" alt="15:30:54.jpg"></p>
 
       
     </div>
@@ -488,10 +301,10 @@ android:focusableInTouchMode=&quot;true&quot;
   
 
   
-    <article id="post-Android自定义View" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-水平竖直容器曝光实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/10/19/Android自定义View/" class="article-date">
-  <time datetime="2015-10-19T07:36:40.000Z" itemprop="datePublished">10月 19 2015</time>
+    <a href="/2016/12/03/水平竖直容器曝光实现/" class="article-date">
+  <time datetime="2016-12-03T07:36:44.000Z" itemprop="datePublished">12月 3 2016</time>
 </a>
     
   </div>
@@ -502,7 +315,7 @@ android:focusableInTouchMode=&quot;true&quot;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/19/Android自定义View/">Android自定义View</a>
+      <a class="article-title" href="/2016/12/03/水平竖直容器曝光实现/">水平竖直容器曝光实现</a>
     </h1>
   
 
@@ -510,65 +323,8 @@ android:focusableInTouchMode=&quot;true&quot;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>因为Android的UI 大部分都是直接通过xml文件的，但是在xml文件里我们只是写明了 一些键值对，例如 layout_height = “100dp” 一个view的显示绘制逻辑则是在类中实现。</p>
-<p>自定义View分为几个步骤:</p>
-<p>第一步：在valuse/arrts创建我们view的属性</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"customview"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"testArray"</span> <span class="attr">format</span>=<span class="string">"integer"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>也可直接，不过在获取时略微麻烦</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"testArray"</span> <span class="attr">format</span>=<span class="string">"integer"</span> /&gt;</span></div></pre></td></tr></table></figure>
-<p>第二步：在我们的自定义的view的构造方法中获取这些属性对应的值，这些值就是被我们定义在布局文件里的：例如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com.example.kevin.myapplication.MyView</span></span></div><div class="line"> 		<span class="attr">android:layout_width</span>=<span class="string">"150dp"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"120dp"</span></div><div class="line">        <span class="attr">spa:testArray</span>=<span class="string">"520"</span></div><div class="line">        <span class="attr">spa:text</span>=<span class="string">"hello world"</span> /&gt;</div></pre></td></tr></table></figure>
-<p>内部是通过解析xml将其封装在<code>AttributeSet</code>对象里，并传入view的构造参数里。因此我们在view的构造函数里是可以直接获取到定义的各个属性的值的。但是一般不推荐，因为当一些值是引用时，获取的是id,我们还需要进行转化。所以大部分是直接 </p>
-<p>TypedArray ta =context.obtainStyledAttributes(attrs,R.styleable.customview);</p>
-<p>此时declare-styleable：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.customview);</div><div class="line">String text = ta.getString(R.styleable.customview_text);</div><div class="line"><span class="keyword">int</span> testArray = ta.getInteger(R.styleable.customview_testArray,<span class="number">1</span>);</div></pre></td></tr></table></figure></p>
-<p>没有的则需要手动得到id，存入数组</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTextView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = MyTextView.class.getSimpleName();</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] mAttr = &#123; android.R.attr.text, R.attr.testAttr &#125;;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ATTR_ANDROID_TEXT = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ATTR_TESTATTR = <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTextView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line"></div><div class="line">        <span class="comment">// ==&gt;use typedarray</span></div><div class="line">        TypedArray ta = context.obtainStyledAttributes(attrs, mAttr);</div><div class="line"></div><div class="line">        String text = ta.getString(ATTR_ANDROID_TEXT);</div><div class="line">        <span class="keyword">int</span> textAttr = ta.getInteger(ATTR_TESTATTR, -<span class="number">1</span>);</div><div class="line">        <span class="comment">//输出 text = Hello world! , textAttr = 520</span></div><div class="line">        Log.e(TAG, <span class="string">"text = "</span> + text + <span class="string">" , textAttr = "</span> + textAttr);</div><div class="line"></div><div class="line">        ta.recycle();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>而写成declare-styleable的会自动生成如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">attr</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> testAttr=<span class="number">0x7f0100a9</span>;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">styleable</span> </span>&#123;</div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> test_android_text = <span class="number">0</span>;</div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> test_testAttr = <span class="number">1</span>;</div><div class="line">      <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] test = &#123;</div><div class="line">            <span class="number">0x0101014f</span>, <span class="number">0x7f0100a9</span></div><div class="line">        &#125;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>第三步：如果我们的view需要支持<code>wrap_content</code>则需要重写<code>onMeasure()</code>来设置一个最大值。</p>
-<p>第四步：根据得到的每个属性的值，用andorid原生的api来写绘制逻辑,重写onDraw()。</p>
-
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-Activity详解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/10/14/Activity详解/" class="article-date">
-  <time datetime="2015-10-14T10:26:55.000Z" itemprop="datePublished">10月 14 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/14/Activity详解/">Activity详解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity"></a>启动Activity</h2><ul>
-<li><code>显式Intent</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(MainActivity.class,SecondActivity.class);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
-<ul>
-<li><code>隐式Intent</code>:并不指定某一个特定的Activity而是通过action和category还有data来指定，通过系统分析启动哪一个Activity.如果不存在相应的Activity则报错,存在多个则可以选择，其中多个action和多个data满足一个就行，category必须全部满足，没有android.intent.category.DEFAULT的Activity无法响应隐式Intent.</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"com.meituan.kevin.ACTION_START"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.DEFAULT"</span>/&gt;</span> //必须加，startActivity()会默认添加这个category</div><div class="line">      <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"com.meituan.kevin.second.CATEGORY"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="string">"com.meituan.kevin.ACTION_START"</span>);</div><div class="line">intent.addCategory(<span class="string">"com.meituan.kevin.second.CATEGORY"</span>);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
-<h2 id="关闭Activity"><a href="#关闭Activity" class="headerlink" title="关闭Activity"></a>关闭Activity</h2><p>Activity可以显示调用finish()进行关闭，但是一般不这样做，一般是由Android系统来管理，只有确实不希望用户返回这个实例时才显示调用。</p>
+        <p>最近做广告相关的曝光，分别针对listView里的item和HorizontalScrollView里的每个view，曝光的主要定义是由不可见到可见时算一次曝光，快速滑动的时候也算。</p>
+<h2 id="ListView曝光实现"><a href="#ListView曝光实现" class="headerlink" title="ListView曝光实现"></a>ListView曝光实现</h2><p>不放在getView()里来实现主要是因为我们的下拉刷新组件会不断的设置自己的layoutParams，导致整个View树进行measure、layout、draw，getView会多次调用，不能实现准确曝光，所以需要自己实现一个。因为快速滚动也算，所以只能放在了listView的OnScrollListener的<code>onScroll()</code>里做了，可以用<code>onScroll()</code>里的<code>firstVisiableItem</code>和<code>visiableItemCount</code>参数来实现，我们每次可以获取屏幕显示的开始和结束item的位置，然后针对位置坐相关的处理。比如：如果一开始曝光了0-5，用户滑动，滚到1-6,这个时候我们可以知道6是新曝光的。但是要考虑到onScroll里也算上了header和footer，所以要针对这两个情况做一个映射。</p>
         
             
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -584,10 +340,10 @@ android:focusableInTouchMode=&quot;true&quot;
   
 
   
-    <article id="post-android屏幕适配" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Build-Variants-Merge-Manifests" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/31/android屏幕适配/" class="article-date">
-  <time datetime="2015-07-31T01:09:43.000Z" itemprop="datePublished">7月 31 2015</time>
+    <a href="/2016/11/10/Build-Variants-Merge-Manifests/" class="article-date">
+  <time datetime="2016-11-10T02:42:31.000Z" itemprop="datePublished">11月 10 2016</time>
 </a>
     
   </div>
@@ -598,7 +354,7 @@ android:focusableInTouchMode=&quot;true&quot;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/31/android屏幕适配/">android屏幕适配</a>
+      <a class="article-title" href="/2016/11/10/Build-Variants-Merge-Manifests/">AndroidManifests文件合并</a>
     </h1>
   
 
@@ -606,10 +362,9 @@ android:focusableInTouchMode=&quot;true&quot;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>原文:<a href="http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023">http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023</a></p>
-</blockquote>
-<p><img src="http://img1.gtimg.com/tech/pics/hv1/135/67/1688/109779420.png" alt=""></p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>目前有这样的一个情景：在开发过程中我们需要在整个应用启动的前面选择合适的环境，因此我们会将整个应用的启动界面替换成HostChooseActivity，将WelcomeActivity相应的启动intent-filter注释掉。而在上线时又需要将HostChooseActivity在Manifest文件里注释掉，将WelcomeActivity的intent-filter打开。本地还好，但是在jenkins上就很麻烦,比如当目前的代码不包含可选环境时，QA需要一个可选环境的包来进行测试，这时就得本地重新更改代码然后push、merge、Jenkins重新打包，流程很复杂。所以希望能够根据不同的build type来选择合适的Manifest，最后在官方文档里找到了解决方案，在这之前先简单介绍下预备知识。</p>
+<h2 id="Build-Variants"><a href="#Build-Variants" class="headerlink" title="Build Variants"></a>Build Variants</h2><p>我们知道在Android Studio中有一个Build Variants，它是根据我们在gradle文件里的buildTypes和productFlavors生成的，通过这个我们可以对我们的项目创建不同的版本。例如：可以针对不同的渠道替换一些资源文件，或者更改min Api levels。下面介绍下buildTypes和productFlavors。</p>
+<h3 id="配置Build-Types"><a href="#配置Build-Types" class="headerlink" title="配置Build Types"></a>配置Build Types</h3><p>当你创建一个Module时，AS会自动的创建debug和release这两种build types，其中debug并不会在gradle文件里显示，但其实是存在的，我们点击AS的Build Variants时会看见，平时开发时默认的就是这个模式，而且它的debuggable是为true的。下面是一个例子：<br>
         
             
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -625,10 +380,10 @@ android:focusableInTouchMode=&quot;true&quot;
   
 
   
-    <article id="post-java内存模型" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-shell学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/30/java内存模型/" class="article-date">
-  <time datetime="2015-07-30T01:00:33.000Z" itemprop="datePublished">7月 30 2015</time>
+    <a href="/2016/11/07/shell学习/" class="article-date">
+  <time datetime="2016-11-07T08:37:45.000Z" itemprop="datePublished">11月 7 2016</time>
 </a>
     
   </div>
@@ -639,7 +394,7 @@ android:focusableInTouchMode=&quot;true&quot;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/30/java内存模型/">java内存模型</a>
+      <a class="article-title" href="/2016/11/07/shell学习/">shell学习</a>
     </h1>
   
 
@@ -647,13 +402,14 @@ android:focusableInTouchMode=&quot;true&quot;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##主内存和工作内存</p>
-<blockquote>
-<p>java内存模型的主要目标是定义程序中各个变量的访问规则，即在虚拟机中将变量存储到内存和从内存中取出变量这样的细节。这里的变量指的是 <code>实例字段</code>，<code>静态字段</code>和构成数组对象的元素，但不包括局部变量与方法参数，因为后者是线程私有的，不会被共享。自然不会有竞争问题</p>
-<p>java内存模型规定所有的变量都在主内存中（即方法区和堆中），线程的工作内存中保存了被该线程使用 到的变量的主内存拷贝副本。，线程对变量的修改和使用都必须在自己的工作内存中。<br>
+        <h2 id="第一个Shell脚本"><a href="#第一个Shell脚本" class="headerlink" title="第一个Shell脚本"></a>第一个Shell脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">echo &quot;Hello World !&quot;</div></pre></td></tr></table></figure>
+<p>“#!/bin/sh”用于告诉系统该用什么解释器执行，主要有两种：bash和sh。echo是用于打印的命令</p>
+<h3 id="运行Shell的两种方法"><a href="#运行Shell的两种方法" class="headerlink" title="运行Shell的两种方法"></a>运行Shell的两种方法</h3><h6 id="作为可执行程序"><a href="#作为可执行程序" class="headerlink" title="作为可执行程序"></a>作为可执行程序</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod +x ./test.sh #使脚本具有可执行权限</div><div class="line">./test.sh #执行脚本</div></pre></td></tr></table></figure>
+<h6 id="通过解释器直接执行"><a href="#通过解释器直接执行" class="headerlink" title="通过解释器直接执行"></a>通过解释器直接执行</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/bin/sh test.sh</div></pre></td></tr></table></figure>
+<p>当使用这种形式时就不需要在前面指定需要哪种解释器。<br>
         
             
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
 
   
         
@@ -666,10 +422,10 @@ android:focusableInTouchMode=&quot;true&quot;
   
 
   
-    <article id="post-java动态绑定内幕" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-gradle学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/07/29/java动态绑定内幕/" class="article-date">
-  <time datetime="2015-07-29T07:18:45.000Z" itemprop="datePublished">7月 29 2015</time>
+    <a href="/2016/09/14/gradle学习/" class="article-date">
+  <time datetime="2016-09-14T03:22:54.000Z" itemprop="datePublished">9月 14 2016</time>
 </a>
     
   </div>
@@ -680,7 +436,7 @@ android:focusableInTouchMode=&quot;true&quot;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/29/java动态绑定内幕/">java动态绑定内幕</a>
+      <a class="article-title" href="/2016/09/14/gradle学习/">gradle学习</a>
     </h1>
   
 
@@ -688,10 +444,89 @@ android:focusableInTouchMode=&quot;true&quot;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://hi.csdn.net/attachment/201005/9/0_1273390910MR3c.gif" alt="java对象内存模型"><br>
+        <h2 id="Groovy基础"><a href="#Groovy基础" class="headerlink" title="Groovy基础"></a>Groovy基础</h2><h3 id="常见语法"><a href="#常见语法" class="headerlink" title="常见语法"></a>常见语法</h3><h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><p>Groovy可以和Java一样声明和使用一个类,定义和使用一个方法。同时也提供了一个属性的默认的get和set方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function">String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">def person = <span class="keyword">new</span> Person(<span class="string">"xiuweikang"</span>);</div><div class="line">print person.<span class="function">name</div><div class="line"></div><div class="line">String <span class="title">getPersonName</span><span class="params">(Person person)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> person.name</div><div class="line">&#125;</div><div class="line"><span class="function">println <span class="title">getPersonName</span><span class="params">(person)</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 默认get、set</span></div><div class="line">class Person </span>&#123;</div><div class="line">	String name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">def person = <span class="keyword">new</span> Person()</div><div class="line">person.setName(<span class="string">"xiuweikang"</span>)</div><div class="line">print person.getName()</div></pre></td></tr></table></figure>
         
             
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gradle/">Gradle</a></li></ul>
+
+  
+        
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-工具类交流" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/01/工具类交流/" class="article-date">
+  <time datetime="2016-09-01T02:46:35.000Z" itemprop="datePublished">9月 1 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/01/工具类交流/">工具类交流</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么样的类可以称作是工具类"><a href="#什么样的类可以称作是工具类" class="headerlink" title="什么样的类可以称作是工具类"></a>什么样的类可以称作是工具类</h3><ol>
+<li>与业务完全无关，独立，常用且通用</li>
+<li>与业务相关，常用
+        
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+  
+        
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-View基础相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/03/View基础相关/" class="article-date">
+  <time datetime="2016-08-03T02:34:44.000Z" itemprop="datePublished">8月 3 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/03/View基础相关/">View基础相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h3><p>在Android打算的撒打算的oid中的坐标系是以屏幕左上角为原点，向右为X轴正方向，向下为Y轴正方向，角度如下：<br><img src="https://camo.githubusercontent.com/a0c38e4f124e4b2b4a90e0767f24ee9e7b76f992/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303558746469326a773166317179686a793768386a333038633064777133322e6a7067" alt=""><img src="https://camo.githubusercontent.com/42523a55dc2c71f288166c04da524e350d9abfe4/687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f30303558746469326a7731663171796862717669686a333038633064776a72682e6a7067" alt=""></p>
+        
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
 
   
         
@@ -707,7 +542,7 @@ android:focusableInTouchMode=&quot;true&quot;
 
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -718,7 +553,7 @@ android:focusableInTouchMode=&quot;true&quot;
   
   <div class="outer footer_center">
     <div id="footer-info" class="inner">
-      &copy; 2016 Kevin<br>
+      &copy; 2017 Kevin<br>
       彼此当年少，莫负好时光
   </br>
     </div>

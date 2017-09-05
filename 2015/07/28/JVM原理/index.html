@@ -12,7 +12,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20141013141216040">
 <meta property="og:image" content="http://img.blog.csdn.net/20131226172011765">
 <meta property="og:image" content="http://img.blog.csdn.net/20131226172113234">
-<meta property="og:updated_time" content="2016-07-19T03:55:14.000Z">
+<meta property="og:updated_time" content="2017-03-28T09:02:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM内存模型">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20141013141216040">
@@ -87,43 +87,43 @@
       <ul>
         
           <li>
-            <a href="/2016/11/10/Build-Variants-Merge-Manifests/">AndroidManifests文件合并</a>
+            <a href="/2017/05/31/非默认版本发布实践/">非默认版本发布实践</a>
           </li>
         
           <li>
-            <a href="/2016/11/07/shell学习/">shell学习</a>
+            <a href="/2017/04/13/jenkins打包详解/">jenkins打包详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/14/gradle学习/">gradle学习</a>
+            <a href="/2017/04/05/绘画机制/">SufaceView详解</a>
           </li>
         
           <li>
-            <a href="/2016/09/01/工具类交流/">工具类交流</a>
+            <a href="/2017/03/19/jenkins打包job/">jenkins打包job</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/View基础相关/">View基础相关</a>
+            <a href="/2017/03/08/WindowManager详解/">WindowManager详解</a>
           </li>
         
           <li>
-            <a href="/2016/08/03/Android动画详解/">Android动画详解</a>
+            <a href="/2017/03/02/常用adb命令/">常用adb 命令</a>
           </li>
         
           <li>
-            <a href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+            <a href="/2017/02/27/Android依赖管理/">Android依赖管理</a>
           </li>
         
           <li>
-            <a href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+            <a href="/2017/02/22/Android内存分析/">Android内存分析</a>
           </li>
         
           <li>
-            <a href="/2016/05/15/git笔记/">git笔记</a>
+            <a href="/2017/01/11/Lint学习/">Lint学习</a>
           </li>
         
           <li>
-            <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
+            <a href="/2016/12/21/Android-v2签名/">Android</a>
           </li>
         
       </ul>
@@ -136,7 +136,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -217,8 +217,8 @@
 <p>并不是虚拟机运行时数据区的一部分，也不是JAVA虚拟机规范中定义的内存区域，但是这部分区域被频繁使用，同时也会出现OOM。</p>
 <p>NIO中，引入了一种基于通道和缓冲区的IO方式，使用Native库直接分配堆外内存，然后通过一个存储在JAVA堆中的DirectByteBuffer对象作为这块内存的引用进行操作，这样能用显著提升性能，避免了在Java堆和Native堆中来回复制数据。</p>
 <p>直接内存不会受到JAVA堆大小的限制，会受到本机中内存的限制。</p>
-<h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2></blockquote>
-<p>举个例子，当我们new Person()时，虚拟机遇到new这个指令，会去运行时常量池中查找是否存在Person这个类的符号引用，如果没有，则抛NoClassFound异常，并且检查此类是否已经加载，解析和初始化过，如果没有先进行加载过程。之后再进行分配内存，一种是利用指针碰撞，即通过移动指针来分配相应的内存，另一种是维护一个空闲列表用来分配，内存分配后会将分配到的内存空间都初始化为零值，因此就算类的成员变量没有初始化也可以直接使用。</p>
+</blockquote>
+<h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2><p>举个例子，当我们new Person()时，虚拟机遇到new这个指令，会去运行时常量池中查找是否存在Person这个类的符号引用，如果没有，则抛NoClassFound异常，并且检查此类是否已经加载，解析和初始化过，如果没有先进行加载过程。之后再进行分配内存，一种是利用指针碰撞，即通过移动指针来分配相应的内存，另一种是维护一个空闲列表用来分配，内存分配后会将分配到的内存空间都初始化为零值，因此就算类的成员变量没有初始化也可以直接使用。</p>
 <p>接下来，虚拟机要对对象进行必要的设置，例如该对象是哪个类的实例，如何找到类的元数据信息，对象的哈希码，分代信息等。这些信息放在<code>对象头中</code> ，这些工作都完成后再进行init方法（构造函数）进行初始化</p>
 <h2 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h2><p>一个空对象在内存占用空间大小：</p>
 <blockquote>
@@ -281,7 +281,7 @@
   
   <div class="outer footer_center">
     <div id="footer-info" class="inner">
-      &copy; 2016 Kevin<br>
+      &copy; 2017 Kevin<br>
       彼此当年少，莫负好时光
   </br>
     </div>

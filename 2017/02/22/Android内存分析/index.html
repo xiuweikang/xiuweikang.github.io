@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android内存分析 | Kevin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="内存指标概念故内存的大小关系：VSS &amp;gt;= RSS &amp;gt;= PSS &amp;gt;= USS
+内存分析命令adb shell dumpsys meminfo命令输出包括4部分：
+可以 adb shell dumpsys meminfo --package [packagename]查看某一进程下的:
+使用Debug的getMemoryInfo(Debug.MemoryInfo memoryIn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android内存分析">
+<meta property="og:url" content="/2017/02/22/Android内存分析/index.html">
+<meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="内存指标概念故内存的大小关系：VSS &amp;gt;= RSS &amp;gt;= PSS &amp;gt;= USS
+内存分析命令adb shell dumpsys meminfo命令输出包括4部分：
+可以 adb shell dumpsys meminfo --package [packagename]查看某一进程下的:
+使用Debug的getMemoryInfo(Debug.MemoryInfo memoryIn">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNbRwly1fe3ifvuz5bj314j0bs0v2.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNbRwly1fe3ix89jwjj314l0eadiz.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tKfTcly1feprgxtm1rj316z0qu43a.jpg">
+<meta property="og:updated_time" content="2017-04-17T13:00:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android内存分析">
+<meta name="twitter:description" content="内存指标概念故内存的大小关系：VSS &amp;gt;= RSS &amp;gt;= PSS &amp;gt;= USS
+内存分析命令adb shell dumpsys meminfo命令输出包括4部分：
+可以 adb shell dumpsys meminfo --package [packagename]查看某一进程下的:
+使用Debug的getMemoryInfo(Debug.MemoryInfo memoryIn">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/006tNbRwly1fe3ifvuz5bj314j0bs0v2.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Kevin</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about/index.html">关于</a>
+        
+          <a class="main-nav-link" href="/atom.xml">RSS</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/xiuweikang" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">关于</a>
+  
+    <a href="/atom.xml" class="mobile-nav-link">RSS</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value=""></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/31/非默认版本发布实践/">非默认版本发布实践</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/13/jenkins打包详解/">jenkins打包详解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/05/绘画机制/">SufaceView详解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/19/jenkins打包job/">jenkins打包job</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/08/WindowManager详解/">WindowManager详解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/02/常用adb命令/">常用adb 命令</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/27/Android依赖管理/">Android依赖管理</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/22/Android内存分析/">Android内存分析</a>
+          </li>
+        
+          <li>
+            <a href="/2017/01/11/Lint学习/">Lint学习</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/21/Android-v2签名/">Android</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://my.csdn.net/jiaomingliang">亮亮的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://cheduzi.wang">二哥的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/guolin_blog">郭神的博客</a>
+          </li>
+        
+          <li>
+            <a href="http://http://blog.csdn.net/singwhatiwanna">任玉刚的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-Android内存分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/22/Android内存分析/" class="article-date">
+  <time datetime="2017-02-22T12:19:48.000Z" itemprop="datePublished">2月 22 2017</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android内存分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="内存指标概念"><a href="#内存指标概念" class="headerlink" title="内存指标概念"></a>内存指标概念</h2><p><img src="https://ww1.sinaimg.cn/large/006tNbRwly1fe3ifvuz5bj314j0bs0v2.jpg" alt=""><br>故内存的大小关系：VSS &gt;= RSS &gt;= PSS &gt;= USS</p>
+<h2 id="内存分析命令"><a href="#内存分析命令" class="headerlink" title="内存分析命令"></a>内存分析命令</h2><h3 id="adb-shell-dumpsys-meminfo"><a href="#adb-shell-dumpsys-meminfo" class="headerlink" title="adb shell dumpsys meminfo"></a>adb shell dumpsys meminfo</h3><p>命令输出包括4部分：<br><img src="https://ww4.sinaimg.cn/large/006tNbRwly1fe3ix89jwjj314l0eadiz.jpg" alt=""></p>
+<p>可以 <code>adb shell dumpsys meminfo --package [packagename]</code>查看某一进程下的:<br><img src="https://ww1.sinaimg.cn/large/006tKfTcly1feprgxtm1rj316z0qu43a.jpg" alt=""></p>
+<p>使用Debug的getMemoryInfo(Debug.MemoryInfo memoryInfo)或ActivityManager的MemoryInfo[] getProcessMemoryInfo(int[] pids)<br>该方式得到的MemoryInfo所描述的内存使用情况比较详细.数据的单位是KＢ.MemoryInfo的Field如下:</p>
+<blockquote>
+<p>dalvikPrivateDirty： The private dirty pages used by dalvik。<br>dalvikPss ：The proportional set size for dalvik.<br>dalvikSharedDirty ：The shared dirty pages used by dalvik.<br>nativePrivateDirty ：The private dirty pages used by the native heap.<br>nativePss ：The proportional set size for the native heap.<br>nativeSharedDirty ：The shared dirty pages used by the native heap.<br>otherPrivateDirty ：The private dirty pages used by everything else.<br>otherPss ：The proportional set size for everything else.<br>otherSharedDirty ：The shared dirty pages used by everything else.</p>
+</blockquote>
+<p>Android和Linux一样有大量内存在进程之间进程共享。某个进程准确的使用好多内存实际上是很难统计的。<br>因为有paging out to disk（换页），所以如果你把所有映射到进程的内存相加，它可能大于你的内存的实际物理大小。</p>
+<pre><code> dalvik：是指dalvik所使用的内存。
+ native：是被native堆使用的内存。应该指使用C\C++在堆上分配的内存。
+ other:是指除dalvik和native使用的内存。但是具体是指什么呢？至少包括在C\C++分配的非堆内存，比如分配在栈上的内存。puzlle!
+private:是指私有的。非共享的。
+share:是指共享的内存。
+PSS：实际使用的物理内存（比例分配共享库占用的内存）
+Pss：它是把共享内存根据一定比例分摊到共享它的各个进程来计算所得到进程使用内存。网上又说是比例分配共享库占用的内存，那么至于这里的共享是否只是库的共享，还是不清楚。
+PrivateDirty：它是指非共享的，又不能换页出去（can not be paged to disk ）的内存的大小。比如Linux为了提高分配内存速度而缓冲的小对象，即使你的进程结束，该内存也不会释放掉，它只是又重新回到缓冲中而已。
+SharedDirty:参照PrivateDirty我认为它应该是指共享的，又不能换页出去（can not be paged to disk ）的内存的大小。比如Linux为了提高分配内存速度而缓冲的小对象，即使所有共享它的进程结束，该内存也不会释放掉，它只是又重新回到缓冲中而已。
+</code></pre><h2 id="为什么会OOM"><a href="#为什么会OOM" class="headerlink" title="为什么会OOM"></a>为什么会OOM</h2><p>这个是因为Android系统对dalvik的vm heapsize作了硬性限制，当java进程申请的java空间超过阈值时，就会抛出OOM异常（这个阈值可以是48M、24M、16M等，视机型而定），可以通过adb shell getprop | grep dalvik.vm.heapgrowthlimit查看此值。</p>
+<p>也就是说，程序发生OMM并不表示RAM不足，而是因为程序申请的java heap对象超过了dalvik vm heapgrowthlimit。也就是说，在RAM充足的情况下，也可能发生OOM。</p>
+<h2 id="如何绕过dalvikvm-heapsize的限制"><a href="#如何绕过dalvikvm-heapsize的限制" class="headerlink" title="如何绕过dalvikvm heapsize的限制"></a>如何绕过dalvikvm heapsize的限制</h2><ol>
+<li>创建子进程</li>
+<li>使用jni在native heap上申请空间，nativeheap的增长并不受dalvik vm heapsize的限制，只要RAM有剩余空间，程序员可以一直在native heap上申请空间，当然如果 RAM快耗尽，memory killer会杀进程释放RAM</li>
+</ol>
+
+      
+    </div>
+
+  
+  
+</article>
+
+  
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2017/02/22/Android内存分析/" data-title="Android内存分析" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="Android内存分析" data-url="//2017/02/22/Android内存分析/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
+
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2017/02/22/Android内存分析/" data-title="Android内存分析" data-url="//2017/02/22/Android内存分析/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer footer_center">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Kevin<br>
+      彼此当年少，莫负好时光
+  </br>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

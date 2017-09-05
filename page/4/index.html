@@ -118,7 +118,7 @@
           </li>
         
           <li>
-            <a href="/2016/12/21/Android-v2签名/">Android</a>
+            <a href="/2016/12/22/Android-Studio-User-Guide/">Android Studio User Guide</a>
           </li>
         
       </ul>
@@ -166,6 +166,55 @@
 </aside>
         
         <section id="main">
+  
+    <article id="post-Android自定义View" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/19/Android自定义View/" class="article-date">
+  <time datetime="2015-10-19T07:36:40.000Z" itemprop="datePublished">10月 19 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/19/Android自定义View/">Android自定义View</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为Android的UI 大部分都是直接通过xml文件的，但是在xml文件里我们只是写明了 一些键值对，例如 layout_height = “100dp” 一个view的显示绘制逻辑则是在类中实现。</p>
+<p>自定义View分为几个步骤:</p>
+<p>第一步：在valuse/arrts创建我们view的属性</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"customview"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"testArray"</span> <span class="attr">format</span>=<span class="string">"integer"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>也可直接，不过在获取时略微麻烦</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"testArray"</span> <span class="attr">format</span>=<span class="string">"integer"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>第二步：在我们的自定义的view的构造方法中获取这些属性对应的值，这些值就是被我们定义在布局文件里的：例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">com.example.kevin.myapplication.MyView</span></span></div><div class="line"> 		<span class="attr">android:layout_width</span>=<span class="string">"150dp"</span></div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"120dp"</span></div><div class="line">        <span class="attr">spa:testArray</span>=<span class="string">"520"</span></div><div class="line">        <span class="attr">spa:text</span>=<span class="string">"hello world"</span> /&gt;</div></pre></td></tr></table></figure>
+<p>内部是通过解析xml将其封装在<code>AttributeSet</code>对象里，并传入view的构造参数里。因此我们在view的构造函数里是可以直接获取到定义的各个属性的值的。但是一般不推荐，因为当一些值是引用时，获取的是id,我们还需要进行转化。所以大部分是直接 </p>
+<p>TypedArray ta =context.obtainStyledAttributes(attrs,R.styleable.customview);</p>
+<p>此时declare-styleable：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.customview);</div><div class="line">String text = ta.getString(R.styleable.customview_text);</div><div class="line"><span class="keyword">int</span> testArray = ta.getInteger(R.styleable.customview_testArray,<span class="number">1</span>);</div></pre></td></tr></table></figure></p>
+<p>没有的则需要手动得到id，存入数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTextView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = MyTextView.class.getSimpleName();</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] mAttr = &#123; android.R.attr.text, R.attr.testAttr &#125;;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ATTR_ANDROID_TEXT = <span class="number">0</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ATTR_TESTATTR = <span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTextView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(context, attrs);</div><div class="line"></div><div class="line">        <span class="comment">// ==&gt;use typedarray</span></div><div class="line">        TypedArray ta = context.obtainStyledAttributes(attrs, mAttr);</div><div class="line"></div><div class="line">        String text = ta.getString(ATTR_ANDROID_TEXT);</div><div class="line">        <span class="keyword">int</span> textAttr = ta.getInteger(ATTR_TESTATTR, -<span class="number">1</span>);</div><div class="line">        <span class="comment">//输出 text = Hello world! , textAttr = 520</span></div><div class="line">        Log.e(TAG, <span class="string">"text = "</span> + text + <span class="string">" , textAttr = "</span> + textAttr);</div><div class="line"></div><div class="line">        ta.recycle();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而写成declare-styleable的会自动生成如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">attr</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> testAttr=<span class="number">0x7f0100a9</span>;</div><div class="line">    &#125;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">styleable</span> </span>&#123;</div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> test_android_text = <span class="number">0</span>;</div><div class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> test_testAttr = <span class="number">1</span>;</div><div class="line">      <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>[] test = &#123;</div><div class="line">            <span class="number">0x0101014f</span>, <span class="number">0x7f0100a9</span></div><div class="line">        &#125;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>第三步：如果我们的view需要支持<code>wrap_content</code>则需要重写<code>onMeasure()</code>来设置一个最大值。</p>
+<p>第四步：根据得到的每个属性的值，用andorid原生的api来写绘制逻辑,重写onDraw()。</p>
+
+      
+    </div>
+
+  
+</article>
+
+  
+
   
     <article id="post-Activity详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -491,44 +540,6 @@
 <li>软引用：在OOM之前会把这些对象作为垃圾对象进行回收，如果还没有足够的内存，则OOM，通过SoftReference类来实现</li>
 <li>弱引用： 存活到下一次垃圾收集发生之前WeakReference实现</li>
 <li>虚引用：最弱的，唯一目的是在对象被回收时收到一个系统通知。 PhantomReference实现。
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-JVM原理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/28/JVM原理/" class="article-date">
-  <time datetime="2015-07-27T23:40:21.000Z" itemprop="datePublished">7月 28 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/28/JVM原理/">JVM内存模型</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://img.blog.csdn.net/20141013141216040" alt=""><br>
         
             
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li></ul>

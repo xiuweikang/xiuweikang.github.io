@@ -82,19 +82,7 @@
       <ul>
         
           <li>
-            <a href="/2017/05/31/非默认版本发布实践/">非默认版本发布实践</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/13/jenkins打包详解/">jenkins打包详解</a>
-          </li>
-        
-          <li>
             <a href="/2017/04/05/绘画机制/">SufaceView详解</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/19/jenkins打包job/">jenkins打包job</a>
           </li>
         
           <li>
@@ -121,6 +109,18 @@
             <a href="/2016/12/22/Android-Studio-User-Guide/">Android Studio User Guide</a>
           </li>
         
+          <li>
+            <a href="/2016/12/21/Android-v2签名/">Android</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/06/Android数据存储/">Android数据存储和Android7适配</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/05/Android软键盘相关详解/">Android软键盘相关详解</a>
+          </li>
+        
       </ul>
     </div>
   </div>
@@ -131,7 +131,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/TCP-IP/" style="font-size: 18.33px;">TCP/IP</a> <a href="/tags/java/" style="font-size: 13.33px;">java</a> <a href="/tags/数据结构/" style="font-size: 16.67px;">数据结构</a> <a href="/tags/源码解析/" style="font-size: 10px;">源码解析</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/设计模式/" style="font-size: 11.67px;">设计模式</a>
     </div>
   </div>
 
@@ -166,210 +166,6 @@
 </aside>
         
         <section id="main">
-  
-    <article id="post-Android-Studio-User-Guide" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/22/Android-Studio-User-Guide/" class="article-date">
-  <time datetime="2016-12-22T12:16:49.000Z" itemprop="datePublished">12月 22 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/22/Android-Studio-User-Guide/">Android Studio User Guide</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="开发工作流"><a href="#开发工作流" class="headerlink" title="开发工作流"></a>开发工作流</h2><p><img src="http://ww4.sinaimg.cn/large/006tNc79jw1fb37jls8mrj30jl11gabs.jpg" alt="18:21:56.jpg"></p>
-<h2 id="创建Android-Library"><a href="#创建Android-Library" class="headerlink" title="创建Android Library"></a>创建Android Library</h2><p>一个Android Library和普通的Android工程一样都包含source code、resource、manifest文件等，但它并不编译进apk，而是编译成一个aar文件，你可以对它进行依赖。</p>
-<h3 id="如何创建"><a href="#如何创建" class="headerlink" title="如何创建"></a>如何创建</h3><p>可以直接通过Android Studio的New Module来进行创建一个新的Module.它和普通的application的主要差别在与所依赖的Gradle Android插件。application下面的是<code>apply plugin: &#39;com.android.application&#39;</code> 而Moudle下的是<code>apply plugin: &#39;com.android.library&#39;</code>,因此你也通过更改这个还完成相互的转换。</p>
-<h3 id="添加Library依赖"><a href="#添加Library依赖" class="headerlink" title="添加Library依赖"></a>添加Library依赖</h3><ol>
-<li><p>添加Library到project目录下</p>
-<ul>
-<li>可以通过new Moudle</li>
-<li>import Moudle</li>
-</ul>
-</li>
-<li><p>看项目根目录下的setting。gradle是否包含该Moudle</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">include <span class="string">':app'</span>, <span class="string">':mylibrary'</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>在主app下的build.gradle设置对其的依赖，如果不设置则不会生效</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    <span class="function">compile <span class="title">project</span><span class="params">(<span class="string">":mylibrary"</span>)</span></span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>4.进行同步</p>
-<p>通过上面的步骤就可以使一个项目依赖一个Library了，如果只想让其在指定的<code>build variant</code>，可以用<code>build variant</code>的名字加Compile来取代compile，例如下面的就可以只在release环境下依赖mylibrary moudle：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">releaseCompile <span class="title">project</span><span class="params">(<span class="string">":mylibrary"</span>)</span></span></div></pre></td></tr></table></figure></p>
-<p>对Library进行依赖后，你就有可以访问该Library下的的code和resources，在build的时候会被一起装到apk，同时你也可以在<code>project-name/module-name/build/outputs/aar/</code>里找到生成的aar包，也可以通过Build &gt; Make Project重新生成。</p>
-<h3 id="发布Library以非默认的variants"><a href="#发布Library以非默认的variants" class="headerlink" title="发布Library以非默认的variants"></a>发布Library以非默认的variants</h3><p>默认的，library最终只以release的方式在Android项目里引用，即使你指定它的BuildVariant，但是我们通过添加标识来指定默认的发布方式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  <span class="comment">// Sets the "debug" build variant as the default variant</span></div><div class="line">  <span class="comment">// of the library that Gradle should publish.</span></div><div class="line">  defaultPublishConfig <span class="string">"debug"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如果包含了flavors，你就必须指定它的完整的名字,例如。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  defaultPublishConfig <span class="string">"demoDebug"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在发布release时，你需要针对不同的build varients改变defaultPublishConfig，很麻烦，所以你可以告诉gradle，去生成一个Library所有的build varients，然后指定就可以了：如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">  ...</div><div class="line">  <span class="comment">// Tells Gradle to build all variants of the library. Note that this</span></div><div class="line">  <span class="comment">// may increase build times because Gradle must build multiple AARs,</span></div><div class="line">  <span class="comment">// instead of only one.</span></div><div class="line">  publishNonDefault <span class="keyword">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>指定当执行<code>demoDebug</code>时，Library也用<code>demoDebug</code>：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">android &#123;...&#125;</div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// Creates Gradle dependency configurations to use in the dependencies block.</span></div><div class="line">configurations &#123;</div><div class="line">  <span class="comment">// Initializes placeholder configurations that the Android plugin can use when targeting</span></div><div class="line">  <span class="comment">// the corresponding variant of the app.</span></div><div class="line">  demoDebugCompile &#123;&#125;</div><div class="line">  fullReleaseCompile &#123;&#125;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">  <span class="comment">// If the library configures multiple build variants using product flavors,</span></div><div class="line">  <span class="comment">// you must target one of the library's variants using its full configuration name.</span></div><div class="line">  <span class="function">demoDebugCompile <span class="title">project</span><span class="params">(path: <span class="string">':my-library-module'</span>, configuration: <span class="string">'demoDebug'</span>)</span></span></div><div class="line">  fullReleaseCompile <span class="title">project</span><span class="params">(path: <span class="string">':my-library-module'</span>, configuration: <span class="string">'fullRelease'</span>)</span></div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="开发考虑"><a href="#开发考虑" class="headerlink" title="开发考虑"></a>开发考虑</h3><p>当Library添加到app中时，Library集会按照一次一个的形式与应用合并，具体的规则如下：</p>
-<ul>
-<li>资源合并冲突<ul>
-<li>当Library和app中同时存在相同的资源id时，使用app的</li>
-<li>当两个aar包存在冲突时用dependencies块中靠前的</li>
-<li>为了避免资源冲突可以根据module给资源id添加独一无二的前缀，</li>
-</ul>
-</li>
-<li>library module可以包含jar包<ul>
-<li>你可以开发一个带有Jar包的Library module，但是你需要手动的在app moudle的buld path中添加这jar包的path</li>
-</ul>
-</li>
-<li>Library modules不能包含原始assets<ul>
-<li>在library module中不支持使用asset文件（保存在assets目录下的），任何asset资源必须放在app module下</li>
-</ul>
-</li>
-<li>app module下的minSdkVersion必须大于等于 library下的<br>因为library最后会被编译进app module，所以library module必须能够兼容app module的minSdkVersion</li>
-<li>每个library都会创建自己的R类文件<ul>
-<li>在您构建相关应用模块时，库模块将先编译到 AAR 文件中，然后再添加到应用模块中。因此，每个库都有其自己的 R 类，并根据library的package命名。主要在build/generated/source</li>
-</ul>
-</li>
-<li>当app moudle依赖了两个相同的library，但是不同版本，优先依赖高版本</li>
-<li>两个library都依赖了相同的一个库，但是库的版本不同，优先依赖高版本的，可以通过gradle dependencies查看被更改的</li>
-<li>可以在Library中添加相应的Proguard配置文件来启动代码压缩，build工具会将这个文件嵌入到library moudle生成的aar包中，当你添加library到app中，library的proguard文件会附加到app的proguard文件后面。<br>当Proguard在app模块中运行时，它会执行app下的和library下的命令，所以你不需要独自在library下运行proguard。要指定您的库的配置文件名称，请将其添加到 <code>consumerProguardFiles</code> 方法中，此方法位于您的library的 build.gradle 文件的 defaultConfig 块内。例如，以下片段会将 lib-proguard-rules.txt 设置为库的 ProGuard 配置文件：<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    defaultConfig &#123;</div><div class="line">        consumerProguardFiles <span class="string">'lib-proguard-rules.txt'</span></div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="AAR文件详解"><a href="#AAR文件详解" class="headerlink" title="AAR文件详解"></a>AAR文件详解</h3><p>AAR（ Android Archive ）文件的文件扩展名为,文件本身是一个包含以下强制性条目的 zip 文件：</p>
-<ul>
-<li>/AndroidManifest.xml</li>
-<li>/classes.jar</li>
-<li>/res/</li>
-<li><p>/R.txt<br>此外，AAR 文件可能包含以下可选条目中的一个或多个：</p>
-</li>
-<li><p>/assets/</p>
-</li>
-<li>/libs/name.jar</li>
-<li>/jni/abi_name/name.so（其中 abi_name 是 Android 支持的 ABI 之一）</li>
-<li>/proguard.txt</li>
-<li>/lint.jar</li>
-</ul>
-<h2 id="编写应用"><a href="#编写应用" class="headerlink" title="编写应用"></a>编写应用</h2><h3 id="改变resource-目录"><a href="#改变resource-目录" class="headerlink" title="改变resource 目录"></a>改变resource 目录</h3><p>默认的resource在 <code>module-name/src/source-set-name/res/</code>目录下，一般是<code>src/main/res</code>，但是可以通过gradle来设置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    sourceSets &#123;</div><div class="line">        main &#123;</div><div class="line">            res.srcDirs = [<span class="string">'resources/main'</span>]</div><div class="line">        &#125;</div><div class="line">        debug &#123;</div><div class="line">            res.srcDirs = [<span class="string">'resources/debug'</span>]</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>或者为一个source set指定多个资源目录<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    sourceSets &#123;</div><div class="line">        main &#123;</div><div class="line">            res.srcDirs = [<span class="string">'res1'</span>, <span class="string">'res2'</span>]</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在最终的apk文件中包含以下目录下的resource文件：</p>
-<ul>
-<li>main source set</li>
-<li>Build variant source set</li>
-<li>Android libraries（AARs）</li>
-</ul>
-<p>如果一个resource包含多个，但只有一个被包含进最终的APK，build工具按照如下优先级选择：<br><code>build variant &gt; build type &gt; product flavor &gt; main source set &gt; library dependencies</code></p>
-<h3 id="Lint检查"><a href="#Lint检查" class="headerlink" title="Lint检查"></a>Lint检查</h3><h3 id="从命令行构建app"><a href="#从命令行构建app" class="headerlink" title="从命令行构建app"></a>从命令行构建app</h3><h4 id="gradle-wrapper"><a href="#gradle-wrapper" class="headerlink" title="gradle wrapper"></a>gradle wrapper</h4><p>主要通过gradle来进行构建，AS中会为每个项目配置一个<code>gradle wrapper</code>，针对windows提供了相应的.bat文件，针对linux和mac os提供了shell脚本，它们会自动下载在<code>gradle-wrapper.properties</code>中指定的版本。这样一来我们就不必考虑操作系统因素，直接通过wrapper执行gradle task</p>
-<h4 id="执行gradle-task"><a href="#执行gradle-task" class="headerlink" title="执行gradle task"></a>执行gradle task</h4><p>切到项目的根目录下，执行<code>./gradlew task-name</code>，也可以下载gradle为其设置环境变量，然后通过<code>gradle task-name</code>来执行，可以通过<code>gradle tasks</code>看项目里的task列表.</p>
-<h4 id="build-type"><a href="#build-type" class="headerlink" title="build type"></a>build type</h4><p>默认情况下，存在两个Build type： release 和 debug，其中debug并不会在gradle文件里显示，但其实是存在的，我们点击AS的Build Variants时会看见，平时开发时默认的就是这个模式，而且它的debuggable是为true的。无论哪种build都需要通过密钥进行sign，才能安装到手机上，debug build通过SDK tools提供的debug key，这个key是不安全的而且不能在google store上发布APK，在release buildd则需要自己的key</p>
-
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-Android-v2签名" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/21/Android-v2签名/" class="article-date">
-  <time datetime="2016-12-21T02:48:43.000Z" itemprop="datePublished">12月 21 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/21/Android-v2签名/">Android</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>为了提高Android系统的安全性，Google从Android 7.0开始增加一种新的增强签名模式，从Android Gradle Plugin 2.2.0开始，构建系统在打包应用后签名时默认使用APK signature scheme v2，该模式在原有的签名模式上，增加校验APK的SHA256哈希值，如果签名后对APK作了任何修改，安装时会校验失败，提示没有签名无法安装,解决办法是在 signingConfigs 里增加 v2SigningEnabled false<br><img src="http://ww3.sinaimg.cn/large/006tNbRwjw1fay9lxdtt6j30r9042jt5.jpg" alt="11:45:34.jpg"></p>
-
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-Android数据存储" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/06/Android数据存储/" class="article-date">
-  <time datetime="2016-12-06T02:33:34.000Z" itemprop="datePublished">12月 6 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/06/Android数据存储/">Android数据存储和Android7适配</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Android提供了几种选项用于应用数据的持久化，你可以根据自己的需要来选择合适的方式来进行数据存储，比如你的数据是否是私有的，你的数据需要多大的空间，以及你的数据格式是什么样的。目前的存储方式有以下几种：</p>
-<ol>
-<li>SharedPerferences</li>
-<li>内部存储</li>
-<li>外部存储</li>
-<li>SQLite数据库</li>
-<li>网络连接</li>
-</ol>
-<h2 id="SharedPerferences"><a href="#SharedPerferences" class="headerlink" title="SharedPerferences"></a>SharedPerferences</h2><p>SP主要适用于读取K-V结构的。你还可以用PreferenceActivity来创建一个设置用户偏好的页面，它会自动帮你处理K-V，定制型较差。SP也可以设置读取的权限，包含privateprivate是只允许对本应用访问创建的文件，readable、writeable则是其他应用对创建的文件只有可读、写权限，一般很少用这个。主要位于应用包下的shared_prefs文件下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDataWithSP</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">    SharedPreferences sp = getSharedPreferences(FILE_NAME, MODE_WORLD_READABLE);</div><div class="line">    SharedPreferences.Editor editor = sp.edit();</div><div class="line">    editor.putString(<span class="string">"name"</span>, data);</div><div class="line">    editor.commit();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getDataWithSP</span><span class="params">()</span> </span>&#123;</div><div class="line">    SharedPreferences sp = getSharedPreferences(FILE_NAME, MODE_WORLD_READABLE);</div><div class="line">    <span class="keyword">return</span> sp.getString(<span class="string">"name"</span>, <span class="string">"jiangzijian"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="用内部存储"><a href="#用内部存储" class="headerlink" title="用内部存储"></a>用内部存储</h2><p>内部存储是通过对文件的读写来实现的，默认是private的，即操作该文件时会直接覆盖，<code>MODE_APPEND</code>是追加，MODE_WORLD_READABLE和MODE_WORLD_WRITEABLE在API17后废弃掉了，同时在Android7.0时不能够通过文件名分享私有文件也不能通过file://来分享，否则会直接crash。如果App要分享私有文件给其他app,需要通过<code>FLAG_GRANT_READ_URI_PERMISSION</code>的<code>FileProvider</code>。主要位于应用包名下的files文件下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDataWithInStorage</span><span class="params">(String data)</span> </span>&#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        FileOutputStream fos = openFileOutput(In_STORAGE_FILE_NAME, MODE_APPEND);</div><div class="line">        fos.write(data.getBytes());</div><div class="line">        fos.close();</div><div class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getDataWithInStorage</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</div><div class="line">    FileInputStream fis = openFileInput(In_STORAGE_FILE_NAME);</div><div class="line">    String s = <span class="string">""</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">        <span class="keyword">int</span> n = fis.read(bytes);</div><div class="line">        s = <span class="keyword">new</span> String(bytes, <span class="number">0</span> , n);</div><div class="line">        fis.close();</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> s;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="存储缓存文件"><a href="#存储缓存文件" class="headerlink" title="存储缓存文件"></a>存储缓存文件</h3><p>可以通过<code>getCacheDir()</code>来获取一个内部的目录，主要用于存储一些临时的缓存文件。当设备的内部存储空间不够时，Android会优先删除该目录下的文件，然而我们不能依赖于系统去清理，应该自己来维护。该文件主要位于应用包名下的cache文件下</p>
-<h2 id="用外部存储"><a href="#用外部存储" class="headerlink" title="用外部存储"></a>用外部存储</h2><p>每个Android设备都支持一个共享的外部存储，这个外部存储可以是一个sd卡，也可以是内部的存储，保存在外部存储的是全局可读的，并且可以在插上usb移动到电脑上。</p>
-<p>为了能够读取或写入外部存储的文件，需要获取 <code>READ_EXTERNAL_STORAGE</code> 或者<code>WRITE_EXTERNAL_STORAGE</code>权限<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>在对外部存储的文件做任何操作前都需要先检查下存储媒介的状态是否是可写或者可读的，不然会出问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Checks if external storage is available for read and write */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isExternalStorageWritable</span><span class="params">()</span> </span>&#123;</div><div class="line">    String state = Environment.getExternalStorageState();</div><div class="line">    <span class="keyword">if</span> (Environment.MEDIA_MOUNTED.equals(state)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* Checks if external storage is available to at least read */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isExternalStorageReadable</span><span class="params">()</span> </span>&#123;</div><div class="line">    String state = Environment.getExternalStorageState();</div><div class="line">    <span class="keyword">if</span> (Environment.MEDIA_MOUNTED.equals(state) ||</div><div class="line">        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="文件能够被分享给其他app"><a href="#文件能够被分享给其他app" class="headerlink" title="文件能够被分享给其他app"></a>文件能够被分享给其他app</h3><p>一般来说，用户通过app产生的一些新文件应当保存在设备的公共的地方，比如说用户产生的图片、音频等等。执行该操作时需要使用共享的公共目录，比如Music/、Pictures等，这些是系统推荐的，通过将您的文件保存到相应的媒体类型目录，系统的媒体扫描程序可以在系统中正确地归类您的文件（例如铃声在系统设置中显示为铃声而不是音乐）。也可以自己添加合适的type。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> File <span class="title">getAlbumStorageDir</span><span class="params">(String albumName)</span> </span>&#123;</div><div class="line">    <span class="comment">// Get the directory for the user's public pictures directory.</span></div><div class="line">    File file = <span class="keyword">new</span> File(Environment.getExternalStoragePublicDirectory(</div><div class="line">            Environment.DIRECTORY_PICTURES), albumName);</div><div class="line">    <span class="keyword">if</span> (!file.mkdirs()) &#123;</div><div class="line">        Log.e(LOG_TAG, <span class="string">"Directory not created"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> file;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="保存应用的私有文件"><a href="#保存应用的私有文件" class="headerlink" title="保存应用的私有文件"></a>保存应用的私有文件</h3><p>如果要保存的文件不希望被其他应用访问，可以通过调用<code>getExternalFilesDir</code>来使用外部存储来进行私有存储，此方法也可以通过type来指定子目录的类型。已分配某个内部存储器分区用作外部存储的设备可能还提供了 SD 卡槽。在使用运行 Android 4.3 和更低版本的这类设备时，getExternalFilesDir() 方法将仅提供内部分区的访问权限，而您的应用无法读取或写入 SD 卡。不过，从 Android 4.4 开始，可通过调用 getExternalFilesDirs() 来同时访问两个位置，该方法将会返回包含各个位置条目的 File 数组。 数组中的第一个条目被视为外部主存储；除非该位置已满或不可用，否则应该使用该位置。 如果希望在支持 Android 4.3 和更低版本的同时访问两个可能的位置，请使用支持库中的静态方法 ContextCompat.getExternalFilesDirs()。 在 Android 4.3 和更低版本中，此方法也会返回一个 File 数组，但其中始终仅包含一个条目。</p>
-<h3 id="保存缓存文件"><a href="#保存缓存文件" class="headerlink" title="保存缓存文件"></a>保存缓存文件</h3><p>与内部存储类似，外部存储也包含了一个用于存储缓存文件的目录，可以通过<code>getExternalCacheDir()</code>来得到，也可以通过与前述 ContextCompat.getExternalFilesDirs() 相似，您也可以通过调用 ContextCompat.getExternalCacheDirs() 来访问辅助外部存储（如果可用）上的缓存目录。</p>
-<h2 id="Android7权限适配"><a href="#Android7权限适配" class="headerlink" title="Android7权限适配"></a>Android7权限适配</h2><p>在Android7中强制使用了StrictMode,带来的影响就是禁止向自己App外的应用公开<code>file://</code>的URI，否则将会报<code>FileUriExposedException</code>异常，该异常是在startActivity的时候做的，所以如果你的App的target api是低于24的话，你的App并不会崩溃，如果你启动的应用尝试用你传过去的URI向其他应用（包括自己的应用）公开的话，也是会Crash的。正确的做法是发送一项<code>content：//URI</code>,并授予URI临时访问权限。系统为我们封装了<code>FileProvider</code>类来简化操作。</p>
-<p>比如下面的这段代码如果在Android7上且，target api是24时就会Crash:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();</div><div class="line">path += File.separator + <span class="string">"PIC_"</span> + System.currentTimeMillis() + <span class="string">".JPG"</span>;</div><div class="line">File file = <span class="keyword">new</span> File(path);</div><div class="line"><span class="keyword">if</span> (!file.getParentFile().exists()) &#123;</div><div class="line">    file.getParentFile().mkdirs();</div><div class="line">&#125;</div><div class="line">Uri imageUri = Uri.fromFile(file);</div><div class="line">Log.e(<span class="string">"uri"</span>, imageUri.toString());</div><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);<span class="comment">//设置Action为拍照</span></div><div class="line">intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);<span class="comment">//将拍取的照片保存到指定URI</span></div><div class="line">startActivityForResult(intent, <span class="number">1006</span>);</div></pre></td></tr></table></figure></p>
-<h3 id="FileProvider"><a href="#FileProvider" class="headerlink" title="FileProvider"></a>FileProvider</h3><p>解决方案是官方提供了一个<code>FileProvider</code>类来将文件的路径转换.具体的使用方法：</p>
-<ol>
-<li>在manifest中添加provider<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">provider</span></span></div><div class="line">         <span class="attr">android:name</span>=<span class="string">"android.support.v4.content.FileProvider"</span></div><div class="line">         <span class="attr">android:authorities</span>=<span class="string">"com.example.kevin.fileprovider"</span></div><div class="line">         <span class="attr">android:exported</span>=<span class="string">"false"</span></div><div class="line">         <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</div><div class="line">         <span class="tag">&lt;<span class="name">meta-data</span></span></div><div class="line">             <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></div><div class="line">             <span class="attr">android:resource</span>=<span class="string">"@xml/wm_file_path"</span> /&gt;</div><div class="line"></div><div class="line">     <span class="tag">&lt;/<span class="name">provider</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>为了防止manifest文件merge冲突，可以用自己实现的FileProvider。</p>
-<ol>
-<li>在res目录下创建xml目录，然后创建一个路径文件（如wm_file_path.xml）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;resources&gt;</div><div class="line">    &lt;paths&gt;</div><div class="line">        &lt;external-path</div><div class="line">            name=&quot;camera_photos&quot;</div><div class="line">            path=&quot;Pictures/waimai2&quot; /&gt;</div><div class="line">    &lt;/paths&gt;ß</div><div class="line">&lt;/resources&gt;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><code>&lt;path&gt;</code> 结点下可以包括</p>
-
-      
-    </div>
-
-  
-</article>
-
-  
-
   
     <article id="post-Android软键盘相关详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -609,10 +405,125 @@
   
 
   
+    <article id="post-View基础相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/03/View基础相关/" class="article-date">
+  <time datetime="2016-08-03T02:34:44.000Z" itemprop="datePublished">8月 3 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/03/View基础相关/">View基础相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h3><p>在Android打算的撒打算的oid中的坐标系是以屏幕左上角为原点，向右为X轴正方向，向下为Y轴正方向，角度如下：<br><img src="https://camo.githubusercontent.com/a0c38e4f124e4b2b4a90e0767f24ee9e7b76f992/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303558746469326a773166317179686a793768386a333038633064777133322e6a7067" alt=""><img src="https://camo.githubusercontent.com/42523a55dc2c71f288166c04da524e350d9abfe4/687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f30303558746469326a7731663171796862717669686a333038633064776a72682e6a7067" alt=""></p>
+        
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+  
+        
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-Android动画详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/03/Android动画详解/" class="article-date">
+  <time datetime="2016-08-03T02:14:52.000Z" itemprop="datePublished">8月 3 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/03/Android动画详解/">Android动画详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>动画主要分为三种：View动画、帧动画、属性动画，分别介绍：</p>
+<h4 id="View动画"><a href="#View动画" class="headerlink" title="View动画"></a>View动画</h4><p>View动画的作用对象是View,主要包含<code>平移动画</code>、<code>缩放动画</code>、<code>旋转动画</code>、<code>透明度动画</code>。分别对应<code>TranslateAnimation</code>、<code>ScaleAnimation</code>、<code>RotateAnimation</code>、<code>AlphaAnimation</code>。可以通过XML来实现也可以通过代码,需要注意一点的是View动画最大的缺点是不能交互，View自身的属性并不会发生变化。例如对一个放大的View进行点击，点击区域其实还是原本View的点击区域。<br>
+        
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+  
+        
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
+    <article id="post-View的measure、layout、draw过程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/26/View的measure、layout、draw过程/" class="article-date">
+  <time datetime="2016-07-26T11:59:00.000Z" itemprop="datePublished">7月 26 2016</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>View的整个过程是从ViewRoot开始的，实现类是ViewRootImpl类，在这个类中通过<code>setView（）</code>方法添加DecorView，之后以DecorView为rootView。在ViewRootImpl类中通过<code>performTraversals()</code>方法，经过measure、layout、draw三个过程最终将View绘制出来。<br>
+        
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+  
+        
+      
+    </div>
+
+  
+</article>
+
+  
+
+  
 
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
